@@ -1,0 +1,1145 @@
+{
+  "schema_version": "1.0.0",
+  "knowledge_version": "0.10.0",
+  "updated_at": "2026-06-20",
+  "change_summary": [
+    "Adiciona referencia ao catalogo comercial ESDeveloper_Product_Catalog.json.",
+    "Mantem referencia ao modulo da Shield 4IN-4Relay Optoacoplada.",
+    "Mantem o catalogo de API focado nas classes oficiais da LIB ES32Lab.",
+    "Registra a shield de reles como hardware validado via catalogo externo."
+  ],
+  "project": "ES32Lab",
+  "purpose": "Catalogo tecnico para a IA oficial da ES32Lab gerar codigo usando somente a LIB ES32Lab.",
+  "rules": {
+    "target_board": "ES32Lab",
+    "main_include": "<ES32Lab.h>",
+    "video_catalog": "YouTube_ESDeveloperBR.md",
+    "institutional_catalog": "ESDeveloper_Institutional.md",
+    "validated_hardware_catalog": "Validated_Hardware_Catalog.md",
+    "board_connectors_catalog": "ES32Lab_Board_Connectors_Legends_v1.5.20.md",
+    "shield_4in_4relay_catalog": "ES32Lab_Shield_4IN_4Relay_Optoacoplada.md",
+    "commercial_product_catalog": "ESDeveloper_Product_Catalog.json",
+    "do_not_generate_for_other_boards": true,
+    "prefer_library_classes": true,
+    "prefer_validated_external_peripherals": true,
+    "prefer_esdeveloper_relay_shield_for_relay_projects": true,
+    "do_not_recommend_marketplaces_for_official_products": true,
+    "do_not_invent_methods": true
+  },
+  "library": {
+    "name": "ES32Lab",
+    "version_macro": "ES32LAB_VERSION",
+    "primary_header": "ES32Lab.h",
+    "official_site": "https://www.esdeveloper.com.br/",
+    "assistant_url": "https://chatgpt.com/g/g-uwhCVM9MJ-es32lab",
+    "youtube_url": "https://www.youtube.com/esdeveloperbr?sub_confirmation=1"
+  },
+  "hardware_constants": {
+    "gpio_labels": [
+      "P00",
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P12",
+      "P12_B",
+      "P13",
+      "P13_R",
+      "P14",
+      "P15",
+      "P16",
+      "P16_Y",
+      "P17",
+      "P17_G",
+      "P18",
+      "P19",
+      "P21",
+      "P22",
+      "P23",
+      "P25",
+      "P26",
+      "P27",
+      "P32",
+      "P33",
+      "P34",
+      "P35",
+      "P36",
+      "P39"
+    ],
+    "serial": ["TX0", "RX0"],
+    "i2s": ["LCK", "DIN", "BCK"],
+    "i2c": ["SDA", "SCL"],
+    "spi": ["MOSI", "MISO", "SCK"],
+    "sd": ["CS_SD"],
+    "tft": ["CS_TFT", "DC_TFT", "A0_TFT", "DA_TFT", "CL_TFT"],
+    "peripherals": [
+      "P_KEYBOARD",
+      "P_LED_GREEN",
+      "P_LED_YELLOW",
+      "P_LED_RED",
+      "P_LED_BLUE",
+      "P_POT1",
+      "P_POT2",
+      "P_VOLT",
+      "P_BUZZER",
+      "P_DAC1",
+      "P_DAC2"
+    ],
+    "expander_pins": ["EX0", "EX1", "EX2", "EX3", "EX4", "EX5", "EX6", "EX7"],
+    "recommended_line_sensor_expander_pins": ["EX2", "EX3"],
+    "expander_onboard_map": {
+      "EX0": "LED branco pelo jumper branco",
+      "EX1": "LED laranja pelo jumper branco",
+      "EX2": "Livre; recomendado para sensor de linha esquerdo ou expansao geral",
+      "EX3": "Livre; recomendado para sensor de linha direito ou expansao geral",
+      "EX4": "Ponte H: M1A, motor de indice 0",
+      "EX5": "Ponte H: M1B, motor de indice 0",
+      "EX6": "Ponte H: M2A, motor de indice 1",
+      "EX7": "Ponte H: M2B, motor de indice 1"
+    }
+  },
+  "classes": [
+    {
+      "name": "ES32Lab",
+      "version_macro": "ES32LAB_VERSION",
+      "header": "ES32Lab.h",
+      "role": "Header principal da biblioteca. Ao incluir ES32Lab.h, o usuario acessa as classes e constantes oficiais da ES32Lab.",
+      "construction": "ES32Lab es32lab;",
+      "methods": []
+    },
+    {
+      "name": "ES_AnalogKeyboard",
+      "version_macro": "ES_ANALOGKEYBOARD_VERSION",
+      "header": "ES_AnalogKeyboard/ES_AnalogKeyboardb.h",
+      "role": "Leitura do teclado analogico de 5 teclas da ES32Lab.",
+      "construction": "ES_AnalogKeyboard keyboard(P_KEYBOARD);",
+      "constants": [
+        "KEY_CENTER",
+        "KEY_UP",
+        "KEY_RIGHT",
+        "KEY_DOWN",
+        "KEY_LEFT",
+        "KEY_UP_RIGHT",
+        "KEY_UP_DOWN",
+        "KEY_UP_LEFT",
+        "KEY_DOWN_RIGHT",
+        "KEY_DOWN_LEFT",
+        "KEY_LEFT_RIGHT",
+        "KEY_UP_DOWN_RIGHT",
+        "KEY_UP_DOWN_LEFT",
+        "KEY_UP_RIGHT_LEFT",
+        "KEY_DOWN_RIGHT_LEFT",
+        "KEY_UP_DOWN_RIGHT_LEFT"
+      ],
+      "methods": [
+        {
+          "name": "ES_AnalogKeyboard",
+          "signature": "ES_AnalogKeyboard(uint8_t pinKeyboard = P_KEYBOARD, uint8_t readingAccuracy = 20)",
+          "kind": "constructor"
+        },
+        {
+          "name": "hold",
+          "signature": "boolean hold(uint16_t key)",
+          "returns": "boolean",
+          "description": "Retorna verdadeiro enquanto a tecla estiver pressionada."
+        },
+        {
+          "name": "press",
+          "signature": "boolean press(uint16_t key)",
+          "returns": "boolean",
+          "description": "Retorna verdadeiro uma vez no momento do pressionamento."
+        },
+        {
+          "name": "release",
+          "signature": "boolean release(uint16_t key)",
+          "returns": "boolean",
+          "description": "Retorna verdadeiro uma vez no momento em que a tecla e solta."
+        },
+        {
+          "name": "debugRead",
+          "signature": "void debugRead()",
+          "returns": "void",
+          "description": "Imprime leituras analogicas para calibracao e diagnostico."
+        }
+      ],
+      "examples": [
+        "examples/AnalogKeyboard/AnalogKeyboard-PressKey/AnalogKeyboard-PressKey.ino",
+        "examples/AnalogKeyboard/AnalogKeyboard-ReleaseKey/AnalogKeyboard-ReleaseKey.ino",
+        "examples/AnalogKeyboard/AnalogKeyboard-DebugRead/AnalogKeyboard-DebugRead.ino"
+      ]
+    },
+    {
+      "name": "ES_DigitalButton",
+      "version_macro": "ES_DIGITALBUTTON_VERSION",
+      "header": "ES_DigitalButton/ES_DigitalButton.h",
+      "role": "Leitura de botoes digitais e sensores binarios em GPIOs nativas.",
+      "construction": "ES_DigitalButton button;",
+      "methods": [
+        {
+          "name": "ES_DigitalButton",
+          "signature": "ES_DigitalButton()",
+          "kind": "constructor"
+        },
+        {
+          "name": "begin",
+          "signature": "boolean begin(int pin, boolean activeHigh = true)",
+          "returns": "boolean"
+        },
+        {
+          "name": "begin",
+          "signature": "boolean begin()",
+          "returns": "boolean"
+        },
+        {
+          "name": "setPin",
+          "signature": "boolean setPin(int pin, boolean activeHigh = true)",
+          "returns": "boolean"
+        },
+        {
+          "name": "setPino",
+          "signature": "boolean setPino(int pin, boolean activeHigh = true)",
+          "returns": "boolean",
+          "status": "legacy_alias",
+          "prefer": "setPin"
+        },
+        {
+          "name": "hold",
+          "signature": "boolean hold()",
+          "returns": "boolean"
+        },
+        {
+          "name": "press",
+          "signature": "boolean press()",
+          "returns": "boolean"
+        },
+        {
+          "name": "release",
+          "signature": "boolean release()",
+          "returns": "boolean"
+        }
+      ],
+      "notes": [
+        "Quando activeHigh e true, a classe tenta configurar INPUT_PULLDOWN.",
+        "Quando activeHigh e false, a classe tenta configurar INPUT_PULLUP.",
+        "Algumas GPIOs do ESP32 podem nao aceitar pull-up ou pull-down interno; nesse caso, orientar resistor externo."
+      ],
+      "examples": ["examples/DigitalButton/DigitalButton.ino"]
+    },
+    {
+      "name": "ES_TimeInterval",
+      "version_macro": "ES_TIMEINTERVAL_VERSION",
+      "header": "ES_TimeInterval/ES_TimeInterval.h",
+      "role": "Controle de intervalos de tempo sem bloquear o loop com delay().",
+      "construction": "ES_TimeInterval interval;",
+      "methods": [
+        {
+          "name": "intervalMillis",
+          "signature": "boolean intervalMillis(unsigned long millisTime)",
+          "returns": "boolean"
+        },
+        {
+          "name": "resetMillis",
+          "signature": "void resetMillis()",
+          "returns": "void"
+        },
+        {
+          "name": "intervalMicros",
+          "signature": "boolean intervalMicros(unsigned long microsTime)",
+          "returns": "boolean"
+        },
+        {
+          "name": "resetMicros",
+          "signature": "void resetMicros()",
+          "returns": "void"
+        },
+        {
+          "name": "stopwatchStartMillis",
+          "signature": "void stopwatchStartMillis()",
+          "returns": "void"
+        },
+        {
+          "name": "stopwatchStopMillis",
+          "signature": "unsigned long stopwatchStopMillis()",
+          "returns": "unsigned long"
+        },
+        {
+          "name": "stopwatchStartMicros",
+          "signature": "void stopwatchStartMicros()",
+          "returns": "void"
+        },
+        {
+          "name": "stopwatchStopMicros",
+          "signature": "unsigned long stopwatchStopMicros()",
+          "returns": "unsigned long"
+        }
+      ],
+      "examples": [
+        "examples/TimeInterval/TimeInterval-intervalMillis/TimeInterval-intervalMillis.ino",
+        "examples/TimeInterval/TimeInterval-intervalMicros/TimeInterval-intervalMicros.ino",
+        "examples/TimeInterval/TimeInterval-stopwatchStartMicros/TimeInterval-stopwatchStartMicros.ino"
+      ]
+    },
+    {
+      "name": "ES_Buzzer",
+      "version_macro": "ES_BUZZER_VERSION",
+      "header": "ES_Buzzer/ES_Buzzer.h",
+      "role": "Controle do buzzer da ES32Lab e reproducao de notas musicais.",
+      "construction": "ES_Buzzer buzzer(P_BUZZER);",
+      "related_header": "ES_Buzzer/ES_BuzzerNote.h",
+      "note_constants": {
+        "header": "ES_Buzzer/ES_BuzzerNote.h",
+        "code_generation_default": "Ao gerar melodias com ES_Buzzer, usar as constantes NOTE_* em vez de frequencias numericas diretas.",
+        "raw_frequency_usage": "Usar frequencias numericas diretas somente se o usuario pedir explicitamente uma frequencia em Hz.",
+        "naming_standard": "As constantes usam o padrao internacional de notas musicais: C, CS, D, DS, E, F, FS, G, GS, A, AS, B.",
+        "naming_pattern": "NOTE_<NOTE><OCTAVE>",
+        "valid_notes": ["C", "CS", "D", "DS", "E", "F", "FS", "G", "GS", "A", "AS", "B"],
+        "valid_octaves": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+        "examples": ["NOTE_C4", "NOTE_D4", "NOTE_E4", "NOTE_F4", "NOTE_G4", "NOTE_A4", "NOTE_B4", "NOTE_C5"],
+        "constants_by_octave": {
+          "0": ["NOTE_C0", "NOTE_CS0", "NOTE_D0", "NOTE_DS0", "NOTE_E0", "NOTE_F0", "NOTE_FS0", "NOTE_G0", "NOTE_GS0", "NOTE_A0", "NOTE_AS0", "NOTE_B0"],
+          "1": ["NOTE_C1", "NOTE_CS1", "NOTE_D1", "NOTE_DS1", "NOTE_E1", "NOTE_F1", "NOTE_FS1", "NOTE_G1", "NOTE_GS1", "NOTE_A1", "NOTE_AS1", "NOTE_B1"],
+          "2": ["NOTE_C2", "NOTE_CS2", "NOTE_D2", "NOTE_DS2", "NOTE_E2", "NOTE_F2", "NOTE_FS2", "NOTE_G2", "NOTE_GS2", "NOTE_A2", "NOTE_AS2", "NOTE_B2"],
+          "3": ["NOTE_C3", "NOTE_CS3", "NOTE_D3", "NOTE_DS3", "NOTE_E3", "NOTE_F3", "NOTE_FS3", "NOTE_G3", "NOTE_GS3", "NOTE_A3", "NOTE_AS3", "NOTE_B3"],
+          "4": ["NOTE_C4", "NOTE_CS4", "NOTE_D4", "NOTE_DS4", "NOTE_E4", "NOTE_F4", "NOTE_FS4", "NOTE_G4", "NOTE_GS4", "NOTE_A4", "NOTE_AS4", "NOTE_B4"],
+          "5": ["NOTE_C5", "NOTE_CS5", "NOTE_D5", "NOTE_DS5", "NOTE_E5", "NOTE_F5", "NOTE_FS5", "NOTE_G5", "NOTE_GS5", "NOTE_A5", "NOTE_AS5", "NOTE_B5"],
+          "6": ["NOTE_C6", "NOTE_CS6", "NOTE_D6", "NOTE_DS6", "NOTE_E6", "NOTE_F6", "NOTE_FS6", "NOTE_G6", "NOTE_GS6", "NOTE_A6", "NOTE_AS6", "NOTE_B6"],
+          "7": ["NOTE_C7", "NOTE_CS7", "NOTE_D7", "NOTE_DS7", "NOTE_E7", "NOTE_F7", "NOTE_FS7", "NOTE_G7", "NOTE_GS7", "NOTE_A7", "NOTE_AS7", "NOTE_B7"],
+          "8": ["NOTE_C8", "NOTE_CS8", "NOTE_D8", "NOTE_DS8", "NOTE_E8", "NOTE_F8", "NOTE_FS8", "NOTE_G8", "NOTE_GS8", "NOTE_A8", "NOTE_AS8", "NOTE_B8"]
+        },
+        "reference_frequencies_hz": {
+          "NOTE_C0": 16,
+          "NOTE_CS0": 17,
+          "NOTE_D0": 18,
+          "NOTE_DS0": 19,
+          "NOTE_E0": 21,
+          "NOTE_F0": 22,
+          "NOTE_FS0": 23,
+          "NOTE_G0": 25,
+          "NOTE_GS0": 26,
+          "NOTE_A0": 28,
+          "NOTE_AS0": 29,
+          "NOTE_B0": 31,
+          "NOTE_C1": 33,
+          "NOTE_CS1": 35,
+          "NOTE_D1": 37,
+          "NOTE_DS1": 39,
+          "NOTE_E1": 41,
+          "NOTE_F1": 44,
+          "NOTE_FS1": 46,
+          "NOTE_G1": 49,
+          "NOTE_GS1": 52,
+          "NOTE_A1": 55,
+          "NOTE_AS1": 58,
+          "NOTE_B1": 62,
+          "NOTE_C2": 65,
+          "NOTE_CS2": 69,
+          "NOTE_D2": 73,
+          "NOTE_DS2": 78,
+          "NOTE_E2": 82,
+          "NOTE_F2": 87,
+          "NOTE_FS2": 93,
+          "NOTE_G2": 98,
+          "NOTE_GS2": 104,
+          "NOTE_A2": 110,
+          "NOTE_AS2": 117,
+          "NOTE_B2": 123,
+          "NOTE_C3": 131,
+          "NOTE_CS3": 139,
+          "NOTE_D3": 147,
+          "NOTE_DS3": 156,
+          "NOTE_E3": 165,
+          "NOTE_F3": 175,
+          "NOTE_FS3": 185,
+          "NOTE_G3": 196,
+          "NOTE_GS3": 208,
+          "NOTE_A3": 220,
+          "NOTE_AS3": 233,
+          "NOTE_B3": 247,
+          "NOTE_C4": 262,
+          "NOTE_CS4": 277,
+          "NOTE_D4": 294,
+          "NOTE_DS4": 311,
+          "NOTE_E4": 330,
+          "NOTE_F4": 349,
+          "NOTE_FS4": 370,
+          "NOTE_G4": 392,
+          "NOTE_GS4": 415,
+          "NOTE_A4": 440,
+          "NOTE_AS4": 466,
+          "NOTE_B4": 494,
+          "NOTE_C5": 523,
+          "NOTE_CS5": 554,
+          "NOTE_D5": 587,
+          "NOTE_DS5": 622,
+          "NOTE_E5": 659,
+          "NOTE_F5": 698,
+          "NOTE_FS5": 740,
+          "NOTE_G5": 784,
+          "NOTE_GS5": 831,
+          "NOTE_A5": 880,
+          "NOTE_AS5": 932,
+          "NOTE_B5": 988,
+          "NOTE_C6": 1047,
+          "NOTE_CS6": 1109,
+          "NOTE_D6": 1175,
+          "NOTE_DS6": 1245,
+          "NOTE_E6": 1319,
+          "NOTE_F6": 1397,
+          "NOTE_FS6": 1480,
+          "NOTE_G6": 1568,
+          "NOTE_GS6": 1661,
+          "NOTE_A6": 1760,
+          "NOTE_AS6": 1865,
+          "NOTE_B6": 1976,
+          "NOTE_C7": 2093,
+          "NOTE_CS7": 2217,
+          "NOTE_D7": 2349,
+          "NOTE_DS7": 2489,
+          "NOTE_E7": 2637,
+          "NOTE_F7": 2794,
+          "NOTE_FS7": 2960,
+          "NOTE_G7": 3136,
+          "NOTE_GS7": 3322,
+          "NOTE_A7": 3520,
+          "NOTE_AS7": 3729,
+          "NOTE_B7": 3951,
+          "NOTE_C8": 4186,
+          "NOTE_CS8": 4435,
+          "NOTE_D8": 4699,
+          "NOTE_DS8": 4978,
+          "NOTE_E8": 5274,
+          "NOTE_F8": 5588,
+          "NOTE_FS8": 5920,
+          "NOTE_G8": 6272,
+          "NOTE_GS8": 6645,
+          "NOTE_A8": 7040,
+          "NOTE_AS8": 7459,
+          "NOTE_B8": 7902
+        }
+      },
+      "methods": [
+        {
+          "name": "ES_Buzzer",
+          "signature": "ES_Buzzer(int8_t pinBuzzer = 25)",
+          "kind": "constructor"
+        },
+        {
+          "name": "begin",
+          "signature": "void begin(int8_t channel = 7)",
+          "returns": "void"
+        },
+        {
+          "name": "sound",
+          "signature": "void sound(int note, int duration)",
+          "returns": "void"
+        },
+        {
+          "name": "end",
+          "signature": "void end(int16_t pause = 0)",
+          "returns": "void"
+        },
+        {
+          "name": "setVolume",
+          "signature": "void setVolume(int percentage)",
+          "returns": "void"
+        },
+        {
+          "name": "getVolume",
+          "signature": "int getVolume()",
+          "returns": "int"
+        },
+        {
+          "name": "setSpeed",
+          "signature": "void setSpeed(int percentage)",
+          "returns": "void"
+        },
+        {
+          "name": "getSpeed",
+          "signature": "int getSpeed()",
+          "returns": "int"
+        },
+        {
+          "name": "setPitch",
+          "signature": "void setPitch(int percentage)",
+          "returns": "void"
+        },
+        {
+          "name": "getPitch",
+          "signature": "int getPitch()",
+          "returns": "int"
+        },
+        {
+          "name": "setPitchAndSpeed",
+          "signature": "void setPitchAndSpeed(int percentage)",
+          "returns": "void"
+        }
+      ],
+      "examples": [
+        "examples/Buzzer/ES_Buzzer_HappyBirthday/ES_Buzzer_HappyBirthday.ino",
+        "examples/Buzzer/ES_Buzzer_controlVolumeSpeed/ES_Buzzer_controlVolumeSpeed.ino"
+      ]
+    },
+    {
+      "name": "ES_PCF8574",
+      "version_macro": "ES_PCF8574_VERSION",
+      "header": "ES_PCF8574/ES_PCF8574.h",
+      "role": "Expansor I2C PCF8574 para entradas, saidas, PWM simulado, botoes e motores.",
+      "construction": "ES_PCF8574 expander(0x20);",
+      "methods": [
+        {
+          "name": "scanI2C",
+          "signature": "String scanI2C()",
+          "returns": "String"
+        },
+        {
+          "name": "begin",
+          "signature": "boolean begin(boolean gpioInitLow = true, boolean pwmSimulation = false)",
+          "returns": "boolean"
+        },
+        {
+          "name": "begin",
+          "signature": "boolean begin(uint8_t address, boolean gpioInitLow = true, boolean pwmSimulation = false)",
+          "returns": "boolean"
+        },
+        {
+          "name": "digitalWrite",
+          "signature": "void digitalWrite(uint8_t pin, boolean value)",
+          "returns": "void"
+        },
+        {
+          "name": "digitalRead",
+          "signature": "boolean digitalRead(uint8_t pin)",
+          "returns": "boolean"
+        },
+        {
+          "name": "btHold",
+          "signature": "boolean btHold(uint8_t pin, boolean pullUp = false)",
+          "returns": "boolean"
+        },
+        {
+          "name": "btPress",
+          "signature": "boolean btPress(uint8_t pin, boolean pullUp = false)",
+          "returns": "boolean"
+        },
+        {
+          "name": "btRelease",
+          "signature": "boolean btRelease(uint8_t pin, boolean pullUp = false)",
+          "returns": "boolean"
+        },
+        {
+          "name": "pwmBegin",
+          "signature": "boolean pwmBegin()",
+          "returns": "boolean"
+        },
+        {
+          "name": "pwmWrite",
+          "signature": "void pwmWrite(uint8_t pin, uint8_t dutyCycle = 50, uint8_t frequency = 1)",
+          "returns": "void"
+        },
+        {
+          "name": "motorBegin",
+          "signature": "boolean motorBegin(uint8_t motorID, uint8_t controlPin1, uint8_t controlPin2)",
+          "returns": "boolean"
+        },
+        {
+          "name": "motorRotationA",
+          "signature": "void motorRotationA(uint8_t motorID, uint8_t speed)",
+          "returns": "void"
+        },
+        {
+          "name": "motorRotationB",
+          "signature": "void motorRotationB(uint8_t motorID, uint8_t speed)",
+          "returns": "void"
+        },
+        {
+          "name": "motorStop",
+          "signature": "void motorStop(uint8_t motorID)",
+          "returns": "void"
+        },
+        {
+          "name": "invertMotorCommands",
+          "signature": "void invertMotorCommands(uint8_t motorID)",
+          "returns": "void"
+        },
+        {
+          "name": "invertMotorStatus",
+          "signature": "boolean invertMotorStatus(uint8_t motorID)",
+          "returns": "boolean"
+        },
+        {
+          "name": "getMotorFrequency",
+          "signature": "uint8_t getMotorFrequency(uint8_t motorID)",
+          "returns": "uint8_t"
+        },
+        {
+          "name": "setMotorFrequency",
+          "signature": "void setMotorFrequency(uint8_t motorID, uint8_t frequency)",
+          "returns": "void"
+        }
+      ],
+      "examples": [
+        "examples/i2C_Expander/i2C_scanI2C/i2C_scanI2C.ino",
+        "examples/i2C_Expander/i2C_digitalWriteExpander/i2C_digitalWriteExpander.ino",
+        "examples/i2C_Expander/i2C_digitalReadExpander/i2C_digitalReadExpander.ino",
+        "examples/i2C_Expander/i2C_motorControlSimple/i2C_motorControlSimple.ino"
+      ]
+    },
+    {
+      "name": "ES_CarControl",
+      "version_macro": "ES_CAR_CONTROL_VERSION",
+      "header": "ES_CarControl/ES_CarControl.h",
+      "role": "Controle de veiculos com ponte H, incluindo movimento, luzes, buzina e comandos seriais.",
+      "construction": "ES_CarControl car(expander);",
+      "dependencies": ["ES_PCF8574", "ES_Buzzer optional"],
+      "constants": ["DIFFERENTIAL", "FRONTAL"],
+      "motor_defaults": {
+        "default_control_class": "ES_CarControl",
+        "default_expander": "ES_PCF8574 expander(0x20)",
+        "h_bridge_terminal": "Borne azul da ponte H da ES32Lab",
+        "controlled_by": "Expansor I2C onboard PCF8574",
+        "physical_connection": "A ponte H onboard e ligada ao expansor I2C por jumpers brancos da propria ES32Lab.",
+        "jumper_video": "https://www.youtube.com/watch?v=xpoNbSA8pPM&list=PLpVVewmHgD_LDEXAvsAxDWjS-3XCfZlZi&index=18&t=383s",
+        "differential_default_begin": "car.begin(DIFFERENTIAL)",
+        "differential_default_pins": {
+          "motor_index_0": ["EX4", "EX5"],
+          "motor_index_1": ["EX6", "EX7"]
+        },
+        "manual_pin_equivalent": "car.begin(DIFFERENTIAL, EX4, EX5, EX6, EX7, ...)",
+        "generation_rule": "Quando o usuario pedir codigo com motores, carro, robo movel, ponte H ou veiculo, gerar por padrao com ES_CarControl em vez de controlar a ponte H manualmente.",
+        "invert_motor_commands": {
+          "first_motor_physical_output": "car.invertMotorCommands(0)",
+          "second_motor_physical_output": "car.invertMotorCommands(1)",
+          "warning": "Os indices da classe sao 0 e 1. Nao confundir com legendas antigas impressas na placa."
+        },
+        "legacy_board_label_warning": {
+          "affected_board_versions": "ES32Lab abaixo da versao 1.5.20",
+          "issue": "Algumas placas possuem legenda impressa como MOTOR1 e MOTOR2 nos bornes da ponte H, mas o mapeamento correto no codigo e motor_index_0 e motor_index_1.",
+          "printed_label_to_code_mapping": {
+            "printed_MOTOR1": "motor_index_0",
+            "printed_MOTOR2": "motor_index_1"
+          },
+          "practical_guidance": "Se o primeiro motor fisico estiver invertido, usar car.invertMotorCommands(0), mesmo que a placa antiga esteja escrita como MOTOR1. Se o segundo motor fisico estiver invertido, usar car.invertMotorCommands(1)."
+        }
+      },
+      "methods": [
+        {
+          "name": "begin",
+          "signature": "boolean begin(uint8_t drivingMode = 0, ...)",
+          "returns": "boolean"
+        },
+        {
+          "name": "getVersion",
+          "signature": "const char* getVersion()",
+          "returns": "const char*"
+        },
+        {
+          "name": "controlCommand",
+          "signature": "void controlCommand(char command)",
+          "returns": "void"
+        },
+        {
+          "name": "controlCommand",
+          "signature": "void controlCommand(Stream& serial)",
+          "returns": "void"
+        },
+        {
+          "name": "setSpeed",
+          "signature": "void setSpeed(uint8_t value)",
+          "returns": "void"
+        },
+        {
+          "name": "getSpeed",
+          "signature": "uint8_t getSpeed()",
+          "returns": "uint8_t"
+        },
+        {
+          "name": "setSpeedDelay",
+          "signature": "void setSpeedDelay(uint8_t value)",
+          "returns": "void"
+        },
+        {
+          "name": "getSpeedDelay",
+          "signature": "uint8_t getSpeedDelay()",
+          "returns": "uint8_t"
+        },
+        {
+          "name": "stop",
+          "signature": "void stop()",
+          "returns": "void"
+        },
+        {
+          "name": "forward",
+          "signature": "void forward() / void forward(uint8_t speed)",
+          "returns": "void"
+        },
+        {
+          "name": "backward",
+          "signature": "void backward() / void backward(uint8_t speed)",
+          "returns": "void"
+        },
+        {
+          "name": "left",
+          "signature": "void left() / void left(uint8_t speed)",
+          "returns": "void"
+        },
+        {
+          "name": "right",
+          "signature": "void right() / void right(uint8_t speed)",
+          "returns": "void"
+        },
+        {
+          "name": "forwardLeft",
+          "signature": "void forwardLeft() / void forwardLeft(uint8_t speed)",
+          "returns": "void"
+        },
+        {
+          "name": "forwardRight",
+          "signature": "void forwardRight() / void forwardRight(uint8_t speed)",
+          "returns": "void"
+        },
+        {
+          "name": "backLeft",
+          "signature": "void backLeft() / void backLeft(uint8_t speed)",
+          "returns": "void"
+        },
+        {
+          "name": "backRight",
+          "signature": "void backRight() / void backRight(uint8_t speed)",
+          "returns": "void"
+        },
+        {
+          "name": "frontLights",
+          "signature": "void frontLights(boolean status)",
+          "returns": "void"
+        },
+        {
+          "name": "backLights",
+          "signature": "void backLights(boolean status)",
+          "returns": "void"
+        },
+        {
+          "name": "horn",
+          "signature": "void horn(boolean status)",
+          "returns": "void"
+        },
+        {
+          "name": "extra",
+          "signature": "void extra(boolean status)",
+          "returns": "void"
+        },
+        {
+          "name": "setHornFunction",
+          "signature": "void setHornFunction(void (*callback)(bool))",
+          "returns": "void"
+        },
+        {
+          "name": "setFrontLightsFunction",
+          "signature": "void setFrontLightsFunction(void (*callback)(bool))",
+          "returns": "void"
+        },
+        {
+          "name": "setBackLightsFunction",
+          "signature": "void setBackLightsFunction(void (*callback)(bool))",
+          "returns": "void"
+        },
+        {
+          "name": "setExtraFunction",
+          "signature": "void setExtraFunction(void (*callback)(bool))",
+          "returns": "void"
+        },
+        {
+          "name": "setForwardFunction",
+          "signature": "void setForwardFunction(void (*callback)(uint8_t))",
+          "returns": "void"
+        },
+        {
+          "name": "setBackwardFunction",
+          "signature": "void setBackwardFunction(void (*callback)(uint8_t))",
+          "returns": "void"
+        },
+        {
+          "name": "setLeftFunction",
+          "signature": "void setLeftFunction(void (*callback)(uint8_t))",
+          "returns": "void"
+        },
+        {
+          "name": "setRightFunction",
+          "signature": "void setRightFunction(void (*callback)(uint8_t))",
+          "returns": "void"
+        },
+        {
+          "name": "setForwardLeftFunction",
+          "signature": "void setForwardLeftFunction(void (*callback)(uint8_t))",
+          "returns": "void"
+        },
+        {
+          "name": "setForwardRightFunction",
+          "signature": "void setForwardRightFunction(void (*callback)(uint8_t))",
+          "returns": "void"
+        },
+        {
+          "name": "setBackLeftFunction",
+          "signature": "void setBackLeftFunction(void (*callback)(uint8_t))",
+          "returns": "void"
+        },
+        {
+          "name": "setBackRightFunction",
+          "signature": "void setBackRightFunction(void (*callback)(uint8_t))",
+          "returns": "void"
+        },
+        {
+          "name": "invertMotorCommands",
+          "signature": "void invertMotorCommands(uint8_t motorID)",
+          "returns": "void"
+        },
+        {
+          "name": "invertMotorStatus",
+          "signature": "boolean invertMotorStatus(uint8_t motorID)",
+          "returns": "boolean"
+        }
+      ],
+      "safety": [
+        "USB do computador nao deve alimentar motores.",
+        "Usar fonte externa ou baterias para ponte H.",
+        "Nao ultrapassar 9 V na alimentacao externa da ES32Lab.",
+        "Motores da ponte H nao devem exceder 1 A."
+      ],
+      "examples": [
+        "examples/CarControl/differentialSteering_CommandTest/differentialSteering_CommandTest.ino",
+        "examples/CarControl/frontalSteering_CommandTest/frontalSteering_CommandTest.ino",
+        "examples/CarControl/differentialSteering_Bluetooth/differentialSteering_Bluetooth.ino",
+        "examples/CarControl/frontalSteering_Bluetooth/frontalSteering_Bluetooth.ino"
+      ]
+    },
+    {
+      "name": "ES_CarLineFollower",
+      "version_macro": "ES_CAR_LINE_FOLLOWER_VERSION",
+      "header": "ES_CarLineFollower/ES_CarLineFollower.h",
+    "role": "Controle didatico para robo seguidor de linha usando ES_CarControl e ES_PCF8574.",
+    "construction": "ES_CarLineFollower lineFollower(car, expander);",
+    "dependencies": ["ES_CarControl", "ES_PCF8574", "ES_TimeInterval"],
+    "recommended_sensor_pins": {
+      "left": "EX2",
+      "right": "EX3",
+      "rule": "Usar EX2 e EX3 como sugestao padrao da ES Developer para sensores de linha no expansor I2C, salvo se o usuario informar outra ligacao fisica."
+    },
+    "methods": [
+        {
+          "name": "begin",
+          "signature": "boolean begin(uint8_t leftPin, uint8_t rightPin, uint8_t highSpeed = 20, uint8_t lowSpeed = 10, uint16_t lowSpeedDuration = 2500, uint16_t noLineDuration = 5000, uint8_t turnSpeed = 70)",
+          "returns": "boolean"
+        },
+        {
+          "name": "update",
+          "signature": "void update()",
+          "returns": "void"
+        },
+        {
+          "name": "enable",
+          "signature": "void enable()",
+          "returns": "void"
+        },
+        {
+          "name": "disable",
+          "signature": "void disable()",
+          "returns": "void"
+        },
+        {
+          "name": "setEnabled",
+          "signature": "void setEnabled(boolean status)",
+          "returns": "void"
+        },
+        {
+          "name": "isEnabled",
+          "signature": "boolean isEnabled()",
+          "returns": "boolean"
+        },
+        {
+          "name": "getVersion",
+          "signature": "const char* getVersion()",
+          "returns": "const char*"
+        },
+        {
+          "name": "setHighSpeed",
+          "signature": "void setHighSpeed(uint8_t speed)",
+          "returns": "void"
+        },
+        {
+          "name": "getHighSpeed",
+          "signature": "uint8_t getHighSpeed()",
+          "returns": "uint8_t"
+        },
+        {
+          "name": "setLowSpeed",
+          "signature": "void setLowSpeed(uint8_t speed)",
+          "returns": "void"
+        },
+        {
+          "name": "getLowSpeed",
+          "signature": "uint8_t getLowSpeed()",
+          "returns": "uint8_t"
+        },
+        {
+          "name": "setLowSpeedDuration",
+          "signature": "void setLowSpeedDuration(uint16_t duration)",
+          "returns": "void"
+        },
+        {
+          "name": "getLowSpeedDuration",
+          "signature": "uint16_t getLowSpeedDuration()",
+          "returns": "uint16_t"
+        },
+        {
+          "name": "setNoLineDuration",
+          "signature": "void setNoLineDuration(uint16_t duration)",
+          "returns": "void"
+        },
+        {
+          "name": "getNoLineDuration",
+          "signature": "uint16_t getNoLineDuration()",
+          "returns": "uint16_t"
+        },
+        {
+          "name": "setLeftSpeed",
+          "signature": "void setLeftSpeed(uint8_t speed)",
+          "returns": "void"
+        },
+        {
+          "name": "getLeftSpeed",
+          "signature": "uint8_t getLeftSpeed()",
+          "returns": "uint8_t"
+        },
+        {
+          "name": "setRightSpeed",
+          "signature": "void setRightSpeed(uint8_t speed)",
+          "returns": "void"
+        },
+        {
+          "name": "getRightSpeed",
+          "signature": "uint8_t getRightSpeed()",
+          "returns": "uint8_t"
+        },
+        {
+          "name": "setTurnSpeed",
+          "signature": "void setTurnSpeed(uint8_t speed)",
+          "returns": "void"
+        }
+      ],
+      "examples": [
+        "examples/CarLineFollower/CarLineFollower_Simple/CarLineFollower_Simple.ino",
+        "examples/CarLineFollower/CarLineFollower_DisplayKeyboard/CarLineFollower_DisplayKeyboard.ino"
+      ]
+    },
+    {
+      "name": "ES_File",
+      "version_macro": "ES_FILE_VERSION",
+      "header": "ES_File/ES_File.h",
+      "role": "Manipulacao de arquivos em SD, SPIFFS e LittleFS.",
+      "construction": "ES_File file;",
+      "methods_summary": [
+        "begin",
+        "listAllFiles",
+        "exists",
+        "directoryExists",
+        "println",
+        "print",
+        "readFile",
+        "readLine",
+        "countLines",
+        "remove",
+        "createDirectory",
+        "move",
+        "getTotalSpace",
+        "getUsedSpace",
+        "getAvailableSpace",
+        "getFileSize",
+        "getFirstFileName",
+        "getLastFileName",
+        "getPreviousFileName",
+        "getNextFileName",
+        "getFile",
+        "getFirstFile",
+        "getLastFile",
+        "getNextFile",
+        "getPreviousFile",
+        "copy"
+      ],
+      "examples": [
+        "examples/File/ES_File-ListAllFiles/ES_File-ListAllFiles.ino",
+        "examples/File/ES_File-Print/ES_File-Print.ino",
+        "examples/File/ES_File-ReadFile/ES_File-ReadFile.ino",
+        "examples/File/ES_File-ReadLine/ES_File-ReadLine.ino",
+        "examples/File/ES_File-Navigation/ES_File-Navigation.ino"
+      ]
+    },
+    {
+      "name": "ES_TFT",
+      "version_macro": "ES_TFT_VERSION",
+      "header": "ES_TFT/ES_TFT.h",
+      "role": "Extensao da biblioteca TFT_eSPI_ES32Lab para facilitar uso do display TFT da ES32Lab.",
+      "construction": "ES_TFT display;",
+      "inherits": "TFT_eSPI",
+      "external_dependency": "TFT_eSPI_ES32Lab",
+      "defaults": {
+        "width": 160,
+        "height": 128,
+        "recommended_rotation": 3,
+        "recommended_setup_sequence": [
+          "display.init()",
+          "display.setRotation(3)",
+          "display.fillScreen(TFT_BLACK)"
+        ],
+        "rotation_map": {
+          "0": "Tela na vertical em pe.",
+          "1": "Tela na horizontal de ponta cabeca.",
+          "2": "Tela na vertical de ponta cabeca.",
+          "3": "Tela na horizontal na posicao correta. Valor padrao recomendado."
+        }
+      },
+      "methods": [
+        {
+          "name": "drawCentreScreenString",
+          "signature": "int16_t drawCentreScreenString(const char *string, int32_t y, uint8_t font = 1)"
+        },
+        {
+          "name": "drawCentreScreenString",
+          "signature": "int16_t drawCentreScreenString(const String& string, int32_t y, uint8_t font = 1)"
+        },
+        {
+          "name": "drawRightScreenString",
+          "signature": "int16_t drawRightScreenString(const char *string, int32_t y, uint8_t font = 1)"
+        },
+        {
+          "name": "drawRightScreenString",
+          "signature": "int16_t drawRightScreenString(const String& string, int32_t y, uint8_t font = 1)"
+        },
+        {
+          "name": "renderJPEG",
+          "signature": "bool renderJPEG(fs::FS& fs, const String& fileName, int xpos = 0, int ypos = 0, bool fitToScreen = true)"
+        },
+        {
+          "name": "renderJpegBuffer",
+          "signature": "bool renderJpegBuffer(const uint8_t* jpegBuf, size_t jpegLen, int xpos = 0, int ypos = 0)"
+        },
+        {
+          "name": "renderCameraFrame",
+          "signature": "bool renderCameraFrame(ES_Camera& camera, int xpos = 0, int ypos = 0)"
+        },
+        {
+          "name": "renderFirstFileJPEG",
+          "signature": "bool renderFirstFileJPEG(fs::FS& fs, const String& directory = \"/\", int xpos = 0, int ypos = 0, bool fitToScreen = true)"
+        },
+        {
+          "name": "renderLastFileJPEG",
+          "signature": "bool renderLastFileJPEG(fs::FS& fs, const String& directory = \"/\", int xpos = 0, int ypos = 0, bool fitToScreen = true)"
+        },
+        {
+          "name": "renderNextFileJPEG",
+          "signature": "bool renderNextFileJPEG(fs::FS& fs, const String& path = \"\", int xpos = 0, int ypos = 0, bool fitToScreen = true)"
+        },
+        {
+          "name": "renderPreviousFileJPEG",
+          "signature": "bool renderPreviousFileJPEG(fs::FS& fs, const String& path = \"\", int xpos = 0, int ypos = 0, bool fitToScreen = true)"
+        },
+        {
+          "name": "loadFontFile",
+          "signature": "void loadFontFile(fs::FS& fs, const String& fontName)"
+        }
+      ],
+      "notes": [
+        "fitToScreen = true pode reduzir desempenho e qualidade visual.",
+        "Para melhor desempenho, usar imagens previamente redimensionadas para o display."
+      ],
+      "examples": [
+        "examples/Display-TFT/BasicCommands/BasicCommands.ino",
+        "examples/Display-TFT/Text-DrawString/Text-DrawString.ino",
+        "examples/Display-TFT/PhotoViewerAnalogKeyboard/PhotoViewerAnalogKeyboard.ino"
+      ]
+    },
+    {
+      "name": "ES_Camera",
+      "version_macro": "ES_CAMERA_VERSION",
+      "header": "ES_Camera/ES_Camera.h",
+      "role": "Controle da camera OV2640 na ES32Lab, incluindo captura, JPEG e stream HTTP.",
+      "construction": "ES_Camera camera;",
+      "methods_summary": [
+        "begin",
+        "getSensorName",
+        "setBrightness",
+        "getBrightness",
+        "setContrast",
+        "getContrast",
+        "setSaturation",
+        "getSaturation",
+        "setWhiteBalance",
+        "getWhiteBalance",
+        "setWhiteBalanceGain",
+        "getWhiteBalanceGain",
+        "setExposure",
+        "getExposure",
+        "setExposureAdvanced",
+        "getExposureAdvanced",
+        "setExposureLevel",
+        "getExposureLevel",
+        "setExposureValue",
+        "getExposureValue",
+        "setExposureGain",
+        "getExposureGain",
+        "setSpecialEffect",
+        "getSpecialEffect",
+        "setAutoGainCeiling",
+        "getAutoGainCeiling",
+        "setNoiseReduction",
+        "getNoiseReduction",
+        "setPixelCorrection",
+        "getPixelCorrection",
+        "setColorCorrection",
+        "getColorCorrection",
+        "setRawColorCorrection",
+        "getRawColorCorrection",
+        "setLensCorrection",
+        "getLensCorrection",
+        "setSharpness",
+        "getSharpness",
+        "setFrameSize",
+        "getFrameSize",
+        "getFrameWidth",
+        "getFrameHeight",
+        "setJpegCompression",
+        "getJpegCompression",
+        "setHorizontalMirror",
+        "getHorizontalMirror",
+        "setVerticalMirror",
+        "getVerticalMirror",
+        "setColorBar",
+        "getColorBar",
+        "getFrameBuffer",
+        "getFrameJpegBuffer",
+        "saveFrameToJpegFile",
+        "handleStreamRequest",
+        "createStreamEndpoint",
+        "getStreamUri"
+      ],
+      "examples": [
+        "examples/Camera/Camera-DisplayTFT/Camera-DisplayTFT.ino",
+        "examples/Camera/Camera-SaveFrameToSD/Camera-SaveFrameToSD.ino",
+        "examples/Camera/Camera-StreamHTTP/Camera-StreamHTTP.ino"
+      ]
+    }
+  ],
+  "future_modules": {
+    "video_catalog": {
+      "file": "Video_Catalog.json",
+      "purpose": "Relacionar temas, exemplos e metodos da ES32Lab com videos oficiais e legendas."
+    },
+    "course_catalog": {
+      "file": "Course_Modules.md",
+      "purpose": "Organizar trilhas de estudo para alunos usando IA e placa ES32Lab."
+    },
+    "commercial_context": {
+      "file": "Commercial_Context.md",
+      "purpose": "Cadastrar site oficial, chamadas comerciais discretas, promocoes e informacoes institucionais."
+    }
+  }
+}

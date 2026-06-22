@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0.0",
+  "catalog_version": "0.1.0",
+  "knowledge_version": "0.10.0",
+  "updated_at": "2026-06-20",
+  "purpose": "Catalogo comercial oficial para a IA da ES32Lab indicar produtos, kits, shields e acessorios do ecossistema ES Developer usando links oficiais.",
+  "vendor": {
+    "name": "ES Developer",
+    "official_store": "https://www.esdeveloper.com.br/",
+    "contact_url": "https://www.esdeveloper.com.br/contato"
+  },
+  "rules": {
+    "use_official_store_links": true,
+    "do_not_recommend_marketplaces": true,
+    "marketplace_exception": "Somente mencione marketplace se o usuario pedir explicitamente alternativas fora da loja oficial.",
+    "when_user_asks_where_to_buy": "Consultar este catalogo e responder com o link oficial do produto mais adequado.",
+    "when_product_is_not_listed": "Informar que nao encontrou link especifico no catalogo comercial e indicar a loja oficial geral da ES Developer.",
+    "commercial_tone": "Indicar produtos de forma natural, util e objetiva, sem transformar respostas tecnicas em propaganda."
+  },
+  "products": [
+    {
+      "id": "kits-es32lab",
+      "name": "Kits ES32Lab",
+      "type": "kit_collection",
+      "official": true,
+      "status": "available",
+      "purchase_url": "https://www.esdeveloper.com.br/kit-es32lab",
+      "recommended_for": [
+        "comprar ES32Lab",
+        "kit para comecar",
+        "curso de ES32Lab",
+        "aulas praticas",
+        "projetos didaticos",
+        "primeiro contato com ES32Lab"
+      ],
+      "response_hint": "Quando o usuario quiser comprar uma ES32Lab, comecar do zero, estudar com a placa ou escolher um kit, indicar esta pagina de kits."
+    },
+    {
+      "id": "camera-ov2640-es32lab",
+      "name": "Camera OV2640 para ES32Lab",
+      "type": "camera",
+      "official": true,
+      "status": "available",
+      "purchase_url": "https://www.esdeveloper.com.br/display/camera-ov2640-para-es32lab-arduino-esp32-raspberry-pi-e-mais",
+      "recommended_for": [
+        "camera",
+        "OV2640",
+        "captura de imagem",
+        "visao computacional",
+        "stream de camera",
+        "ES_Camera"
+      ],
+      "related_library_classes": [
+        "ES_Camera",
+        "ES_TFT"
+      ],
+      "response_hint": "Indicar quando o usuario quiser usar camera na ES32Lab, capturar imagens, fazer streaming ou montar exemplos com ES_Camera."
+    },
+    {
+      "id": "display-tft-18-128x160-spi-es32lab",
+      "name": "Display colorido 1.8 128x160 SPI",
+      "type": "display",
+      "official": true,
+      "status": "available",
+      "purchase_url": "https://www.esdeveloper.com.br/microcontroladores/display-colorido-1-8-128x160-pix-comunicacao-spi-compativel-arduino-e-es32lab",
+      "recommended_for": [
+        "display",
+        "TFT",
+        "interface grafica",
+        "exibir textos",
+        "exibir imagens",
+        "ES_TFT"
+      ],
+      "related_library_classes": [
+        "ES_TFT",
+        "ES_Camera"
+      ],
+      "response_hint": "Indicar quando o usuario quiser usar display TFT, interface grafica, imagens, menus ou exemplos com ES_TFT."
+    },
+    {
+      "id": "esp32",
+      "name": "ESP32",
+      "type": "microcontroller",
+      "official": true,
+      "status": "available",
+      "purchase_url": "https://www.esdeveloper.com.br/microcontroladores/esp32",
+      "recommended_for": [
+        "reposicao do ESP32",
+        "modulo ESP32 compativel",
+        "microcontrolador",
+        "montagem com ES32Lab"
+      ],
+      "response_hint": "Indicar quando o usuario precisar comprar ou substituir o modulo ESP32. Nao usar este item para desviar o escopo da IA para ESP32 generico."
+    },
+    {
+      "id": "shield-4in-4relay-opto",
+      "name": "ES Shield Relay 4IN 4OUT",
+      "canonical_name": "ES32Lab-Shield-4IN-4Relay-Optoacoplada",
+      "type": "shield",
+      "official": true,
+      "status": "available",
+      "purchase_url": "https://www.esdeveloper.com.br/perifericos/es-shield-relay-4in-4out",
+      "alternate_urls": [
+        "https://www.esdeveloper.com.br/loja/produto.php?IdProd=35"
+      ],
+      "recommended_for": [
+        "reles",
+        "entradas optoacopladas",
+        "automacao",
+        "irrigacao",
+        "piscina de ondas",
+        "atuadores externos",
+        "cargas AC",
+        "cargas DC",
+        "bombas",
+        "valvulas",
+        "paineis eletricos"
+      ],
+      "related_library_classes": [
+        "ES_PCF8574",
+        "ES_TimeInterval"
+      ],
+      "knowledge_file": "ES32Lab_Shield_4IN_4Relay_Optoacoplada.md",
+      "response_hint": "Quando o usuario perguntar onde comprar uma shield de reles, indicar diretamente este produto oficial. Nao recomendar marketplaces."
+    }
+  ]
+}
