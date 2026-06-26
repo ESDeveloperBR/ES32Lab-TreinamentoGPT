@@ -1,8 +1,8 @@
 # ES32Lab GPT - Defaults E Boas Praticas
 
-Versao do conhecimento: `0.9.0`
-Atualizado em: `2026-06-20`
-Resumo da versao: acompanha a inclusao da Shield 4IN-4Relay Optoacoplada e mantem defaults tecnicos da ES32Lab.
+Versao do conhecimento: `0.12.8`
+Atualizado em: `2026-06-26`
+Resumo da versao: corrige resposta de referencias publicas sem expor arquivos internos.
 
 Este arquivo concentra ajustes finos de uso da placa ES32Lab e da LIB ES32Lab.
 
@@ -42,6 +42,7 @@ Quando a IA gerar codigo para a ES32Lab, deve consultar este mapa para escolher 
 | Camera | `esp_camera` cru quando `ES_Camera` resolver | `ES_Camera` |
 | Arquivos | `File` manual para operacoes comuns | `ES_File` |
 | Teclado analogico | leitura analogica manual do teclado | `ES_AnalogKeyboard` |
+| Sensor de distancia VL53L0X | biblioteca externa ou Wire direto | `ES_VL53L0X` |
 
 Excecoes permitidas:
 
@@ -300,6 +301,50 @@ Se o usuario nao especificar circuito externo, explicar que:
 - algumas GPIOs podem nao aceitar pull-up ou pull-down interno;
 - quando necessario, o usuario deve usar resistor fisico externo.
 
+## ES_AnalogKeyboard - Teclado Analogico
+
+Para o teclado analogico onboard da ES32Lab, usar a classe `ES_AnalogKeyboard`.
+
+Defaults praticos:
+
+- pino padrao: `P_KEYBOARD`;
+- GPIO fisica associada: GPIO 33;
+- tolerancia padrao: `20%`, configurada no construtor;
+- exemplo oficial de diagnostico: `examples/AnalogKeyboard/AnalogKeyboard-DebugRead/AnalogKeyboard-DebugRead.ino`.
+
+Valores esperados das teclas individuais:
+
+| Tecla | Valor esperado |
+|---|---:|
+| `KEY_CENTER` | `0` |
+| `KEY_UP` | `769` |
+| `KEY_RIGHT` | `1585` |
+| `KEY_DOWN` | `2400` |
+| `KEY_LEFT` | `3323` |
+
+Quando o usuario relatar que o teclado nao funciona, a IA deve orientar diagnostico antes de reescrever a logica do codigo:
+
+1. Rodar o exemplo oficial `AnalogKeyboard-DebugRead`.
+2. Segurar cada tecla por pelo menos tres leituras.
+3. Comparar `Min`, `Max` e `Media` com os valores esperados.
+4. Se os valores aparecem mas ficam um pouco fora da faixa, testar uma tolerancia maior no construtor, como `25` ou `30`, com cuidado para nao sobrepor faixas entre teclas.
+5. Se a leitura fica travada, sempre `0`, sempre `4095`, sem variacao ou com ruido extremo, verificar jumper verde do teclado, alimentacao, GND, GPIO `P_KEYBOARD`/GPIO 33 e testar outro ESP32.
+6. Se outro ESP32 funcionar na mesma ES32Lab, tratar como forte indicio de problema na GPIO analogica do ESP32 original.
+
+Exemplo de ajuste de tolerancia:
+
+```cpp
+ES_AnalogKeyboard keyboard(P_KEYBOARD, 25);
+```
+
+Teste em outro pino analogico so deve ser sugerido quando o usuario puder fazer a ligacao fisica por jumper de forma consciente. Nesse caso, usar um pino analogico valido e instanciar a classe com esse pino:
+
+```cpp
+ES_AnalogKeyboard keyboard(P32, 20);
+```
+
+Observacao importante: `KEY_CENTER` vale `0`, entao a tolerancia percentual nao cria uma faixa positiva ao redor de zero. Se a tecla central nao chegar perto de zero, priorizar diagnostico com `debugRead()` e verificacao fisica.
+
 ## ES_PCF8574 - Expansor I2C
 
 Endereco padrao usado nos exemplos:
@@ -319,6 +364,35 @@ Para sensores de robo seguidor de linha e para demandas que precisem de duas GPI
 Quando o usuario relatar falha em periferico I2C, sensor I2C, expansor, ponte H ou shield I2C, recomendar o uso de `scanI2C()` para conferir se o dispositivo aparece no barramento e qual endereco esta respondendo.
 
 Para perifericos externos, sensores e shields validados, consultar `Validated_Hardware_Catalog.md`.
+
+## ES_VL53L0X - Sensor De Distancia VL53L0X
+
+Para sensores VL53L0X, usar a classe oficial `ES_VL53L0X`.
+
+Defaults praticos:
+
+- endereco I2C padrao: `0x29`;
+- offset inicial recomendado para exemplos gerados: `50 mm`;
+- barramento padrao: `Wire`;
+- unidade de leitura: milimetros;
+- valor invalido de leitura: `ES_VL53L0X_INVALID_DISTANCE` (`65535`);
+- exemplo inicial: `examples/SensorDistance/SensorDistanceSimple/SensorDistanceSimple.ino`;
+- exemplo com estabilidade/velocidade de leitura: `examples/SensorDistance/SensorDistanceTimingBudget/SensorDistanceTimingBudget.ino`.
+
+Padrao recomendado:
+
+```cpp
+ES_VL53L0X distance;
+
+void setup() {
+  Serial.begin(115200);
+  distance.setTimeout(500);
+  distance.setDistanceOffset(50); // Calibracao inicial recomendada em mm.
+  distance.begin(); // Usa o endereco padrao 0x29.
+}
+```
+
+Para codigos gerados ao usuario com leitura recorrente, preferir `ES_TimeInterval` em vez de `delay()`. Usar `distance.setDistanceOffset(50)` como ponto de partida calibravel; se a montagem, lente, case ou sensor exigir outro valor, orientar o usuario a ajustar. Os exemplos oficiais didaticos podem manter pequenos `delay()` quando isso simplificar a leitura no Monitor Serial.
 
 ## ES_Buzzer - Notas Musicais
 
@@ -507,3 +581,84 @@ codigo_recomendado();
 
 Quando a IA deve usar esse padrao.
 ````
+
+
+## Diagnostico De Versao Da LIB ES32Lab
+
+Considere como versao corrente da biblioteca ES32Lab a `0.15.2`, com `ES32LAB_VERSION` retornando `0.15.2 update 24/06/2026`.
+
+Em codigos gerados que usam `Serial`, imprima a versao logo apos `Serial.begin(115200)`:
+
+```cpp
+Serial.print("ES32Lab LIB: ");
+Serial.println(ES32LAB_VERSION);
+```
+
+Esse padrao ajuda a diagnosticar rapidamente quando o usuario esta usando uma LIB diferente da esperada pelo treinamento. Use essa verificacao principalmente em erros de compilacao por API divergente, metodos inexistentes, construtores incompativeis ou comportamento que nao bate com os exemplos atuais.
+
+Nao mostre a versao em displays pequenos por padrao. Reserve isso para telas de diagnostico, splash ou quando o usuario solicitar.
+
+## Referencias Publicas Ao Usuario
+
+As respostas podem usar os arquivos internos de treinamento apenas como base interna de decisao. Quando o usuario pedir fonte, documentacao, referencia ou origem da resposta, responda apenas com links publicos:
+
+- README publico da classe no GitHub da ES32Lab para explicacoes gerais.
+- Nome da classe como hiperlink Markdown para o README publico da classe.
+- Metodo citado em codigo, acompanhado do link para o README publico da classe correspondente.
+- Link com ancora publica apenas quando a ancora ja estiver cadastrada e for confiavel.
+- Exemplo oficial publico quando a resposta se apoiar em um exemplo da LIB.
+- Site oficial ou video oficial quando a resposta envolver produto, compra, aula, montagem ou institucional.
+
+Nao cite nomes de arquivos internos como `API_Catalog.json`, `GPT_Instructions.md`, `Code_Generation_Rules.md`, `Examples_Index.json` ou outros arquivos de treinamento como fonte para o usuario final.
+
+
+## Itens Necessarios E Kits Oficiais
+
+Ao orientar projetos, testes ou codigos para usuarios iniciantes, diferencie claramente:
+
+- itens realmente necessarios para o projeto, sempre incluindo `ES32Lab`;
+- itens opcionais ou melhorias futuras;
+- produtos oficiais cadastrados no catalogo comercial;
+- itens necessarios ainda sem link oficial cadastrado.
+
+Quando um kit oficial cobrir varios itens do projeto, prefira indicar o kit antes de itens avulsos. Exemplo: um projeto que usa ES32Lab, display TFT e camera deve priorizar o Kit ES32Lab-CAM quando ele estiver cadastrado.
+
+Quando nao houver produto cadastrado, nao indique marketplace. Use o contato oficial da ES Developer e descreva o item de forma completa para que o usuario possa consultar a equipe ou pesquisar por conta propria:
+
+https://www.esdeveloper.com.br/contato
+
+
+## Ordem Da Resposta Para Projetos E Codigos
+
+Em respostas com projeto ou sketch completo, coloque a lista de materiais no inicio e o codigo-fonte no final. Essa ordem melhora a leitura e evita que informacoes importantes fiquem escondidas depois de um bloco grande de codigo.
+
+Use como ordem padrao:
+
+1. Itens necessarios para o projeto, sempre incluindo ES32Lab.
+2. Conferencia rapida dos materiais em maos, quando pertinente.
+3. Funcionamento e montagem.
+4. Ligacoes e alertas.
+5. Video, produto oficial ou contato oficial, quando pertinente.
+6. Codigo-fonte completo por ultimo.
+
+Evite colocar conteudo importante depois do codigo. Se precisar, deixe apenas uma frase curta pedindo erro de compilacao, versao da LIB ou retorno do Monitor Serial.
+
+
+## Links Na Lista De Materiais
+
+Na secao `Itens necessarios para o projeto`, todo item encontrado em `ESDeveloper_Product_Catalog.json` com `purchase_url` cadastrado deve aparecer como hiperlink Markdown diretamente no nome do item.
+
+Formato recomendado:
+
+```md
+- [Nome do produto - loja oficial ES Developer](purchase_url)
+```
+
+Regras:
+
+- Para a ES32Lab como item base, usar o produto `kits-es32lab` e o link oficial cadastrado.
+- Se houver kit oficial que cubra varios itens do projeto, o kit deve aparecer primeiro como hiperlink.
+- Produto cadastrado com `purchase_url` nao deve aparecer como texto simples na lista de materiais.
+- Item sem `purchase_url` cadastrado fica em texto comum, com nome tecnico claro.
+- Nao usar URL de contato como link de produto; contato oficial e fallback para itens sem produto cadastrado.
+- Nao inventar URLs de produtos.

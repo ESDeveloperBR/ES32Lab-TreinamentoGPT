@@ -1,8 +1,8 @@
 # ES32Lab GPT - Catalogo De Hardware Validado
 
-Versao do conhecimento: `0.10.0`
-Atualizado em: `2026-06-20`
-Resumo da versao: adiciona referencia ao catalogo comercial oficial para produtos e links de compra.
+Versao do conhecimento: `0.12.7`
+Atualizado em: `2026-06-26`
+Resumo da versao: centraliza politica hibrida de bibliotecas, dependencias oficiais, SGP30 e inicializacao BME280.
 
 Este arquivo orienta a IA da ES32Lab quando o usuario pedir uso de sensores, modulos, shields, CIs, perifericos externos ou bibliotecas de terceiros junto com a placa ES32Lab.
 
@@ -17,10 +17,44 @@ A ES32Lab possui diversos circuitos onboard ja conectados ao ESP32. Por isso, a 
 Regra pratica:
 
 - se existir uma classe ES32Lab para o recurso, usar a classe ES32Lab;
-- se o recurso for externo e ainda nao existir classe ES32Lab, usar a biblioteca preferida indicada neste catalogo;
+- se o recurso for externo e existir biblioteca preferida neste catalogo, usar a biblioteca cadastrada;
+- se nao houver biblioteca cadastrada para o periferico, pode sugerir biblioteca externa amplamente usada como fallback, marcando que ela nao foi validada oficialmente pela ES Developer;
 - se houver opcao entre um modulo I2C e outro que consuma GPIOs nativas, priorizar o modulo I2C;
 - nao sacrificar circuitos onboard sem explicar claramente a consequencia;
 - quando houver falha em dispositivo I2C, recomendar verificacao de endereco com `scanI2C()` da classe `ES_PCF8574`.
+
+## Bibliotecas Oficiais, Validadas E Fallback
+
+Use esta politica quando precisar indicar bibliotecas, instalar dependencias ou montar `platformio.ini` para projetos com ES32Lab.
+
+Ordem de prioridade:
+
+1. Classes e bibliotecas oficiais da ES32Lab/ES Developer.
+2. Bibliotecas de terceiros ja validadas neste catalogo.
+3. Biblioteca externa amplamente usada apenas quando nao houver item cadastrado que resolva o caso.
+
+Bibliotecas oficiais ES32Lab para PlatformIO:
+
+```ini
+lib_deps =
+    esdeveloper/ES32Lab
+```
+
+Quando o projeto usar display TFT da ES32Lab, `ES_TFT` ou recursos graficos que dependam do display, incluir tambem:
+
+```ini
+lib_deps =
+    esdeveloper/ES32Lab
+    esdeveloper/TFT_eSPI_ES32Lab
+```
+
+Regras obrigatorias:
+
+- Nao recomendar `bodmer/TFT_eSPI` para projetos ES32Lab; ela nao substitui `esdeveloper/TFT_eSPI_ES32Lab`.
+- Nao substituir biblioteca oficial ES32Lab por biblioteca generica de terceiros.
+- Quando usar fallback externo nao cadastrado, avisar que a biblioteca nao possui validacao oficial da ES Developer no material disponivel.
+- Preferir bibliotecas mantidas, conhecidas e compativeis com ESP32/Arduino.
+- Se o identificador exato de `lib_deps` nao estiver claro, nao inventar: pedir confirmacao ou explicar que o nome precisa ser conferido.
 
 ## Expansao I2C Onboard Da ES32Lab
 
@@ -115,20 +149,44 @@ Se o usuario informar outra ligacao fisica, respeitar a ligacao informada.
 
 ### VL53L0X - Sensor De Distancia
 
-- Status: periferico I2C recomendado.
+- Status: periferico I2C recomendado e coberto pela LIB ES32Lab.
 - Tipo: sensor de distancia por tempo de voo.
 - Barramento: I2C.
-- Biblioteca preferida: `pololu/VL53L0X`.
-- Endereco I2C comum: `0x29`.
+- Classe ES32Lab recomendada: `ES_VL53L0X`.
+- Biblioteca externa preferida: nenhuma; usar a classe oficial `ES_VL53L0X` via `ES32Lab.h`.
+- Endereco I2C padrao: `0x29`.
+- Valor de leitura invalida: `ES_VL53L0X_INVALID_DISTANCE` (`65535`).
+- Offset inicial recomendado para exemplos gerados: `50 mm`, usando `distance.setDistanceOffset(50)`.
 - Quando recomendar: deteccao de obstaculos, robo movel, medicao de distancia curta, projetos didaticos de sensores.
-- Diagnostico: se nao detectar, recomendar `scanI2C()` para conferir o endereco no barramento.
+- Diagnostico: se nao detectar, recomendar `scanI2C()` da classe `ES_PCF8574` para conferir o endereco no barramento.
+
+Padrao recomendado:
+
+```cpp
+ES_VL53L0X distance;
+
+void setup() {
+  Serial.begin(115200);
+  distance.setTimeout(500);
+  distance.setDistanceOffset(50); // Calibracao inicial recomendada em mm.
+
+  if (!distance.begin()) {
+    Serial.println("Sensor VL53L0X nao encontrado no endereco 0x29.");
+  }
+}
+```
 
 Ao gerar codigo com este sensor:
 
-- incluir a biblioteca externa preferida;
+- usar `ES_VL53L0X` como primeira escolha;
+- nao usar biblioteca externa de VL53L0X para novos codigos da ES32Lab;
 - manter `ES32Lab.h` como include principal da placa;
+- informar que o endereco padrao do VL53L0X e `0x29`;
+- aplicar `distance.setDistanceOffset(50)` como ponto de partida nos exemplos gerados e orientar ajuste quando necessario;
+- usar `ES_TimeInterval` para leituras periodicas sem travar o `loop()` em codigos gerados para usuarios;
 - usar classes ES32Lab para display, temporizacao, motores, buzzer e demais recursos da placa;
 - nao substituir `ES_CarControl`, `ES_TimeInterval` ou `ES_TFT` por codigo generico.
+
 
 ### BME280 / Familia BME2xx
 
@@ -137,6 +195,7 @@ Ao gerar codigo com este sensor:
 - Barramento: I2C.
 - Biblioteca preferida: `sparkfun/SparkFun_BME280_Arduino_Library`.
 - Enderecos I2C comuns: `0x76` e `0x77`.
+- Endereco recomendado como ponto de partida nos exemplos: `0x76`, com `0x77` como alternativo comum.
 - Quando recomendar: estacao meteorologica, IoT, monitoramento ambiental, aulas sobre sensores ambientais.
 - Diagnostico: se nao detectar, recomendar `scanI2C()` e conferir o endereco configurado no codigo.
 
@@ -144,8 +203,42 @@ Ao gerar codigo com sensores da familia BME2xx:
 
 - usar a biblioteca SparkFun BME280 como primeira escolha;
 - explicar que o endereco pode variar entre modulos;
+- chamar `bme280.setI2CAddress(0x76)` antes de `bme280.beginI2C()` nos exemplos gerados, salvo quando o usuario informar `0x77` ou outro endereco confirmado;
+- nao descrever `setI2CAddress()` como inicializacao; ele apenas define o endereco I2C usado por `beginI2C()`;
 - usar `ES_TimeInterval` para leituras periodicas sem travar o `loop()`;
 - usar `ES_TFT` quando os dados forem exibidos no display da ES32Lab.
+
+Padrao recomendado:
+
+```cpp
+BME280 bme280;
+
+void setup() {
+  bme280.setI2CAddress(0x76); // Endereco I2C do sensor. Alternativo comum: 0x77.
+
+  if (bme280.beginI2C() == false) {
+    Serial.println("BME280 nao encontrado. Confira endereco, alimentacao, SDA e SCL.");
+  }
+}
+```
+
+### SGP30 - Sensor De Qualidade Do Ar
+
+- Status: periferico I2C recomendado.
+- Tipo: sensor de qualidade do ar para TVOC e eCO2.
+- Barramento: I2C.
+- Biblioteca preferida: `adafruit/Adafruit SGP30 Sensor`.
+- Endereco I2C comum: `0x58`.
+- Quando recomendar: qualidade do ar, TVOC, eCO2, monitoramento ambiental, salas de aula, laboratorios e projetos IoT.
+- Diagnostico: se nao detectar, recomendar `scanI2C()` e conferir alimentacao, `SDA`, `SCL` e endereco no barramento.
+
+Ao gerar codigo com SGP30:
+
+- usar a biblioteca `adafruit/Adafruit SGP30 Sensor` como primeira escolha;
+- manter `ES32Lab.h` como include principal da placa;
+- usar classes ES32Lab para display, temporizacao, arquivos, botoes e demais recursos da placa;
+- usar `ES_TimeInterval` para leituras periodicas sem travar o `loop()`;
+- se os dados forem exibidos no display da ES32Lab, usar `ES_TFT` e incluir `esdeveloper/TFT_eSPI_ES32Lab` no `platformio.ini`.
 
 ## Shields E Expansoes A Detalhar
 

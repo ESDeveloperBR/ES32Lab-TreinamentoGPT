@@ -1,0 +1,1128 @@
+{
+  "schema_version": "1.0.0",
+  "knowledge_version": "0.12.3",
+  "updated_at": "2026-06-25",
+  "source_file": "Examples_Index.md",
+  "title": "ES32Lab GPT - Indice De Exemplos Oficiais",
+  "previous_metadata": {
+    "title": "ES32Lab GPT - Indice De Exemplos Oficiais",
+    "previous_knowledge_version": "0.12.1",
+    "previous_updated_at": "2026-06-25",
+    "previous_change_summary": "registra offset inicial recomendado de 50 mm para ES_VL53L0X."
+  },
+  "purpose": "Catalogo estruturado dos exemplos oficiais da LIB ES32Lab para indicar exemplos relacionados nas respostas da IA.",
+  "migration_note": "Arquivo convertido de Markdown para JSON e atualizado para cobrir todos os exemplos oficiais encontrados na pasta examples da LIB ES32Lab.",
+  "usage_rules": [
+    "Este catalogo deve cobrir todos os arquivos .ino oficiais presentes em examples da LIB ES32Lab.",
+    "Ao atualizar a LIB, reescanear a pasta examples e incluir novos .ino ausentes.",
+    "Quando o usuario solicitar codigo, consultar este catalogo para indicar exemplos oficiais relacionados.",
+    "Usar os caminhos exatamente como registrados em file.",
+    "Nao inventar exemplos que nao estejam catalogados."
+  ],
+  "introduction_markdown": "# ES32Lab GPT - Indice De Exemplos Oficiais\n\nVersao do conhecimento: `0.12.3`\nAtualizado em: `2026-06-25`\nResumo da versao: adiciona URLs publicas para exemplos oficiais.\n\nEste arquivo relaciona os exemplos oficiais da LIB ES32Lab com temas que o usuario pode pedir para a IA.\n\nQuando o usuario solicitar um codigo, a IA deve usar este indice para indicar exemplos oficiais relacionados.",
+  "categories": [
+    {
+      "name": "LEDs",
+      "examples": [
+        {
+          "title": "LED piscando",
+          "file": "examples/LEDs/ledBlink/ledBlink.ino",
+          "topic": "piscar LED, saida digital, `pinMode`, `digitalWrite`",
+          "related_classes": [],
+          "related_constants": [
+            "P_LED_GREEN",
+            "P_LED_YELLOW",
+            "P_LED_RED",
+            "P_LED_BLUE"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/LEDs/ledBlink/ledBlink.ino"
+        },
+        {
+          "title": "LED verde piscando",
+          "file": "examples/LEDs/ledBlinkGreen/ledBlinkGreen.ino",
+          "topic": "LED verde da ES32Lab",
+          "related_classes": [],
+          "related_constants": [
+            "P_LED_GREEN"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/LEDs/ledBlinkGreen/ledBlinkGreen.ino"
+        },
+        {
+          "title": "LED com potenciometro",
+          "file": "examples/LEDs/Potentiometer-TimeLedBlink/Potentiometer-TimeLedBlink.ino",
+          "topic": "LED, potenciometro, intervalo de tempo",
+          "related_classes": [],
+          "related_constants": [
+            "P_LED_GREEN",
+            "P_LED_YELLOW",
+            "P_LED_RED",
+            "P_LED_BLUE",
+            "P_POT1",
+            "P_POT2"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/LEDs/Potentiometer-TimeLedBlink/Potentiometer-TimeLedBlink.ino"
+        }
+      ]
+    },
+    {
+      "name": "Potenciometros",
+      "examples": [
+        {
+          "title": "leitura analogica, potenciometro",
+          "file": "examples/Potentiometer/Potentiometer-Reading/Potentiometer-Reading.ino",
+          "topic": "leitura analogica, potenciometro",
+          "related_classes": [],
+          "related_constants": [
+            "P_POT1",
+            "P_POT2"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Potentiometer/Potentiometer-Reading/Potentiometer-Reading.ino"
+        },
+        {
+          "title": "usar potenciometro para controlar tempo",
+          "file": "examples/Potentiometer/Potentiometer-TimeLedBlink/Potentiometer-TimeLedBlink.ino",
+          "topic": "usar potenciometro para controlar tempo",
+          "related_classes": [],
+          "related_constants": [
+            "P_LED_GREEN",
+            "P_LED_RED",
+            "P_LED_BLUE",
+            "P_POT1",
+            "P_POT2"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Potentiometer/Potentiometer-TimeLedBlink/Potentiometer-TimeLedBlink.ino"
+        }
+      ]
+    },
+    {
+      "name": "Teclado Analogico",
+      "examples": [
+        {
+          "title": "diagnostico/calibracao do teclado analogico",
+          "file": "examples/AnalogKeyboard/AnalogKeyboard-DebugRead/AnalogKeyboard-DebugRead.ino",
+          "topic": "diagnostico/calibracao do teclado analogico, leitura bruta, Min/Max/Media",
+          "related_classes": [
+            "ES_AnalogKeyboard"
+          ],
+          "related_constants": [
+            "P_KEYBOARD"
+          ],
+          "notes": [
+            "Primeiro exemplo a recomendar quando o usuario relatar que o teclado analogico nao funciona.",
+            "Comparar as medias lidas com KEY_CENTER=0, KEY_UP=769, KEY_RIGHT=1585, KEY_DOWN=2400 e KEY_LEFT=3323.",
+            "Se outro ESP32 funcionar na mesma ES32Lab e o atual nao variar a leitura, considerar suspeita forte na GPIO analogica do ESP32 atual."
+          ],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/AnalogKeyboard/AnalogKeyboard-DebugRead/AnalogKeyboard-DebugRead.ino"
+        },
+        {
+          "title": "detectar tecla mantida pressionada",
+          "file": "examples/AnalogKeyboard/AnalogKeyboard-HoldDownKey/AnalogKeyboard-HoldDownKey.ino",
+          "topic": "teclado analogico, hold, tecla mantida pressionada",
+          "related_classes": [
+            "ES_AnalogKeyboard"
+          ],
+          "related_constants": [
+            "P_KEYBOARD"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/AnalogKeyboard/AnalogKeyboard-HoldDownKey/AnalogKeyboard-HoldDownKey.ino"
+        },
+        {
+          "title": "detectar pressionamento e soltura de tecla",
+          "file": "examples/AnalogKeyboard/AnalogKeyboard-PressAndReleaseKey/AnalogKeyboard-PressAndReleaseKey.ino",
+          "topic": "teclado analogico, press, release",
+          "related_classes": [
+            "ES_AnalogKeyboard"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/AnalogKeyboard/AnalogKeyboard-PressAndReleaseKey/AnalogKeyboard-PressAndReleaseKey.ino"
+        },
+        {
+          "title": "detectar pressionamento de tecla",
+          "file": "examples/AnalogKeyboard/AnalogKeyboard-PressKey/AnalogKeyboard-PressKey.ino",
+          "topic": "detectar pressionamento de tecla",
+          "related_classes": [
+            "ES_AnalogKeyboard"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/AnalogKeyboard/AnalogKeyboard-PressKey/AnalogKeyboard-PressKey.ino"
+        },
+        {
+          "title": "detectar tecla solta",
+          "file": "examples/AnalogKeyboard/AnalogKeyboard-ReleaseKey/AnalogKeyboard-ReleaseKey.ino",
+          "topic": "detectar tecla solta",
+          "related_classes": [
+            "ES_AnalogKeyboard"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/AnalogKeyboard/AnalogKeyboard-ReleaseKey/AnalogKeyboard-ReleaseKey.ino"
+        }
+      ]
+    },
+    {
+      "name": "Botao Digital",
+      "examples": [
+        {
+          "title": "botao em GPIO nativa, press, hold, release",
+          "file": "examples/DigitalButton/DigitalButton.ino",
+          "topic": "botao em GPIO nativa, press, hold, release",
+          "related_classes": [
+            "ES_DigitalButton"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/DigitalButton/DigitalButton.ino"
+        }
+      ]
+    },
+    {
+      "name": "Temporizacao",
+      "examples": [
+        {
+          "title": "intervalo em microssegundos",
+          "file": "examples/TimeInterval/TimeInterval-intervalMicros/TimeInterval-intervalMicros.ino",
+          "topic": "intervalo em microssegundos",
+          "related_classes": [
+            "ES_TimeInterval"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/TimeInterval/TimeInterval-intervalMicros/TimeInterval-intervalMicros.ino"
+        },
+        {
+          "title": "executar tarefa por intervalo sem delay",
+          "file": "examples/TimeInterval/TimeInterval-intervalMillis/TimeInterval-intervalMillis.ino",
+          "topic": "executar tarefa por intervalo sem delay",
+          "related_classes": [
+            "ES_TimeInterval"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/TimeInterval/TimeInterval-intervalMillis/TimeInterval-intervalMillis.ino"
+        },
+        {
+          "title": "cronometro com microssegundos",
+          "file": "examples/TimeInterval/TimeInterval-stopwatchStartMicros/TimeInterval-stopwatchStartMicros.ino",
+          "topic": "cronometro com microssegundos",
+          "related_classes": [
+            "ES_TimeInterval"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/TimeInterval/TimeInterval-stopwatchStartMicros/TimeInterval-stopwatchStartMicros.ino"
+        }
+      ]
+    },
+    {
+      "name": "Buzzer",
+      "examples": [
+        {
+          "title": "pitch e velocidade",
+          "file": "examples/Buzzer/ES_Buzzer_controlPitchSpeed/ES_Buzzer_controlPitchSpeed.ino",
+          "topic": "pitch e velocidade",
+          "related_classes": [
+            "ES_Buzzer"
+          ],
+          "related_constants": [
+            "P_POT1",
+            "P_POT2",
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Buzzer/ES_Buzzer_controlPitchSpeed/ES_Buzzer_controlPitchSpeed.ino"
+        },
+        {
+          "title": "volume e pitch",
+          "file": "examples/Buzzer/ES_Buzzer_controlVolumePitch/ES_Buzzer_controlVolumePitch.ino",
+          "topic": "buzzer, controle de volume, controle de pitch",
+          "related_classes": [
+            "ES_Buzzer"
+          ],
+          "related_constants": [
+            "P_POT1",
+            "P_POT2",
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Buzzer/ES_Buzzer_controlVolumePitch/ES_Buzzer_controlVolumePitch.ino"
+        },
+        {
+          "title": "volume e velocidade",
+          "file": "examples/Buzzer/ES_Buzzer_controlVolumeSpeed/ES_Buzzer_controlVolumeSpeed.ino",
+          "topic": "volume e velocidade",
+          "related_classes": [
+            "ES_Buzzer"
+          ],
+          "related_constants": [
+            "P_POT1",
+            "P_POT2",
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Buzzer/ES_Buzzer_controlVolumeSpeed/ES_Buzzer_controlVolumeSpeed.ino"
+        },
+        {
+          "title": "simulacao DJ com pitch no buzzer",
+          "file": "examples/Buzzer/ES_Buzzer_DJPitchSimulation/ES_Buzzer_DJPitchSimulation.ino",
+          "topic": "buzzer, pitch, potenciometros, simulacao DJ",
+          "related_classes": [
+            "ES_Buzzer"
+          ],
+          "related_constants": [
+            "P_POT1",
+            "P_POT2",
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Buzzer/ES_Buzzer_DJPitchSimulation/ES_Buzzer_DJPitchSimulation.ino"
+        },
+        {
+          "title": "melodia Game of Thrones",
+          "file": "examples/Buzzer/ES_Buzzer_gameOfThrones/ES_Buzzer_gameOfThrones.ino",
+          "topic": "melodia Game of Thrones, buzzer, notas musicais",
+          "related_classes": [
+            "ES_Buzzer"
+          ],
+          "related_constants": [
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Buzzer/ES_Buzzer_gameOfThrones/ES_Buzzer_gameOfThrones.ino"
+        },
+        {
+          "title": "tocar melodia no buzzer",
+          "file": "examples/Buzzer/ES_Buzzer_HappyBirthday/ES_Buzzer_HappyBirthday.ino",
+          "topic": "tocar melodia no buzzer",
+          "related_classes": [
+            "ES_Buzzer"
+          ],
+          "related_constants": [
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Buzzer/ES_Buzzer_HappyBirthday/ES_Buzzer_HappyBirthday.ino"
+        },
+        {
+          "title": "melodia Hino Nacional Brasileiro",
+          "file": "examples/Buzzer/ES_Buzzer_hinoNacionalBrasileiro/ES_Buzzer_hinoNacionalBrasileiro.ino",
+          "topic": "melodia Hino Nacional Brasileiro, buzzer, notas musicais",
+          "related_classes": [
+            "ES_Buzzer"
+          ],
+          "related_constants": [
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Buzzer/ES_Buzzer_hinoNacionalBrasileiro/ES_Buzzer_hinoNacionalBrasileiro.ino"
+        },
+        {
+          "title": "melodia Jingle Bells",
+          "file": "examples/Buzzer/ES_Buzzer_jingleBells/ES_Buzzer_jingleBells.ino",
+          "topic": "melodia Jingle Bells, buzzer, notas musicais",
+          "related_classes": [
+            "ES_Buzzer"
+          ],
+          "related_constants": [
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Buzzer/ES_Buzzer_jingleBells/ES_Buzzer_jingleBells.ino"
+        },
+        {
+          "title": "melodia Pink Panther",
+          "file": "examples/Buzzer/ES_Buzzer_PinkPanther/ES_Buzzer_PinkPanther.ino",
+          "topic": "melodia Pink Panther, buzzer, notas musicais",
+          "related_classes": [
+            "ES_Buzzer"
+          ],
+          "related_constants": [
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Buzzer/ES_Buzzer_PinkPanther/ES_Buzzer_PinkPanther.ino"
+        },
+        {
+          "title": "melodia Marcha Imperial Star Wars",
+          "file": "examples/Buzzer/ES_Buzzer_startWarImperialMarch/ES_Buzzer_startWarImperialMarch.ino",
+          "topic": "melodia Marcha Imperial Star Wars, buzzer, notas musicais",
+          "related_classes": [
+            "ES_Buzzer"
+          ],
+          "related_constants": [
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Buzzer/ES_Buzzer_startWarImperialMarch/ES_Buzzer_startWarImperialMarch.ino"
+        },
+        {
+          "title": "melodia Star Wars",
+          "file": "examples/Buzzer/ES_Buzzer_starWar/ES_Buzzer_starWar.ino",
+          "topic": "melodia Star Wars, buzzer, notas musicais",
+          "related_classes": [
+            "ES_Buzzer"
+          ],
+          "related_constants": [
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Buzzer/ES_Buzzer_starWar/ES_Buzzer_starWar.ino"
+        },
+        {
+          "title": "melodia Super Mario",
+          "file": "examples/Buzzer/ES_Buzzer_superMario/ES_Buzzer_superMario.ino",
+          "topic": "melodia Super Mario, buzzer, notas musicais",
+          "related_classes": [
+            "ES_Buzzer"
+          ],
+          "related_constants": [
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Buzzer/ES_Buzzer_superMario/ES_Buzzer_superMario.ino"
+        },
+        {
+          "title": "melodia Take On Me",
+          "file": "examples/Buzzer/ES_Buzzer_TakeOnMe/ES_Buzzer_TakeOnMe.ino",
+          "topic": "melodia Take On Me, buzzer, notas musicais",
+          "related_classes": [
+            "ES_Buzzer"
+          ],
+          "related_constants": [
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Buzzer/ES_Buzzer_TakeOnMe/ES_Buzzer_TakeOnMe.ino"
+        }
+      ]
+    },
+    {
+      "name": "Expansor I2C PCF8574",
+      "examples": [
+        {
+          "title": "botao no expansor",
+          "file": "examples/i2C_Expander/i2C_button/i2C_button.ino",
+          "topic": "botao no expansor",
+          "related_classes": [
+            "ES_PCF8574"
+          ],
+          "related_constants": [
+            "EX0"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/i2C_Expander/i2C_button/i2C_button.ino"
+        },
+        {
+          "title": "entrada digital pelo expansor",
+          "file": "examples/i2C_Expander/i2C_digitalReadExpander/i2C_digitalReadExpander.ino",
+          "topic": "entrada digital pelo expansor",
+          "related_classes": [
+            "ES_PCF8574"
+          ],
+          "related_constants": [
+            "EX0"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/i2C_Expander/i2C_digitalReadExpander/i2C_digitalReadExpander.ino"
+        },
+        {
+          "title": "saida digital pelo expansor",
+          "file": "examples/i2C_Expander/i2C_digitalWriteExpander/i2C_digitalWriteExpander.ino",
+          "topic": "saida digital pelo expansor",
+          "related_classes": [
+            "ES_PCF8574"
+          ],
+          "related_constants": [
+            "EX0"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/i2C_Expander/i2C_digitalWriteExpander/i2C_digitalWriteExpander.ino"
+        },
+        {
+          "title": "inverter direcao do motor pelo expansor",
+          "file": "examples/i2C_Expander/i2C_motorControlDirectionInversion/i2C_motorControlDirectionInversion.ino",
+          "topic": "inverter direcao do motor pelo expansor, PCF8574, expansor I2C",
+          "related_classes": [
+            "ES_PCF8574"
+          ],
+          "related_constants": [
+            "EX4",
+            "EX5"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/i2C_Expander/i2C_motorControlDirectionInversion/i2C_motorControlDirectionInversion.ino"
+        },
+        {
+          "title": "inverter comando de direcao do motor",
+          "file": "examples/i2C_Expander/i2C_motorControlDirectionInvert/i2C_motorControlDirectionInvert.ino",
+          "topic": "inverter comando de direcao do motor, PCF8574, expansor I2C",
+          "related_classes": [
+            "ES_PCF8574"
+          ],
+          "related_constants": [
+            "EX4",
+            "EX5"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/i2C_Expander/i2C_motorControlDirectionInvert/i2C_motorControlDirectionInvert.ino"
+        },
+        {
+          "title": "parar motor pelo expansor",
+          "file": "examples/i2C_Expander/i2C_motorControlDirectionStop/i2C_motorControlDirectionStop.ino",
+          "topic": "parar motor pelo expansor, PCF8574, expansor I2C",
+          "related_classes": [
+            "ES_PCF8574"
+          ],
+          "related_constants": [
+            "EX4",
+            "EX5"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/i2C_Expander/i2C_motorControlDirectionStop/i2C_motorControlDirectionStop.ino"
+        },
+        {
+          "title": "controlar dois motores pelo expansor",
+          "file": "examples/i2C_Expander/i2C_motorControlDualMotor/i2C_motorControlDualMotor.ino",
+          "topic": "controlar dois motores pelo expansor, PCF8574, expansor I2C",
+          "related_classes": [
+            "ES_PCF8574"
+          ],
+          "related_constants": [
+            "EX4",
+            "EX5",
+            "EX6",
+            "EX7"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/i2C_Expander/i2C_motorControlDualMotor/i2C_motorControlDualMotor.ino"
+        },
+        {
+          "title": "ajustar frequencia de controle do motor",
+          "file": "examples/i2C_Expander/i2C_motorControlSetFrequency/i2C_motorControlSetFrequency.ino",
+          "topic": "ajustar frequencia de controle do motor, PCF8574, expansor I2C",
+          "related_classes": [
+            "ES_PCF8574"
+          ],
+          "related_constants": [
+            "EX4",
+            "EX5"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/i2C_Expander/i2C_motorControlSetFrequency/i2C_motorControlSetFrequency.ino"
+        },
+        {
+          "title": "motor via expansor",
+          "file": "examples/i2C_Expander/i2C_motorControlSimple/i2C_motorControlSimple.ino",
+          "topic": "motor via expansor",
+          "related_classes": [
+            "ES_PCF8574"
+          ],
+          "related_constants": [
+            "EX4",
+            "EX5"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/i2C_Expander/i2C_motorControlSimple/i2C_motorControlSimple.ino"
+        },
+        {
+          "title": "usar multiplos expansores I2C",
+          "file": "examples/i2C_Expander/i2C_multiExpander/i2C_multiExpander.ino",
+          "topic": "usar multiplos expansores I2C, PCF8574, expansor I2C",
+          "related_classes": [
+            "ES_PCF8574"
+          ],
+          "related_constants": [
+            "EX0",
+            "EX1",
+            "EX2",
+            "EX3",
+            "EX4",
+            "EX5",
+            "EX6",
+            "EX7"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/i2C_Expander/i2C_multiExpander/i2C_multiExpander.ino"
+        },
+        {
+          "title": "PWM simulado no PCF8574",
+          "file": "examples/i2C_Expander/i2C_pwm/i2C_pwm.ino",
+          "topic": "PWM simulado no PCF8574",
+          "related_classes": [
+            "ES_PCF8574"
+          ],
+          "related_constants": [
+            "EX0",
+            "EX1"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/i2C_Expander/i2C_pwm/i2C_pwm.ino"
+        },
+        {
+          "title": "localizar dispositivos I2C",
+          "file": "examples/i2C_Expander/i2C_scanI2C/i2C_scanI2C.ino",
+          "topic": "localizar dispositivos I2C",
+          "related_classes": [
+            "ES_PCF8574"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/i2C_Expander/i2C_scanI2C/i2C_scanI2C.ino"
+        }
+      ]
+    },
+    {
+      "name": "Sensor De Distancia",
+      "examples": [
+        {
+          "title": "leitura simples do VL53L0X",
+          "file": "examples/SensorDistance/SensorDistanceSimple/SensorDistanceSimple.ino",
+          "topic": "sensor de distancia VL53L0X, leitura em milimetros, timeout",
+          "related_classes": [
+            "ES_VL53L0X"
+          ],
+          "related_constants": [
+            "ES_VL53L0X_DEFAULT_ADDRESS",
+            "ES_VL53L0X_INVALID_DISTANCE"
+          ],
+          "notes": [
+            "Endereco I2C padrao do VL53L0X: 0x29.",
+            "Os exemplos oficiais usam distance.setDistanceOffset(50) como calibracao inicial; em codigo gerado, manter esse valor como ponto de partida e orientar ajuste quando necessario."
+          ],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/SensorDistance/SensorDistanceSimple/SensorDistanceSimple.ino"
+        },
+        {
+          "title": "VL53L0X com timing budget",
+          "file": "examples/SensorDistance/SensorDistanceTimingBudget/SensorDistanceTimingBudget.ino",
+          "topic": "sensor de distancia VL53L0X, timing budget, estabilidade de leitura",
+          "related_classes": [
+            "ES_VL53L0X"
+          ],
+          "related_constants": [
+            "ES_VL53L0X_DEFAULT_ADDRESS",
+            "ES_VL53L0X_INVALID_DISTANCE"
+          ],
+          "notes": [
+            "Mostra setMeasurementTimingBudget() e getMeasurementTimingBudget().",
+            "Os exemplos oficiais usam distance.setDistanceOffset(50) como calibracao inicial; em codigo gerado, manter esse valor como ponto de partida e orientar ajuste quando necessario."
+          ],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/SensorDistance/SensorDistanceTimingBudget/SensorDistanceTimingBudget.ino"
+        }
+      ]
+    },
+    {
+      "name": "Controle De Carro",
+      "examples": [
+        {
+          "title": "carro Bluetooth com direcao diferencial",
+          "file": "examples/CarControl/differentialSteering_Bluetooth/differentialSteering_Bluetooth.ino",
+          "topic": "carro Bluetooth com direcao diferencial",
+          "related_classes": [
+            "ES_Buzzer",
+            "ES_PCF8574",
+            "ES_CarControl"
+          ],
+          "related_constants": [
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/CarControl/differentialSteering_Bluetooth/differentialSteering_Bluetooth.ino"
+        },
+        {
+          "title": "carro com direcao diferencial",
+          "file": "examples/CarControl/differentialSteering_CommandTest/differentialSteering_CommandTest.ino",
+          "topic": "carro com direcao diferencial",
+          "related_classes": [
+            "ES_Buzzer",
+            "ES_PCF8574",
+            "ES_CarControl"
+          ],
+          "related_constants": [
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/CarControl/differentialSteering_CommandTest/differentialSteering_CommandTest.ino"
+        },
+        {
+          "title": "carro Bluetooth com direcao frontal",
+          "file": "examples/CarControl/frontalSteering_Bluetooth/frontalSteering_Bluetooth.ino",
+          "topic": "carro Bluetooth com direcao frontal",
+          "related_classes": [
+            "ES_Buzzer",
+            "ES_PCF8574",
+            "ES_CarControl"
+          ],
+          "related_constants": [
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/CarControl/frontalSteering_Bluetooth/frontalSteering_Bluetooth.ino"
+        },
+        {
+          "title": "carro com direcao frontal",
+          "file": "examples/CarControl/frontalSteering_CommandTest/frontalSteering_CommandTest.ino",
+          "topic": "carro com direcao frontal",
+          "related_classes": [
+            "ES_Buzzer",
+            "ES_PCF8574",
+            "ES_CarControl"
+          ],
+          "related_constants": [
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/CarControl/frontalSteering_CommandTest/frontalSteering_CommandTest.ino"
+        }
+      ]
+    },
+    {
+      "name": "Robo Seguidor De Linha",
+      "examples": [
+        {
+          "title": "robo seguidor de linha com display e teclado",
+          "file": "examples/CarLineFollower/CarLineFollower_DisplayKeyboard/CarLineFollower_DisplayKeyboard.ino",
+          "topic": "robo seguidor de linha com display e teclado",
+          "related_classes": [
+            "ES_AnalogKeyboard",
+            "ES_TimeInterval",
+            "ES_PCF8574",
+            "ES_CarControl",
+            "ES_CarLineFollower",
+            "ES_TFT"
+          ],
+          "related_constants": [
+            "EX2",
+            "EX3"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/CarLineFollower/CarLineFollower_DisplayKeyboard/CarLineFollower_DisplayKeyboard.ino"
+        },
+        {
+          "title": "robo seguidor de linha simples",
+          "file": "examples/CarLineFollower/CarLineFollower_Simple/CarLineFollower_Simple.ino",
+          "topic": "robo seguidor de linha simples",
+          "related_classes": [
+            "ES_PCF8574",
+            "ES_CarControl",
+            "ES_CarLineFollower"
+          ],
+          "related_constants": [
+            "EX2",
+            "EX3"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/CarLineFollower/CarLineFollower_Simple/CarLineFollower_Simple.ino"
+        }
+      ]
+    },
+    {
+      "name": "Arquivos",
+      "examples": [
+        {
+          "title": "copiar arquivo de LittleFS para LittleFS",
+          "file": "examples/File/ES_File-Copy-LittleFS_to_LittleFS/ES_File-Copy-LittleFS_to_LittleFS.ino",
+          "topic": "arquivos, LittleFS, copia de arquivo",
+          "related_classes": [
+            "ES_File"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/File/ES_File-Copy-LittleFS_to_LittleFS/ES_File-Copy-LittleFS_to_LittleFS.ino"
+        },
+        {
+          "title": "copiar arquivo do SD para LittleFS",
+          "file": "examples/File/ES_File-Copy-SD_to_LittleFS/ES_File-Copy-SD_to_LittleFS.ino",
+          "topic": "arquivos, SD, LittleFS, copia de arquivo",
+          "related_classes": [
+            "ES_File"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/File/ES_File-Copy-SD_to_LittleFS/ES_File-Copy-SD_to_LittleFS.ino"
+        },
+        {
+          "title": "listar arquivos",
+          "file": "examples/File/ES_File-ListAllFiles/ES_File-ListAllFiles.ino",
+          "topic": "listar arquivos",
+          "related_classes": [
+            "ES_File"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/File/ES_File-ListAllFiles/ES_File-ListAllFiles.ino"
+        },
+        {
+          "title": "navegar entre arquivos",
+          "file": "examples/File/ES_File-Navigation/ES_File-Navigation.ino",
+          "topic": "navegar entre arquivos",
+          "related_classes": [
+            "ES_File"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/File/ES_File-Navigation/ES_File-Navigation.ino"
+        },
+        {
+          "title": "escrever em arquivo",
+          "file": "examples/File/ES_File-Print/ES_File-Print.ino",
+          "topic": "escrever em arquivo",
+          "related_classes": [
+            "ES_File"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/File/ES_File-Print/ES_File-Print.ino"
+        },
+        {
+          "title": "ler arquivo inteiro",
+          "file": "examples/File/ES_File-ReadFile/ES_File-ReadFile.ino",
+          "topic": "ler arquivo inteiro",
+          "related_classes": [
+            "ES_File"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/File/ES_File-ReadFile/ES_File-ReadFile.ino"
+        },
+        {
+          "title": "ler linha especifica",
+          "file": "examples/File/ES_File-ReadLine/ES_File-ReadLine.ino",
+          "topic": "ler linha especifica",
+          "related_classes": [
+            "ES_File"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/File/ES_File-ReadLine/ES_File-ReadLine.ino"
+        },
+        {
+          "title": "remover arquivo",
+          "file": "examples/File/ES_File-Remove/ES_File-Remove.ino",
+          "topic": "arquivos, remover arquivo, apagar arquivo",
+          "related_classes": [
+            "ES_File"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/File/ES_File-Remove/ES_File-Remove.ino"
+        }
+      ]
+    },
+    {
+      "name": "Display TFT",
+      "examples": [
+        {
+          "title": "relogio analogico no display",
+          "file": "examples/Display-TFT/AnalogClock/AnalogClock.ino",
+          "topic": "display TFT, desenho, relogio analogico",
+          "related_classes": [
+            "ES_TFT"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Display-TFT/AnalogClock/AnalogClock.ino"
+        },
+        {
+          "title": "comandos basicos do display",
+          "file": "examples/Display-TFT/BasicCommands/BasicCommands.ino",
+          "topic": "comandos basicos do display",
+          "related_classes": [
+            "ES_TFT"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Display-TFT/BasicCommands/BasicCommands.ino"
+        },
+        {
+          "title": "desenhar circulos e elipses",
+          "file": "examples/Display-TFT/DrawCircleAndEllipse/DrawCircleAndEllipse.ino",
+          "topic": "desenhar circulos e elipses",
+          "related_classes": [
+            "ES_TFT"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Display-TFT/DrawCircleAndEllipse/DrawCircleAndEllipse.ino"
+        },
+        {
+          "title": "desenhar linhas",
+          "file": "examples/Display-TFT/DrawLine/DrawLine.ino",
+          "topic": "desenhar linhas",
+          "related_classes": [
+            "ES_TFT"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Display-TFT/DrawLine/DrawLine.ino"
+        },
+        {
+          "title": "desenhar retangulos",
+          "file": "examples/Display-TFT/DrawRectangles/DrawRectangles.ino",
+          "topic": "desenhar retangulos",
+          "related_classes": [
+            "ES_TFT"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Display-TFT/DrawRectangles/DrawRectangles.ino"
+        },
+        {
+          "title": "desenhar triangulos",
+          "file": "examples/Display-TFT/DrawTriangle/DrawTriangle.ino",
+          "topic": "display TFT, formas geometricas, triangulos",
+          "related_classes": [
+            "ES_TFT"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Display-TFT/DrawTriangle/DrawTriangle.ino"
+        },
+        {
+          "title": "visualizador de fotos com teclado analogico",
+          "file": "examples/Display-TFT/PhotoViewerAnalogKeyboard/PhotoViewerAnalogKeyboard.ino",
+          "topic": "visualizador de fotos com teclado analogico",
+          "related_classes": [
+            "ES_AnalogKeyboard",
+            "ES_TFT"
+          ],
+          "related_constants": [
+            "P_KEYBOARD"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Display-TFT/PhotoViewerAnalogKeyboard/PhotoViewerAnalogKeyboard.ino"
+        },
+        {
+          "title": "desenhar numeros no display",
+          "file": "examples/Display-TFT/Text-DrawNumber/Text-DrawNumber.ino",
+          "topic": "display TFT, texto, numeros",
+          "related_classes": [
+            "ES_TFT"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Display-TFT/Text-DrawNumber/Text-DrawNumber.ino"
+        },
+        {
+          "title": "escrever texto no display",
+          "file": "examples/Display-TFT/Text-DrawString/Text-DrawString.ino",
+          "topic": "escrever texto no display",
+          "related_classes": [
+            "ES_TFT"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Display-TFT/Text-DrawString/Text-DrawString.ino"
+        },
+        {
+          "title": "carregar fonte em array",
+          "file": "examples/Display-TFT/Text-LoadFontArray/Text-LoadFontArray.ino",
+          "topic": "display TFT, fontes, texto personalizado",
+          "related_classes": [
+            "ES_TFT"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Display-TFT/Text-LoadFontArray/Text-LoadFontArray.ino"
+        },
+        {
+          "title": "print e println no display",
+          "file": "examples/Display-TFT/Text-PrintAndPrintln/Text-PrintAndPrintln.ino",
+          "topic": "print e println no display",
+          "related_classes": [
+            "ES_TFT"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Display-TFT/Text-PrintAndPrintln/Text-PrintAndPrintln.ino"
+        }
+      ]
+    },
+    {
+      "name": "Camera",
+      "examples": [
+        {
+          "title": "exibir camera no display",
+          "file": "examples/Camera/Camera-DisplayTFT/Camera-DisplayTFT.ino",
+          "topic": "exibir camera no display",
+          "related_classes": [
+            "ES_TFT",
+            "ES_Camera"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Camera/Camera-DisplayTFT/Camera-DisplayTFT.ino"
+        },
+        {
+          "title": "salvar frame da camera no SD",
+          "file": "examples/Camera/Camera-SaveFrameToSD/Camera-SaveFrameToSD.ino",
+          "topic": "salvar frame da camera no SD",
+          "related_classes": [
+            "ES_AnalogKeyboard",
+            "ES_TFT",
+            "ES_Camera"
+          ],
+          "related_constants": [
+            "P_KEYBOARD"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Camera/Camera-SaveFrameToSD/Camera-SaveFrameToSD.ino"
+        },
+        {
+          "title": "stream HTTP da camera",
+          "file": "examples/Camera/Camera-StreamHTTP/Camera-StreamHTTP.ino",
+          "topic": "stream HTTP da camera",
+          "related_classes": [
+            "ES_Camera"
+          ],
+          "related_constants": [],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Camera/Camera-StreamHTTP/Camera-StreamHTTP.ino"
+        }
+      ]
+    },
+    {
+      "name": "Jogos",
+      "examples": [
+        {
+          "title": "Snake Game",
+          "file": "examples/Games/SnakeGame/SnakeGame.ino",
+          "topic": "jogo snake, display TFT, teclado analogico",
+          "related_classes": [
+            "ES_AnalogKeyboard",
+            "ES_TimeInterval",
+            "ES_TFT"
+          ],
+          "related_constants": [
+            "P_POT1",
+            "P_KEYBOARD"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Games/SnakeGame/SnakeGame.ino"
+        },
+        {
+          "title": "Space Invader",
+          "file": "examples/Games/SpaceInvader/SpaceInvader.ino",
+          "topic": "jogo space invader, display TFT, teclado analogico, buzzer",
+          "related_classes": [
+            "ES_AnalogKeyboard",
+            "ES_TimeInterval",
+            "ES_Buzzer",
+            "ES_TFT"
+          ],
+          "related_constants": [
+            "P_POT1",
+            "P_KEYBOARD",
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Games/SpaceInvader/SpaceInvader.ino"
+        },
+        {
+          "title": "Tetris",
+          "file": "examples/Games/Tetris/Tetris.ino",
+          "topic": "jogo tetris, display TFT, teclado analogico",
+          "related_classes": [
+            "ES_AnalogKeyboard",
+            "ES_TimeInterval",
+            "ES_TFT"
+          ],
+          "related_constants": [
+            "P_POT1",
+            "P_KEYBOARD"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Games/Tetris/Tetris.ino"
+        }
+      ]
+    },
+    {
+      "name": "Projetos Completos",
+      "examples": [
+        {
+          "title": "robo seguidor de linha com display e teclado",
+          "file": "examples/FullProjects/CarLineFollower_DisplayKeyboard/CarLineFollower_DisplayKeyboard.ino",
+          "topic": "robo seguidor de linha com display e teclado",
+          "related_classes": [
+            "ES_AnalogKeyboard",
+            "ES_TimeInterval",
+            "ES_PCF8574",
+            "ES_CarControl",
+            "ES_CarLineFollower",
+            "ES_TFT"
+          ],
+          "related_constants": [
+            "EX2",
+            "EX3"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/FullProjects/CarLineFollower_DisplayKeyboard/CarLineFollower_DisplayKeyboard.ino"
+        },
+        {
+          "title": "carro Bluetooth completo com ES_CarControl",
+          "file": "examples/FullProjects/carRCBluetoothDifferentialSteering-ES_CarControl/carRCBluetoothDifferentialSteering-ES_CarControl.ino",
+          "topic": "carro Bluetooth completo com ES_CarControl",
+          "related_classes": [
+            "ES_Buzzer",
+            "ES_PCF8574",
+            "ES_CarControl"
+          ],
+          "related_constants": [
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/FullProjects/carRCBluetoothDifferentialSteering-ES_CarControl/carRCBluetoothDifferentialSteering-ES_CarControl.ino"
+        },
+        {
+          "title": "carro Bluetooth com direcao diferencial legado",
+          "file": "examples/FullProjects/carRCBluetoothDifferentialSteering/carRCBluetoothDifferentialSteering.ino",
+          "topic": "carro Bluetooth, direcao diferencial, exemplo legado",
+          "related_classes": [
+            "ES_Buzzer",
+            "ES_PCF8574"
+          ],
+          "related_constants": [
+            "P_BUZZER",
+            "EX0",
+            "EX1",
+            "EX4",
+            "EX5",
+            "EX6",
+            "EX7"
+          ],
+          "notes": [
+            "Exemplo legado sem ES_CarControl; para novos codigos, preferir os exemplos com ES_CarControl quando atenderem ao caso."
+          ],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/FullProjects/carRCBluetoothDifferentialSteering/carRCBluetoothDifferentialSteering.ino"
+        },
+        {
+          "title": "carro Bluetooth com direcao frontal",
+          "file": "examples/FullProjects/carRCBluetoothFrontalSteering-ES_CarControl/carRCBluetoothFrontalSteering-ES_CarControl.ino",
+          "topic": "carro Bluetooth com direcao frontal",
+          "related_classes": [
+            "ES_Buzzer",
+            "ES_PCF8574",
+            "ES_CarControl"
+          ],
+          "related_constants": [
+            "P_BUZZER"
+          ],
+          "notes": [],
+          "public_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/FullProjects/carRCBluetoothFrontalSteering-ES_CarControl/carRCBluetoothFrontalSteering-ES_CarControl.ino"
+        }
+      ]
+    }
+  ],
+  "public_examples_base_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples",
+  "public_reference_policy": {
+    "user_facing_sources_must_be_public": true,
+    "use_public_url_when_citing_an_example": true,
+    "do_not_cite_internal_training_file_name": true
+  }
+}

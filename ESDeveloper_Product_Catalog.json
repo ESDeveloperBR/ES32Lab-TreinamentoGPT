@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
-  "catalog_version": "0.1.0",
-  "knowledge_version": "0.10.0",
-  "updated_at": "2026-06-20",
+  "catalog_version": "0.2.2",
+  "knowledge_version": "0.12.6",
+  "updated_at": "2026-06-26",
   "purpose": "Catalogo comercial oficial para a IA da ES32Lab indicar produtos, kits, shields e acessorios do ecossistema ES Developer usando links oficiais.",
   "vendor": {
     "name": "ES Developer",
@@ -12,10 +12,22 @@
   "rules": {
     "use_official_store_links": true,
     "do_not_recommend_marketplaces": true,
-    "marketplace_exception": "Somente mencione marketplace se o usuario pedir explicitamente alternativas fora da loja oficial.",
+    "marketplace_exception": "Nao recomende marketplace sem link explicitamente cadastrado e curado neste catalogo.",
     "when_user_asks_where_to_buy": "Consultar este catalogo e responder com o link oficial do produto mais adequado.",
-    "when_product_is_not_listed": "Informar que nao encontrou link especifico no catalogo comercial e indicar a loja oficial geral da ES Developer.",
-    "commercial_tone": "Indicar produtos de forma natural, util e objetiva, sem transformar respostas tecnicas em propaganda."
+    "when_product_is_not_listed": "Listar o item necessario com nome tecnico claro e indicar o contato oficial da ES Developer com uma mensagem pronta para consulta.",
+    "commercial_tone": "Indicar produtos de forma natural, util e objetiva, sem transformar respostas tecnicas em propaganda.",
+    "project_items_section": "Quando o usuario descrever um projeto, incluir uma secao curta 'Itens necessarios para o projeto'.",
+    "prefer_kit_when_covering_multiple_items": true,
+    "kit_preference_min_covered_items": 2,
+    "product_link_style": "Usar o nome do produto como hiperlink Markdown e incluir 'loja oficial ES Developer' no texto quando ficar natural.",
+    "do_not_repeat_purchase_links_unnecessarily": true,
+    "always_include_es32lab_in_required_items": true,
+    "code_block_position": "O codigo-fonte completo deve ser o ultimo bloco grande da resposta quando houver sketch completo.",
+    "material_list_use_purchase_url_as_markdown_link": true,
+    "material_list_link_format": "[{label} - loja oficial ES Developer]({purchase_url})",
+    "uncataloged_items_remain_plain_text": true,
+    "do_not_invent_product_urls": true,
+    "do_not_use_contact_url_as_product_link": true
   },
   "products": [
     {
@@ -33,7 +45,36 @@
         "projetos didaticos",
         "primeiro contato com ES32Lab"
       ],
-      "response_hint": "Quando o usuario quiser comprar uma ES32Lab, comecar do zero, estudar com a placa ou escolher um kit, indicar esta pagina de kits."
+      "response_hint": "Usar como referencia oficial para a placa ES32Lab e kits. Em qualquer projeto ou codigo, a ES32Lab deve aparecer como item base da lista de materiais; se houver kit mais especifico, priorizar o kit.",
+      "aliases": [
+        "kit ES32Lab",
+        "kits ES32Lab",
+        "kit para comecar",
+        "kit com display",
+        "kit completo",
+        "ES32Lab",
+        "placa ES32Lab",
+        "comprar ES32Lab",
+        "ES32Lab para projeto",
+        "placa para o exemplo"
+      ],
+      "component_tags": [
+        "ES32Lab",
+        "kit",
+        "curso",
+        "aulas",
+        "primeiro projeto",
+        "placa base",
+        "item obrigatorio"
+      ],
+      "project_triggers": [
+        "comprei uma ES32Lab",
+        "qual kit comprar",
+        "o que preciso para comecar",
+        "lista de materiais"
+      ],
+      "material_list_label": "ES32Lab / kits oficiais",
+      "material_list_link_format": "[{material_list_label} - loja oficial ES Developer]({purchase_url})"
     },
     {
       "id": "camera-ov2640-es32lab",
@@ -54,7 +95,29 @@
         "ES_Camera",
         "ES_TFT"
       ],
-      "response_hint": "Indicar quando o usuario quiser usar camera na ES32Lab, capturar imagens, fazer streaming ou montar exemplos com ES_Camera."
+      "response_hint": "Indicar quando o usuario quiser usar camera na ES32Lab, capturar imagens, fazer streaming ou montar exemplos com ES_Camera.",
+      "aliases": [
+        "camera",
+        "camera OV2640",
+        "OV2640",
+        "camera da ES32Lab",
+        "ES_Camera"
+      ],
+      "component_tags": [
+        "camera",
+        "OV2640",
+        "imagem",
+        "stream",
+        "ES_Camera"
+      ],
+      "project_triggers": [
+        "capturar imagem",
+        "stream de camera",
+        "visao computacional",
+        "projeto com camera"
+      ],
+      "material_list_label": "Camera OV2640 para ES32Lab",
+      "material_list_link_format": "[{material_list_label} - loja oficial ES Developer]({purchase_url})"
     },
     {
       "id": "display-tft-18-128x160-spi-es32lab",
@@ -75,7 +138,31 @@
         "ES_TFT",
         "ES_Camera"
       ],
-      "response_hint": "Indicar quando o usuario quiser usar display TFT, interface grafica, imagens, menus ou exemplos com ES_TFT."
+      "response_hint": "Indicar quando o usuario quiser usar display TFT, interface grafica, imagens, menus ou exemplos com ES_TFT.",
+      "aliases": [
+        "display",
+        "display TFT",
+        "TFT 1.8",
+        "display colorido",
+        "tela da ES32Lab",
+        "ES_TFT"
+      ],
+      "component_tags": [
+        "display",
+        "TFT",
+        "SPI",
+        "interface grafica",
+        "ES_TFT"
+      ],
+      "project_triggers": [
+        "mostrar texto",
+        "mostrar imagem",
+        "interface no display",
+        "menu no display",
+        "conectar display"
+      ],
+      "material_list_label": "Display TFT 1.8 128x160 SPI",
+      "material_list_link_format": "[{material_list_label} - loja oficial ES Developer]({purchase_url})"
     },
     {
       "id": "esp32",
@@ -90,7 +177,19 @@
         "microcontrolador",
         "montagem com ES32Lab"
       ],
-      "response_hint": "Indicar quando o usuario precisar comprar ou substituir o modulo ESP32. Nao usar este item para desviar o escopo da IA para ESP32 generico."
+      "response_hint": "Indicar quando o usuario precisar comprar ou substituir o modulo ESP32. Nao usar este item para desviar o escopo da IA para ESP32 generico.",
+      "aliases": [
+        "ESP32",
+        "modulo ESP32",
+        "reposicao do ESP32"
+      ],
+      "component_tags": [
+        "ESP32",
+        "microcontrolador",
+        "reposicao"
+      ],
+      "material_list_label": "ESP32 compativel para reposicao",
+      "material_list_link_format": "[{material_list_label} - loja oficial ES Developer]({purchase_url})"
     },
     {
       "id": "shield-4in-4relay-opto",
@@ -121,7 +220,109 @@
         "ES_TimeInterval"
       ],
       "knowledge_file": "ES32Lab_Shield_4IN_4Relay_Optoacoplada.md",
-      "response_hint": "Quando o usuario perguntar onde comprar uma shield de reles, indicar diretamente este produto oficial. Nao recomendar marketplaces."
+      "response_hint": "Quando o usuario perguntar onde comprar uma shield de reles, indicar diretamente este produto oficial. Nao recomendar marketplaces.",
+      "aliases": [
+        "shield de reles",
+        "shield relay",
+        "4 reles",
+        "4IN 4OUT",
+        "automacao com rele"
+      ],
+      "component_tags": [
+        "rele",
+        "shield",
+        "automacao",
+        "carga externa",
+        "entrada optoacoplada"
+      ],
+      "project_triggers": [
+        "acionar lampada",
+        "acionar bomba",
+        "acionar valvula",
+        "automacao residencial",
+        "cargas externas"
+      ],
+      "material_list_label": "ES Shield Relay 4IN 4OUT",
+      "material_list_link_format": "[{material_list_label} - loja oficial ES Developer]({purchase_url})"
+    },
+    {
+      "id": "kit-es32lab-cam",
+      "name": "Kit ES32Lab-CAM",
+      "type": "kit",
+      "official": true,
+      "status": "available",
+      "purchase_url": "https://www.esdeveloper.com.br/kit-es32lab",
+      "url_scope": "kit_collection_page",
+      "included_items": [
+        "ES32Lab",
+        "ESP32 compativel",
+        "Display TFT 1.8 128x160 SPI",
+        "Camera OV2640"
+      ],
+      "recommended_for": [
+        "projeto com camera e display",
+        "kit com camera",
+        "kit com display",
+        "ES_Camera",
+        "ES_TFT",
+        "visao computacional",
+        "captura de imagem",
+        "interface grafica"
+      ],
+      "aliases": [
+        "Kit ES32Lab-CAM",
+        "ES32Lab CAM",
+        "kit camera display",
+        "kit com camera e display",
+        "kit ES32Lab com camera"
+      ],
+      "related_library_classes": [
+        "ES_Camera",
+        "ES_TFT"
+      ],
+      "prefer_when_project_requires": [
+        "ES32Lab",
+        "display",
+        "camera"
+      ],
+      "response_hint": "Indicar primeiro quando o projeto exigir ES32Lab com display TFT e camera OV2640. Como o link aponta para a pagina de kits, orientar o usuario a conferir o Kit ES32Lab-CAM na loja oficial.",
+      "material_list_label": "Kit ES32Lab-CAM",
+      "material_list_link_format": "[{material_list_label} - loja oficial ES Developer]({purchase_url})"
     }
-  ]
+  ],
+  "selection_policy": {
+    "required_items_section_title": "Itens necessarios para o projeto",
+    "official_items_section_title": "Itens oficiais relacionados",
+    "unavailable_items_section_title": "Itens necessarios sem link oficial cadastrado",
+    "prefer_kits_over_separate_items_when": "Um kit oficial cadastrado cobre dois ou mais itens necessarios do projeto.",
+    "if_user_already_bought_item": "Use o link do produto como referencia de compatibilidade, nao como venda principal.",
+    "use_markdown_links": true,
+    "max_commercial_sections_per_answer": 1,
+    "no_marketplace_without_curated_catalog_entry": true,
+    "base_required_item_for_any_project_or_code": {
+      "name": "ES32Lab",
+      "catalog_product_id": "kits-es32lab",
+      "use_as_checklist_item": true,
+      "guidance": "Inclua ES32Lab na lista de materiais de qualquer projeto, teste ou codigo. Se o usuario ja tiver a placa, a lista funciona como checklist."
+    },
+    "material_list_linking_policy": {
+      "use_markdown_link_when_purchase_url_exists": true,
+      "link_text_source_order": [
+        "material_list_label",
+        "name"
+      ],
+      "append_store_hint_to_link_text": "loja oficial ES Developer",
+      "if_no_purchase_url": "Keep the item as plain text with clear technical name. Do not invent a URL.",
+      "contact_url_is_fallback_not_product_link": true
+    }
+  },
+  "fallback_contact": {
+    "contact_url": "https://www.esdeveloper.com.br/contato",
+    "when_to_use": [
+      "O item necessario nao tem produto cadastrado no catalogo comercial.",
+      "O usuario precisa de uma shield, circuito, sensor ou modulo ainda nao cadastrado.",
+      "Ha duvida de compatibilidade ou necessidade de solucao personalizada."
+    ],
+    "message_template": "Ola, estou montando um projeto com ES32Lab e preciso de: {item_description}. Voces possuem uma shield, modulo, kit ou solucao recomendada para esse uso?"
+  }
 }

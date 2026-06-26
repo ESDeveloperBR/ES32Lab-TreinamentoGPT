@@ -1,0 +1,939 @@
+{
+  "schema_version": "1.0.0",
+  "knowledge_version": "0.12.4",
+  "updated_at": "2026-06-25",
+  "source_file": "YouTube_ESDeveloperBR.md",
+  "title": "ES32Lab GPT - Video Catalog",
+  "previous_metadata": {
+    "title": "ES32Lab GPT - YouTube ES Developer BR",
+    "previous_knowledge_version": "0.9.0",
+    "previous_updated_at": "2026-06-20",
+    "previous_change_summary": "acompanha a inclusao da Shield 4IN-4Relay Optoacoplada e mantem catalogo de videos oficiais."
+  },
+  "purpose": "Catalogo estruturado de videos, playlists e capitulos para recomendacoes oficiais e de parceiros relacionadas ao ecossistema ES32Lab.",
+  "migration_note": "Arquivo convertido de Markdown para JSON e renomeado para Video_Catalog.json para permitir videos da ES Developer e de parceiros sem prender o catalogo ao nome do canal.",
+  "channel": {
+    "name": "ES Developer BR",
+    "youtube_url": "https://www.youtube.com/@ESDeveloperBR",
+    "subscription_url": "https://www.youtube.com/esdeveloperbr?sub_confirmation=1"
+  },
+  "rules": {
+    "technical_answer_first": true,
+    "recommend_max_videos_by_default": 1,
+    "use_exact_chapter_time_when_available": true,
+    "do_not_invent_video_title_time_url_or_content": true,
+    "recommendation_style": "curta, natural e complementar",
+    "physical_connection_questions_priority": "high",
+    "recommend_video_for_physical_connection_when_available": true,
+    "prefer_exact_chapter_for_display_camera_connectors": true
+  },
+  "sections_markdown": {
+    "Funcao Deste Modulo": "Este modulo deve ser usado para:\n- recomendar videos oficiais do canal ES Developer BR;\n- apontar o usuario para trechos especificos dos videos quando houver tempo conhecido;\n- complementar respostas tecnicas com apoio visual;\n- ajudar iniciantes a conhecerem a ES32Lab;\n- divulgar o canal de forma natural, sem transformar respostas tecnicas em propaganda;\n- manter um catalogo expansivel para novos videos, shorts, playlists e aulas futuras.",
+    "Politica De Recomendacao De Videos": "A IA deve recomendar videos oficiais quando eles ajudarem de verdade o usuario.\nA resposta tecnica vem primeiro. A recomendacao de video deve aparecer depois, de forma curta, natural e complementar.\nRecomendar video com alta prioridade quando a duvida envolver:\n- primeiros passos com a ES32Lab;\n- localizacao fisica dos componentes da placa;\n- alimentacao externa, baterias, USB, borne vermelho, borne verde ou conector DC;\n- ponte H, motores DC, borne azul ou ligacao dos motores;\n- jumpers brancos, vermelhos, verdes, azuis ou pretos;\n- display TFT, camera, microSD, buzzer, teclado, LEDs, sensores ou conectores;\n- montagem fisica ou configuracao de hardware;\n- projetos praticos com carro, robo, motor, Bluetooth ou automacao;\n- compra, apresentacao ou demonstracao da ES32Lab.\nRecomendar video com baixa prioridade quando a duvida for apenas:\n- assinatura de metodo;\n- erro de compilacao muito especifico;\n- ajuste pequeno de sintaxe;\n- explicacao curta de uma constante ou parametro.\nNesses casos, so recomende video se existir um conteudo diretamente relacionado.",
+    "Como Recomendar Sem Ser Invasivo": "Use uma secao curta no fim da resposta:\n```md\nVideo recomendado:\nPara visualizar fisicamente este ponto na ES32Lab, veja este trecho:\nhttps://youtu.be/xpoNbSA8pPM?t=383\n```\nRegras:\n- recomendar no maximo um video por resposta, salvo quando o usuario pedir materiais de estudo;\n- usar dois videos apenas quando eles tiverem funcoes diferentes, por exemplo um introdutorio e um exemplo pratico;\n- quando houver capitulo especifico, usar link com tempo exato;\n- nao inventar titulo, capitulo, tempo, URL ou conteudo;\n- nao dizer que um video ensina algo se isso nao estiver catalogado;\n- evitar recomendacao generica quando nao existir relacao real com a duvida;\n- nao usar frases agressivas de marketing;\n- preferir frases como \"este video ajuda a visualizar\" ou \"este trecho mostra fisicamente\".",
+    "Video Padrao Para Iniciantes": "Quando o usuario for iniciante, estiver conhecendo a ES32Lab ou fizer uma pergunta geral sobre a placa, priorizar:",
+    "Playlists Oficiais": "",
+    "Catalogo De Videos": "",
+    "Projetos E Bastidores": "Os videos abaixo podem ser recomendados quando o usuario perguntar sobre aplicacoes reais, automacao, projetos especiais, historia da ES Developer ou bastidores. Evite usar estes videos como referencia tecnica direta para gerar codigo da ES32Lab, a menos que o assunto do usuario seja exatamente relacionado.",
+    "Frases E Tom Do Canal": "Frases recorrentes que podem ser reconhecidas como identidade do canal, mas nao devem ser usadas em excesso pela IA:\n- \"Fala, projetista, tudo bem com voce?!\"\n- \"Hey, project maker, how are you?!\"\n- \"Segura na minha mao e vem! Vamos para o video.\"\nA IA pode usar esse tom apenas quando o contexto for descontraido, didatico ou promocional. Em respostas tecnicas, manter objetividade.",
+    "Manutencao Deste Catalogo": "Ao adicionar novos videos, manter este padrao:\n```md\n### Titulo do video\n- ID: `VIDEO_ID`\n- URL: https://youtu.be/VIDEO_ID\n- Thumbnail: https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg\n- Tipo: video completo | short | live | aula\n- Apresentador:\n- Tema principal:\n- Classes relacionadas:\n- Recursos fisicos:\n- Recomendado para:\n- Informacao:\nCapitulos uteis:\n| Tempo | Assunto | Link direto |\n|---|---|---|\n| 00:00 | Assunto | https://youtu.be/VIDEO_ID?t=0 |\n```\nSempre que possivel, cadastrar:\n- ID do video;\n- URL principal;\n- links com tempo exato;\n- classes relacionadas da LIB ES32Lab;\n- recursos fisicos da ES32Lab citados;\n- quando recomendar;\n- quando nao recomendar.",
+    "Politica Para Conexao Fisica": "Quando a pergunta envolver montagem fisica, conexao de display, camera, sensores, conectores, jumpers ou alimentacao, usar o indice de intencoes e recomendar o trecho com tempo exato quando existir. A recomendacao de video deve vir depois da orientacao tecnica e deve ser curta."
+  },
+  "playlists": [
+    {
+      "title": "Maratonando no canal da ES Developer",
+      "url": "https://www.youtube.com/playlist?list=PLpVVewmHgD_LDEXAvsAxDWjS-3XCfZlZi",
+      "topic": "colecao ampla de videos sobre ES32Lab, tecnologia, prototipagem, projetos, motores, eventos e bastidores.",
+      "recommended_when": ""
+    },
+    {
+      "title": "ES32Lab: Saiba tudo sobre essa poderosa ferramenta",
+      "url": "https://www.youtube.com/playlist?list=PLpVVewmHgD_K_r5rhk54IxEb9sauBhvce",
+      "topic": "videos instrutivos sobre uso, aplicacoes e demonstracoes da ES32Lab.",
+      "recommended_when": ""
+    },
+    {
+      "title": "Eventos e Feiras com a ES Developer",
+      "url": "https://www.youtube.com/playlist?list=PLpVVewmHgD_KpPgibl0QbreFnds1GVPa-",
+      "topic": "participacoes da ES Developer em eventos, feiras e demonstracoes publicas.",
+      "recommended_when": ""
+    },
+    {
+      "title": "Automatizacao com Pick and Place",
+      "url": "https://www.youtube.com/playlist?list=PLpVVewmHgD_IfklHeSBkYy6jWJDJlsNxD",
+      "topic": "fabricacao, prototipagem, montagem automatizada e estrutura de producao da ES Developer.",
+      "recommended_when": ""
+    },
+    {
+      "title": "Piscinas de Ondas: Projetos e Bastidores",
+      "url": "https://www.youtube.com/playlist?list=PLpVVewmHgD_ID5Tdi0dJq5VB5NWoUmFRa",
+      "topic": "bastidores de automacao e controle em projeto real de piscina de ondas.",
+      "recommended_when": ""
+    }
+  ],
+  "videos": [
+    {
+      "title": "ESP32 sem protoboard!? Conheca cada detalhe do hardware da ES32Lab",
+      "id": "xpoNbSA8pPM",
+      "url": "https://youtu.be/xpoNbSA8pPM",
+      "thumbnail": "https://img.youtube.com/vi/xpoNbSA8pPM/maxresdefault.jpg",
+      "type": "video completo",
+      "presenter": "Eder Santini",
+      "main_topic": "visao geral da placa ES32Lab e seus circuitos integrados",
+      "recommended_for": [
+        "iniciantes",
+        "professores",
+        "alunos",
+        "makers",
+        "compra da placa",
+        "localizacao fisica dos recursos",
+        "jumpers e alimentacao"
+      ],
+      "related_classes": [
+        "ES_CarControl",
+        "ES_PCF8574",
+        "ES_TFT",
+        "ES_Camera",
+        "ES_Buzzer",
+        "ES_AnalogKeyboard",
+        "ES_DigitalButton"
+      ],
+      "physical_resources": [
+        "alimentacao",
+        "LEDs",
+        "potenciometros",
+        "LDR",
+        "sensor de temperatura",
+        "teclado analogico",
+        "buzzer",
+        "microSD",
+        "display TFT",
+        "camera OV2640",
+        "ponte H",
+        "expansao I2C e jumpers"
+      ],
+      "keywords": [
+        "P17_G",
+        "P16_Y",
+        "P13_R",
+        "P12_B",
+        "BAT RESET",
+        "EX0",
+        "EX1",
+        "EX3",
+        "EX4"
+      ],
+      "information": "",
+      "observation": "",
+      "chapters": [
+        {
+          "time": "00:00",
+          "topic": "Apresentacao",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=0",
+          "seconds": 0
+        },
+        {
+          "time": "00:40",
+          "topic": "Compatibilidade com shields ESP32",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=40",
+          "seconds": 40
+        },
+        {
+          "time": "01:47",
+          "topic": "Alimentacao pela porta USB",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=107",
+          "seconds": 107
+        },
+        {
+          "time": "02:06",
+          "topic": "Alimentacao por fonte de 9 V, borne vermelho e conector DC",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=126",
+          "seconds": 126
+        },
+        {
+          "time": "02:15",
+          "topic": "Alimentacao por baterias no borne verde",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=135",
+          "seconds": 135
+        },
+        {
+          "time": "03:17",
+          "topic": "LEDs da ES32Lab",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=197",
+          "seconds": 197
+        },
+        {
+          "time": "03:18",
+          "topic": "Potenciometros",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=198",
+          "seconds": 198
+        },
+        {
+          "time": "03:20",
+          "topic": "Sensor LDR",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=200",
+          "seconds": 200
+        },
+        {
+          "time": "03:21",
+          "topic": "Sensor de temperatura analogico",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=201",
+          "seconds": 201
+        },
+        {
+          "time": "03:23",
+          "topic": "Teclado analogico com 5 teclas",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=203",
+          "seconds": 203
+        },
+        {
+          "time": "03:27",
+          "topic": "Buzzer",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=207",
+          "seconds": 207
+        },
+        {
+          "time": "03:34",
+          "topic": "Leitor de cartao microSD",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=214",
+          "seconds": 214
+        },
+        {
+          "time": "03:36",
+          "topic": "Conector para display SPI TFT",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=216",
+          "seconds": 216
+        },
+        {
+          "time": "03:43",
+          "topic": "Conector I2C",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=223",
+          "seconds": 223
+        },
+        {
+          "time": "03:44",
+          "topic": "Ponte H para dois motores DC no borne azul",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=224",
+          "seconds": 224
+        },
+        {
+          "time": "03:47",
+          "topic": "Expansao de 8 GPIOs extras por I2C",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=227",
+          "seconds": 227
+        },
+        {
+          "time": "03:52",
+          "topic": "Conector para camera de video OV2640",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=232",
+          "seconds": 232
+        },
+        {
+          "time": "04:10",
+          "topic": "Informacoes de GPIO escritas na propria placa",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=250",
+          "seconds": 250
+        },
+        {
+          "time": "05:01",
+          "topic": "Aplicacao dos jumpers vermelhos",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=301",
+          "seconds": 301
+        },
+        {
+          "time": "05:24",
+          "topic": "Aplicacao dos jumpers verdes",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=324",
+          "seconds": 324
+        },
+        {
+          "time": "05:58",
+          "topic": "Aplicacao dos jumpers azuis",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=358",
+          "seconds": 358
+        },
+        {
+          "time": "06:23",
+          "topic": "Aplicacao dos jumpers brancos",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=383",
+          "seconds": 383
+        },
+        {
+          "time": "07:06",
+          "topic": "Aplicacao dos jumpers pretos",
+          "url": "https://youtu.be/xpoNbSA8pPM?t=426",
+          "seconds": 426
+        }
+      ]
+    },
+    {
+      "title": "ES32Lab - Ganhe tempo de desenvolvimento e prototipagem em seus projetos com ESP32",
+      "id": "F3Kxc9TrW4A",
+      "url": "https://youtu.be/F3Kxc9TrW4A",
+      "thumbnail": "https://img.youtube.com/vi/F3Kxc9TrW4A/maxresdefault.jpg",
+      "type": "video completo",
+      "presenter": "Eder Santini",
+      "main_topic": "apresentacao comercial e tecnica da ES32Lab",
+      "recommended_for": [
+        "primeiro contato",
+        "beneficios da placa",
+        "compra",
+        "comparacao com desenvolvimento em protoboard",
+        "explicacao geral do produto"
+      ],
+      "related_classes": [],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "apresenta a ES32Lab como plataforma para facilitar estudos e desenvolvimento com ESP32, reunindo circuitos prontos em uma unica placa.",
+      "observation": "",
+      "chapters": [
+        {
+          "time": "00:00",
+          "topic": "Introducao",
+          "url": "https://youtu.be/F3Kxc9TrW4A?t=0",
+          "seconds": 0
+        },
+        {
+          "time": "00:35",
+          "topic": "Caracteristicas tecnicas da ES32Lab",
+          "url": "https://youtu.be/F3Kxc9TrW4A?t=35",
+          "seconds": 35
+        },
+        {
+          "time": "01:17",
+          "topic": "Evolucao da ES32Lab",
+          "url": "https://youtu.be/F3Kxc9TrW4A?t=77",
+          "seconds": 77
+        },
+        {
+          "time": "01:51",
+          "topic": "Aplicacoes praticas e beneficios",
+          "url": "https://youtu.be/F3Kxc9TrW4A?t=111",
+          "seconds": 111
+        },
+        {
+          "time": "02:55",
+          "topic": "Modelo comercial e cursos digitais",
+          "url": "https://youtu.be/F3Kxc9TrW4A?t=175",
+          "seconds": 175
+        }
+      ]
+    },
+    {
+      "title": "Montagem dos componentes eletronicos da ES32Lab",
+      "id": "ib710RwafEg",
+      "url": "https://youtu.be/ib710RwafEg",
+      "thumbnail": "https://img.youtube.com/vi/ib710RwafEg/maxresdefault.jpg",
+      "type": "video completo",
+      "presenter": "",
+      "main_topic": "fabricacao inicial da ES32Lab",
+      "recommended_for": [
+        "curiosidade sobre fabricacao",
+        "montagem manual",
+        "evolucao do processo produtivo"
+      ],
+      "related_classes": [],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "mostra a montagem manual dos componentes da ES32Lab em uma fase inicial de fabricacao.",
+      "observation": "",
+      "chapters": []
+    },
+    {
+      "title": "ES32Lab - Sua fabricacao, distribuicao e proximos passos evolutivos",
+      "id": "kJGLYhQo1t8",
+      "url": "https://youtu.be/kJGLYhQo1t8",
+      "thumbnail": "https://img.youtube.com/vi/kJGLYhQo1t8/maxresdefault.jpg",
+      "type": "video completo",
+      "presenter": "Eder Santini",
+      "main_topic": "fabricacao, distribuicao e evolucao da ES32Lab",
+      "recommended_for": [
+        "historia do projeto",
+        "fabricacao",
+        "roadmap",
+        "bastidores da ES Developer"
+      ],
+      "related_classes": [],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "",
+      "observation": "",
+      "chapters": [
+        {
+          "time": "00:23",
+          "topic": "Visao e estudo de mercado",
+          "url": "https://youtu.be/kJGLYhQo1t8?t=23",
+          "seconds": 23
+        },
+        {
+          "time": "00:51",
+          "topic": "Fabricacao atual na epoca",
+          "url": "https://youtu.be/kJGLYhQo1t8?t=51",
+          "seconds": 51
+        },
+        {
+          "time": "01:29",
+          "topic": "Melhorar a fabricacao",
+          "url": "https://youtu.be/kJGLYhQo1t8?t=89",
+          "seconds": 89
+        },
+        {
+          "time": "02:17",
+          "topic": "Comercializacao",
+          "url": "https://youtu.be/kJGLYhQo1t8?t=137",
+          "seconds": 137
+        }
+      ]
+    },
+    {
+      "title": "Biblioteca da ES32Lab gerando sinal PWM pelo expansor de GPIO I2C",
+      "id": "EUerpwKTt8I",
+      "url": "https://youtube.com/shorts/EUerpwKTt8I",
+      "thumbnail": "https://img.youtube.com/vi/EUerpwKTt8I/maxresdefault.jpg",
+      "type": "short",
+      "presenter": "Eder Santini",
+      "main_topic": "PWM pelo expansor I2C",
+      "recommended_for": [
+        "expansao I2C",
+        "PWM",
+        "LED pelo expansor",
+        "demonstracao rapida da biblioteca"
+      ],
+      "related_classes": [
+        "ES_PCF8574"
+      ],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "",
+      "observation": "",
+      "chapters": [
+        {
+          "time": "00:05",
+          "topic": "Demonstracao dos pulsos PWM gerados pelo expansor I2C",
+          "url": "https://youtube.com/shorts/EUerpwKTt8I?t=5",
+          "seconds": 5
+        },
+        {
+          "time": "00:11",
+          "topic": "Controle do comprimento da onda do LED branco",
+          "url": "https://youtube.com/shorts/EUerpwKTt8I?t=11",
+          "seconds": 11
+        }
+      ]
+    },
+    {
+      "title": "Controle de Motor DC com Facilidade usando a ES32Lab",
+      "id": "r2p_1au__l8",
+      "url": "https://youtube.com/shorts/r2p_1au__l8",
+      "thumbnail": "https://img.youtube.com/vi/r2p_1au__l8/maxresdefault.jpg",
+      "type": "short",
+      "presenter": "Eder Santini",
+      "main_topic": "controle de motor DC com a ES32Lab",
+      "recommended_for": [
+        "motor DC",
+        "ponte H",
+        "controle de direcao",
+        "velocidade",
+        "exemplos com poucas linhas"
+      ],
+      "related_classes": [
+        "ES_CarControl",
+        "ES_PCF8574"
+      ],
+      "physical_resources": [
+        "ponte H",
+        "borne azul",
+        "expansao I2C"
+      ],
+      "keywords": [],
+      "information": "",
+      "observation": "",
+      "chapters": [
+        {
+          "time": "00:10",
+          "topic": "Motor girando em diferentes velocidades",
+          "url": "https://youtube.com/shorts/r2p_1au__l8?t=10",
+          "seconds": 10
+        },
+        {
+          "time": "00:20",
+          "topic": "Codigo de controle",
+          "url": "https://youtube.com/shorts/r2p_1au__l8?t=20",
+          "seconds": 20
+        },
+        {
+          "time": "00:26",
+          "topic": "Controle do motor com poucas linhas de comando",
+          "url": "https://youtube.com/shorts/r2p_1au__l8?t=26",
+          "seconds": 26
+        },
+        {
+          "time": "00:32",
+          "topic": "Inicializacao da classe de controle de motores por I2C",
+          "url": "https://youtube.com/shorts/r2p_1au__l8?t=32",
+          "seconds": 32
+        }
+      ]
+    },
+    {
+      "title": "Carro RC Bluetooth em acao com ESP32 e ES32Lab",
+      "id": "W249sI2f9ec",
+      "url": "https://youtube.com/shorts/W249sI2f9ec",
+      "thumbnail": "https://img.youtube.com/vi/W249sI2f9ec/maxresdefault.jpg",
+      "type": "short",
+      "presenter": "Eder Santini",
+      "main_topic": "carro RC controlado por Bluetooth",
+      "recommended_for": [
+        "carro Bluetooth",
+        "direcao diferencial",
+        "controle por smartphone",
+        "robo movel"
+      ],
+      "related_classes": [
+        "ES_CarControl",
+        "ES_PCF8574"
+      ],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "",
+      "observation": "",
+      "chapters": [
+        {
+          "time": "00:07",
+          "topic": "Codigo enxuto e eficiente",
+          "url": "https://youtube.com/shorts/W249sI2f9ec?t=7",
+          "seconds": 7
+        },
+        {
+          "time": "00:19",
+          "topic": "Mecanismo de direcao diferencial",
+          "url": "https://youtube.com/shorts/W249sI2f9ec?t=19",
+          "seconds": 19
+        },
+        {
+          "time": "00:35",
+          "topic": "Movimentacao dos motores e controle pelo smartphone",
+          "url": "https://youtube.com/shorts/W249sI2f9ec?t=35",
+          "seconds": 35
+        }
+      ]
+    },
+    {
+      "title": "Prototipagem de Cadeira de Rodas com ES32Lab",
+      "id": "VJWxhdsf7Ts",
+      "url": "https://youtube.com/shorts/VJWxhdsf7Ts",
+      "thumbnail": "https://img.youtube.com/vi/VJWxhdsf7Ts/maxresdefault.jpg",
+      "type": "short",
+      "presenter": "Eder Santini",
+      "main_topic": "prototipo de cadeira de rodas controlada remotamente",
+      "recommended_for": [
+        "robotica",
+        "acessibilidade",
+        "controle remoto",
+        "projetos de inclusao",
+        "controle de motores"
+      ],
+      "related_classes": [
+        "ES_CarControl"
+      ],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "",
+      "observation": "",
+      "chapters": [
+        {
+          "time": "00:09",
+          "topic": "Maquete da cadeira de rodas em MDF",
+          "url": "https://youtube.com/shorts/VJWxhdsf7Ts?t=9",
+          "seconds": 9
+        },
+        {
+          "time": "00:19",
+          "topic": "Controle via Bluetooth e smartphone",
+          "url": "https://youtube.com/shorts/VJWxhdsf7Ts?t=19",
+          "seconds": 19
+        }
+      ]
+    },
+    {
+      "title": "Como controlar um servo motor e um motor DC de forma facil?",
+      "id": "su6AnS6Qh3g",
+      "url": "https://youtube.com/shorts/su6AnS6Qh3g",
+      "thumbnail": "https://img.youtube.com/vi/su6AnS6Qh3g/maxresdefault.jpg",
+      "type": "short",
+      "presenter": "Eder Santini",
+      "main_topic": "controle de motores DC e servo motor",
+      "recommended_for": [
+        "motor DC",
+        "ponte H",
+        "demonstracao de potencia",
+        "projetos com motores"
+      ],
+      "related_classes": [
+        "ES_CarControl"
+      ],
+      "physical_resources": [
+        "ponte H",
+        "motores DC"
+      ],
+      "keywords": [],
+      "information": "",
+      "observation": "",
+      "chapters": [
+        {
+          "time": "00:10",
+          "topic": "Dois motores DC controlados pela ponte H da ES32Lab",
+          "url": "https://youtube.com/shorts/su6AnS6Qh3g?t=10",
+          "seconds": 10
+        },
+        {
+          "time": "00:31",
+          "topic": "Servo motor de 7.7 Nm",
+          "url": "https://youtube.com/shorts/su6AnS6Qh3g?t=31",
+          "seconds": 31
+        },
+        {
+          "time": "00:53",
+          "topic": "Controlando dois motores DC simultaneamente",
+          "url": "https://youtube.com/shorts/su6AnS6Qh3g?t=53",
+          "seconds": 53
+        }
+      ]
+    },
+    {
+      "title": "Como Criar um Carro de Controle Remoto com ESP32 e ES32Lab",
+      "id": "wQOFPJsQgkY",
+      "url": "https://youtube.com/shorts/wQOFPJsQgkY",
+      "thumbnail": "https://img.youtube.com/vi/wQOFPJsQgkY/maxresdefault.jpg",
+      "type": "short",
+      "presenter": "Eder Santini",
+      "main_topic": "reutilizacao de miniatura com ES32Lab",
+      "recommended_for": [
+        "carro de controle remoto",
+        "Bluetooth",
+        "sustentabilidade",
+        "reaproveitamento de brinquedos"
+      ],
+      "related_classes": [
+        "ES_CarControl"
+      ],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "",
+      "observation": "",
+      "chapters": [
+        {
+          "time": "00:03",
+          "topic": "Aplicacao pratica da ES32Lab",
+          "url": "https://youtube.com/shorts/wQOFPJsQgkY?t=3",
+          "seconds": 3
+        },
+        {
+          "time": "00:13",
+          "topic": "Substituicao da eletronica danificada pela ES32Lab",
+          "url": "https://youtube.com/shorts/wQOFPJsQgkY?t=13",
+          "seconds": 13
+        }
+      ]
+    },
+    {
+      "title": "Campus Party Sao Paulo 2023 - Melhores Momentos",
+      "id": "GlA0fK9oJpM",
+      "url": "https://youtu.be/GlA0fK9oJpM",
+      "thumbnail": "https://img.youtube.com/vi/GlA0fK9oJpM/maxresdefault.jpg",
+      "type": "video completo",
+      "presenter": "",
+      "main_topic": "evento, tecnologia e cultura maker",
+      "recommended_for": [
+        "contexto institucional",
+        "eventos",
+        "inspiracao maker"
+      ],
+      "related_classes": [],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "",
+      "observation": "",
+      "chapters": []
+    },
+    {
+      "title": "Startup Summit 2023 Melhores momentos",
+      "id": "ArKiVZ7SD3k",
+      "url": "https://youtu.be/ArKiVZ7SD3k",
+      "thumbnail": "https://img.youtube.com/vi/ArKiVZ7SD3k/maxresdefault.jpg",
+      "type": "video completo",
+      "presenter": "",
+      "main_topic": "evento de empreendedorismo e inovacao",
+      "recommended_for": [
+        "historia institucional",
+        "eventos",
+        "startup",
+        "ES Developer"
+      ],
+      "related_classes": [],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "",
+      "observation": "",
+      "chapters": []
+    },
+    {
+      "title": "Novidade na ES Developer: Pick and Place Chegou",
+      "id": "WQi4I71V9Gc",
+      "url": "https://youtube.com/shorts/WQi4I71V9Gc",
+      "thumbnail": "https://img.youtube.com/vi/WQi4I71V9Gc/maxresdefault.jpg",
+      "type": "short",
+      "presenter": "Eder Santini",
+      "main_topic": "chegada da Pick and Place",
+      "recommended_for": [
+        "fabricacao",
+        "qualidade",
+        "bastidores da ES Developer",
+        "linha de producao"
+      ],
+      "related_classes": [],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "",
+      "observation": "",
+      "chapters": []
+    },
+    {
+      "title": "Primeiros Testes da Pick and Place na ES Developer",
+      "id": "FE-2VqOkg4w",
+      "url": "https://youtube.com/shorts/FE-2VqOkg4w",
+      "thumbnail": "https://img.youtube.com/vi/FE-2VqOkg4w/maxresdefault.jpg",
+      "type": "short",
+      "presenter": "Eder Santini",
+      "main_topic": "testes iniciais da Pick and Place",
+      "recommended_for": [
+        "fabricacao",
+        "prototipagem",
+        "reconhecimento de componentes",
+        "processo produtivo"
+      ],
+      "related_classes": [],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "",
+      "observation": "",
+      "chapters": []
+    },
+    {
+      "title": "Crie seu MVP e Prototipos com a Nova Pick and Place da ES Developer",
+      "id": "7tGcQZmSnIk",
+      "url": "https://www.youtube.com/shorts/7tGcQZmSnIk",
+      "thumbnail": "https://img.youtube.com/vi/7tGcQZmSnIk/maxresdefault.jpg",
+      "type": "short",
+      "presenter": "Eder Santini",
+      "main_topic": "laboratorio, prototipagem e producao",
+      "recommended_for": [
+        "MVP",
+        "startups",
+        "fabricacao",
+        "servicos da ES Developer"
+      ],
+      "related_classes": [],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "",
+      "observation": "",
+      "chapters": []
+    },
+    {
+      "title": "Como Criar um MVP Eletronico para Sua Startup?",
+      "id": "aKPqb0QB3k4",
+      "url": "https://youtube.com/shorts/aKPqb0QB3k4",
+      "thumbnail": "https://img.youtube.com/vi/aKPqb0QB3k4/maxresdefault.jpg",
+      "type": "short",
+      "presenter": "Eder Santini",
+      "main_topic": "desenvolvimento de MVP eletronico",
+      "recommended_for": [
+        "startups",
+        "prototipos",
+        "desenvolvimento de produto",
+        "servicos da ES Developer"
+      ],
+      "related_classes": [],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "",
+      "observation": "",
+      "chapters": []
+    },
+    {
+      "title": "Gerador de Pulso PWM para Mecanicos",
+      "id": "xL1lQShAKMw",
+      "url": "https://youtube.com/shorts/xL1lQShAKMw",
+      "thumbnail": "https://img.youtube.com/vi/xL1lQShAKMw/maxresdefault.jpg",
+      "type": "short",
+      "presenter": "Eder Santini",
+      "main_topic": "prototipo de gerador de pulso PWM",
+      "recommended_for": [
+        "MVP",
+        "PWM",
+        "automotivo",
+        "valvulas solenoides",
+        "projeto sob demanda"
+      ],
+      "related_classes": [],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "",
+      "observation": "",
+      "chapters": []
+    },
+    {
+      "title": "Pegue Seu Cupom de Desconto e Potencialize Seus Projetos com a ES32Lab",
+      "id": "1t1Zswzi0uE",
+      "url": "https://youtu.be/1t1Zswzi0uE",
+      "thumbnail": "https://img.youtube.com/vi/1t1Zswzi0uE/maxresdefault.jpg",
+      "type": "video promocional",
+      "presenter": "Eder Santini",
+      "main_topic": "cupom e compra da ES32Lab",
+      "recommended_for": [
+        "compra",
+        "desconto",
+        "promocao",
+        "interesse comercial"
+      ],
+      "related_classes": [],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "",
+      "observation": "recomendar apenas quando o usuario perguntar sobre compra, desconto, cupom ou onde adquirir a ES32Lab.",
+      "chapters": []
+    },
+    {
+      "title": "Projeto Piscina de Ondas - Bastidores com 15 Servo Motores",
+      "id": "WT7UDy5K5_M",
+      "url": "https://youtube.com/shorts/WT7UDy5K5_M",
+      "thumbnail": "",
+      "type": "",
+      "presenter": "",
+      "main_topic": "automacao de piscina de ondas, 11 ESP32 e 15 servo motores",
+      "recommended_for": [
+        "aplicacoes reais",
+        "automacao",
+        "bastidores",
+        "projetos especiais"
+      ],
+      "related_classes": [],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "",
+      "observation": "",
+      "chapters": []
+    },
+    {
+      "title": "Projeto Piscina de Ondas - Controle com 11 ESP32",
+      "id": "d8hisguWpaI",
+      "url": "https://youtube.com/shorts/d8hisguWpaI",
+      "thumbnail": "",
+      "type": "",
+      "presenter": "",
+      "main_topic": "controle logico com 11 ESP32",
+      "recommended_for": [
+        "automacao",
+        "projetos complexos",
+        "bastidores"
+      ],
+      "related_classes": [],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "",
+      "observation": "",
+      "chapters": []
+    },
+    {
+      "title": "Piscina de Ondas - Primeiros Testes com a Nova Mecanica",
+      "id": "n46-4P3UL-g",
+      "url": "https://youtube.com/shorts/n46-4P3UL-g",
+      "thumbnail": "",
+      "type": "",
+      "presenter": "",
+      "main_topic": "primeiros testes mecanicos da piscina de ondas",
+      "recommended_for": [
+        "bastidores",
+        "automacao e projetos especiais"
+      ],
+      "related_classes": [],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "",
+      "observation": "",
+      "chapters": []
+    },
+    {
+      "title": "Piscina de Ondas Funcionando - Resultado Final",
+      "id": "dbIAl2nuZFU",
+      "url": "https://youtube.com/shorts/dbIAl2nuZFU",
+      "thumbnail": "",
+      "type": "",
+      "presenter": "",
+      "main_topic": "resultado final do projeto da piscina de ondas",
+      "recommended_for": [
+        "aplicacoes reais",
+        "demonstracao de resultado",
+        "inovacao"
+      ],
+      "related_classes": [],
+      "physical_resources": [],
+      "keywords": [],
+      "information": "",
+      "observation": "",
+      "chapters": []
+    }
+  ],
+  "intent_index": [
+    {
+      "intent": "display_connection",
+      "triggers": [
+        "conectar display",
+        "encaixar display",
+        "kit com display",
+        "display TFT",
+        "conector do display",
+        "onde liga o display"
+      ],
+      "video_id": "xpoNbSA8pPM",
+      "title": "ESP32 sem protoboard!? Conheca cada detalhe do hardware da ES32Lab",
+      "chapter_topic": "Conector para display SPI TFT",
+      "url": "https://youtu.be/xpoNbSA8pPM?t=216",
+      "seconds": 216,
+      "priority": "high"
+    },
+    {
+      "intent": "camera_connection",
+      "triggers": [
+        "conectar camera",
+        "encaixar camera",
+        "camera OV2640",
+        "conector da camera",
+        "kit com camera"
+      ],
+      "video_id": "xpoNbSA8pPM",
+      "title": "ESP32 sem protoboard!? Conheca cada detalhe do hardware da ES32Lab",
+      "chapter_topic": "Conector para camera de video OV2640",
+      "url": "https://youtu.be/xpoNbSA8pPM?t=232",
+      "seconds": 232,
+      "priority": "high"
+    },
+    {
+      "intent": "i2c_connector",
+      "triggers": [
+        "conector I2C",
+        "ligar sensor I2C",
+        "modulo I2C",
+        "RTC I2C",
+        "VL53L0X"
+      ],
+      "video_id": "xpoNbSA8pPM",
+      "title": "ESP32 sem protoboard!? Conheca cada detalhe do hardware da ES32Lab",
+      "chapter_topic": "Conector I2C",
+      "url": "https://youtu.be/xpoNbSA8pPM?t=223",
+      "seconds": 223,
+      "priority": "high"
+    }
+  ]
+}

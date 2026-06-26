@@ -1,8 +1,22 @@
 {
   "schema_version": "1.0.0",
-  "knowledge_version": "0.10.0",
-  "updated_at": "2026-06-20",
+  "knowledge_version": "0.12.8",
+  "updated_at": "2026-06-26",
   "change_summary": [
+    "Ajusta politica de referencias publicas: README da classe como padrao e ancoras de metodo apenas quando confiaveis.",
+    "Adiciona politica de itens necessarios para projetos, kits oficiais e contato comercial.",
+    "Relaciona classes de display, camera e reles a produtos e videos oficiais.",
+    "Adiciona politica para referencias publicas sem expor arquivos internos de treinamento.",
+    "Registra diagnostico da versao corrente da LIB ES32Lab 0.15.2.",
+    "Adiciona URLs publicas de documentacao e codigo-fonte por classe.",
+    "Adiciona fluxo de diagnostico para falhas do teclado analogico ES_AnalogKeyboard.",
+    "Registra offset inicial recomendado de 50 mm para ES_VL53L0X em codigos gerados.",
+    "Adiciona classe oficial ES_VL53L0X ao catalogo de API.",
+    "Registra endereco I2C padrao 0x29 para sensores VL53L0X.",
+    "Remove dependencia de biblioteca externa para VL53L0X no treinamento.",
+    "Padroniza catalogos migrados para Examples_Index.json e Video_Catalog.json.",
+    "Substitui resumos de metodos por assinaturas completas.",
+    "Padroniza construtores dentro de methods para classes oficiais.",
     "Adiciona referencia ao catalogo comercial ESDeveloper_Product_Catalog.json.",
     "Mantem referencia ao modulo da Shield 4IN-4Relay Optoacoplada.",
     "Mantem o catalogo de API focado nas classes oficiais da LIB ES32Lab.",
@@ -13,7 +27,7 @@
   "rules": {
     "target_board": "ES32Lab",
     "main_include": "<ES32Lab.h>",
-    "video_catalog": "YouTube_ESDeveloperBR.md",
+    "video_catalog": "Video_Catalog.json",
     "institutional_catalog": "ESDeveloper_Institutional.md",
     "validated_hardware_catalog": "Validated_Hardware_Catalog.md",
     "board_connectors_catalog": "ES32Lab_Board_Connectors_Legends_v1.5.20.md",
@@ -24,7 +38,11 @@
     "prefer_validated_external_peripherals": true,
     "prefer_esdeveloper_relay_shield_for_relay_projects": true,
     "do_not_recommend_marketplaces_for_official_products": true,
-    "do_not_invent_methods": true
+    "do_not_invent_methods": true,
+    "examples_catalog": "Examples_Index.json",
+    "project_items_policy": "Ao identificar componentes necessarios em um projeto, listar itens necessarios e consultar ESDeveloper_Product_Catalog.json.",
+    "prefer_official_kit_when_available": true,
+    "use_contact_fallback_for_uncataloged_items": true
   },
   "library": {
     "name": "ES32Lab",
@@ -32,7 +50,10 @@
     "primary_header": "ES32Lab.h",
     "official_site": "https://www.esdeveloper.com.br/",
     "assistant_url": "https://chatgpt.com/g/g-uwhCVM9MJ-es32lab",
-    "youtube_url": "https://www.youtube.com/esdeveloperbr?sub_confirmation=1"
+    "youtube_url": "https://www.youtube.com/esdeveloperbr?sub_confirmation=1",
+    "current_version": "0.15.2",
+    "current_version_macro_value": "0.15.2 update 24/06/2026",
+    "current_version_macro": "ES32LAB_VERSION"
   },
   "hardware_constants": {
     "gpio_labels": [
@@ -67,12 +88,34 @@
       "P36",
       "P39"
     ],
-    "serial": ["TX0", "RX0"],
-    "i2s": ["LCK", "DIN", "BCK"],
-    "i2c": ["SDA", "SCL"],
-    "spi": ["MOSI", "MISO", "SCK"],
-    "sd": ["CS_SD"],
-    "tft": ["CS_TFT", "DC_TFT", "A0_TFT", "DA_TFT", "CL_TFT"],
+    "serial": [
+      "TX0",
+      "RX0"
+    ],
+    "i2s": [
+      "LCK",
+      "DIN",
+      "BCK"
+    ],
+    "i2c": [
+      "SDA",
+      "SCL"
+    ],
+    "spi": [
+      "MOSI",
+      "MISO",
+      "SCK"
+    ],
+    "sd": [
+      "CS_SD"
+    ],
+    "tft": [
+      "CS_TFT",
+      "DC_TFT",
+      "A0_TFT",
+      "DA_TFT",
+      "CL_TFT"
+    ],
     "peripherals": [
       "P_KEYBOARD",
       "P_LED_GREEN",
@@ -86,8 +129,20 @@
       "P_DAC1",
       "P_DAC2"
     ],
-    "expander_pins": ["EX0", "EX1", "EX2", "EX3", "EX4", "EX5", "EX6", "EX7"],
-    "recommended_line_sensor_expander_pins": ["EX2", "EX3"],
+    "expander_pins": [
+      "EX0",
+      "EX1",
+      "EX2",
+      "EX3",
+      "EX4",
+      "EX5",
+      "EX6",
+      "EX7"
+    ],
+    "recommended_line_sensor_expander_pins": [
+      "EX2",
+      "EX3"
+    ],
     "expander_onboard_map": {
       "EX0": "LED branco pelo jumper branco",
       "EX1": "LED laranja pelo jumper branco",
@@ -106,7 +161,15 @@
       "header": "ES32Lab.h",
       "role": "Header principal da biblioteca. Ao incluir ES32Lab.h, o usuario acessa as classes e constantes oficiais da ES32Lab.",
       "construction": "ES32Lab es32lab;",
-      "methods": []
+      "methods": [
+        {
+          "name": "ES32Lab",
+          "signature": "ES32Lab()",
+          "kind": "constructor"
+        }
+      ],
+      "public_reference_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/README.md",
+      "public_source_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES32Lab.h"
     },
     {
       "name": "ES_AnalogKeyboard",
@@ -136,7 +199,8 @@
         {
           "name": "ES_AnalogKeyboard",
           "signature": "ES_AnalogKeyboard(uint8_t pinKeyboard = P_KEYBOARD, uint8_t readingAccuracy = 20)",
-          "kind": "constructor"
+          "kind": "constructor",
+          "description": "Cria o teclado analogico no pino informado. readingAccuracy e a tolerancia percentual usada para comparar a leitura analogica com as constantes KEY_*."
         },
         {
           "name": "hold",
@@ -160,14 +224,57 @@
           "name": "debugRead",
           "signature": "void debugRead()",
           "returns": "void",
-          "description": "Imprime leituras analogicas para calibracao e diagnostico."
+          "description": "Coleta amostras da leitura analogica e imprime Min, Max e Media no Serial para diagnostico e calibracao do teclado."
         }
       ],
       "examples": [
         "examples/AnalogKeyboard/AnalogKeyboard-PressKey/AnalogKeyboard-PressKey.ino",
         "examples/AnalogKeyboard/AnalogKeyboard-ReleaseKey/AnalogKeyboard-ReleaseKey.ino",
         "examples/AnalogKeyboard/AnalogKeyboard-DebugRead/AnalogKeyboard-DebugRead.ino"
-      ]
+      ],
+      "defaults": {
+        "pin": "P_KEYBOARD",
+        "gpio": 33,
+        "reading_accuracy_percent": 20
+      },
+      "expected_single_key_values": {
+        "KEY_CENTER": 0,
+        "KEY_UP": 769,
+        "KEY_RIGHT": 1585,
+        "KEY_DOWN": 2400,
+        "KEY_LEFT": 3323
+      },
+      "diagnostics": {
+        "primary_example": "examples/AnalogKeyboard/AnalogKeyboard-DebugRead/AnalogKeyboard-DebugRead.ino",
+        "when_to_use": [
+          "Usuario relata que teclado analogico nao responde.",
+          "press(), hold() ou release() nao detectam uma tecla esperada.",
+          "Existe suspeita de variacao de leitura analogica ou defeito na GPIO do ESP32."
+        ],
+        "recommended_flow": [
+          "Executar debugRead() segurando uma tecla por pelo menos tres leituras.",
+          "Comparar Min, Max e Media com os valores esperados das constantes KEY_*.",
+          "Se a media estiver proxima mas fora da tolerancia, ajustar readingAccuracy no construtor com cuidado.",
+          "Se a leitura ficar travada em 0, 4095, nao mudar ou apresentar ruido extremo, verificar jumper, alimentacao, GND, GPIO P_KEYBOARD/GPIO33 e testar outro ESP32.",
+          "Se outro ESP32 funcionar na mesma ES32Lab, tratar como forte indicio de problema na GPIO analogica do ESP32 original."
+        ],
+        "alternative_pin_test": "Somente com ligacao fisica/jumper consciente, testar outro pino analogico valido instanciando ES_AnalogKeyboard keyboard(P32, 20).",
+        "center_key_note": "KEY_CENTER vale 0; a tolerancia percentual nao amplia uma faixa em torno de zero. Se CENTER nao zerar ou ficar instavel, priorizar debugRead() e verificacao fisica."
+      },
+      "notes": [
+        "Quando o teclado analogico nao funcionar, orientar primeiro o exemplo AnalogKeyboard-DebugRead antes de trocar a logica do codigo.",
+        "Ajustar readingAccuracy no construtor pode resolver pequenas variacoes de leitura, mas valores altos podem sobrepor faixas entre teclas.",
+        "Leitura travada ou sem variacao em P_KEYBOARD/GPIO33 pode indicar jumper, hardware do teclado ou problema na GPIO analogica do ESP32."
+      ],
+      "public_reference_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_AnalogKeyboard/README.md",
+      "public_source_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_AnalogKeyboard/ES_AnalogKeyboard.h",
+      "public_reference_anchors": {
+        "constructor": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_AnalogKeyboard/README.md#construtor",
+        "debugRead": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_AnalogKeyboard/README.md#void-debugread",
+        "press": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_AnalogKeyboard/README.md#boolean-pressuint16_t-key",
+        "hold": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_AnalogKeyboard/README.md#boolean-holduint16_t-key",
+        "release": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_AnalogKeyboard/README.md#boolean-releaseuint16_t-key"
+      }
     },
     {
       "name": "ES_DigitalButton",
@@ -224,7 +331,14 @@
         "Quando activeHigh e false, a classe tenta configurar INPUT_PULLUP.",
         "Algumas GPIOs do ESP32 podem nao aceitar pull-up ou pull-down interno; nesse caso, orientar resistor externo."
       ],
-      "examples": ["examples/DigitalButton/DigitalButton.ino"]
+      "examples": [
+        "examples/DigitalButton/DigitalButton.ino"
+      ],
+      "public_reference_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_DigitalButton/README.md",
+      "public_source_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_DigitalButton/ES_DigitalButton.h",
+      "public_reference_anchors": {
+        "constructor": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_DigitalButton/README.md#construtor"
+      }
     },
     {
       "name": "ES_TimeInterval",
@@ -278,7 +392,12 @@
         "examples/TimeInterval/TimeInterval-intervalMillis/TimeInterval-intervalMillis.ino",
         "examples/TimeInterval/TimeInterval-intervalMicros/TimeInterval-intervalMicros.ino",
         "examples/TimeInterval/TimeInterval-stopwatchStartMicros/TimeInterval-stopwatchStartMicros.ino"
-      ]
+      ],
+      "public_reference_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_TimeInterval/README.md",
+      "public_source_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_TimeInterval/ES_TimeInterval.h",
+      "public_reference_anchors": {
+        "constructor": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_TimeInterval/README.md#construtor"
+      }
     },
     {
       "name": "ES_Buzzer",
@@ -293,19 +412,168 @@
         "raw_frequency_usage": "Usar frequencias numericas diretas somente se o usuario pedir explicitamente uma frequencia em Hz.",
         "naming_standard": "As constantes usam o padrao internacional de notas musicais: C, CS, D, DS, E, F, FS, G, GS, A, AS, B.",
         "naming_pattern": "NOTE_<NOTE><OCTAVE>",
-        "valid_notes": ["C", "CS", "D", "DS", "E", "F", "FS", "G", "GS", "A", "AS", "B"],
-        "valid_octaves": [0, 1, 2, 3, 4, 5, 6, 7, 8],
-        "examples": ["NOTE_C4", "NOTE_D4", "NOTE_E4", "NOTE_F4", "NOTE_G4", "NOTE_A4", "NOTE_B4", "NOTE_C5"],
+        "valid_notes": [
+          "C",
+          "CS",
+          "D",
+          "DS",
+          "E",
+          "F",
+          "FS",
+          "G",
+          "GS",
+          "A",
+          "AS",
+          "B"
+        ],
+        "valid_octaves": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "examples": [
+          "NOTE_C4",
+          "NOTE_D4",
+          "NOTE_E4",
+          "NOTE_F4",
+          "NOTE_G4",
+          "NOTE_A4",
+          "NOTE_B4",
+          "NOTE_C5"
+        ],
         "constants_by_octave": {
-          "0": ["NOTE_C0", "NOTE_CS0", "NOTE_D0", "NOTE_DS0", "NOTE_E0", "NOTE_F0", "NOTE_FS0", "NOTE_G0", "NOTE_GS0", "NOTE_A0", "NOTE_AS0", "NOTE_B0"],
-          "1": ["NOTE_C1", "NOTE_CS1", "NOTE_D1", "NOTE_DS1", "NOTE_E1", "NOTE_F1", "NOTE_FS1", "NOTE_G1", "NOTE_GS1", "NOTE_A1", "NOTE_AS1", "NOTE_B1"],
-          "2": ["NOTE_C2", "NOTE_CS2", "NOTE_D2", "NOTE_DS2", "NOTE_E2", "NOTE_F2", "NOTE_FS2", "NOTE_G2", "NOTE_GS2", "NOTE_A2", "NOTE_AS2", "NOTE_B2"],
-          "3": ["NOTE_C3", "NOTE_CS3", "NOTE_D3", "NOTE_DS3", "NOTE_E3", "NOTE_F3", "NOTE_FS3", "NOTE_G3", "NOTE_GS3", "NOTE_A3", "NOTE_AS3", "NOTE_B3"],
-          "4": ["NOTE_C4", "NOTE_CS4", "NOTE_D4", "NOTE_DS4", "NOTE_E4", "NOTE_F4", "NOTE_FS4", "NOTE_G4", "NOTE_GS4", "NOTE_A4", "NOTE_AS4", "NOTE_B4"],
-          "5": ["NOTE_C5", "NOTE_CS5", "NOTE_D5", "NOTE_DS5", "NOTE_E5", "NOTE_F5", "NOTE_FS5", "NOTE_G5", "NOTE_GS5", "NOTE_A5", "NOTE_AS5", "NOTE_B5"],
-          "6": ["NOTE_C6", "NOTE_CS6", "NOTE_D6", "NOTE_DS6", "NOTE_E6", "NOTE_F6", "NOTE_FS6", "NOTE_G6", "NOTE_GS6", "NOTE_A6", "NOTE_AS6", "NOTE_B6"],
-          "7": ["NOTE_C7", "NOTE_CS7", "NOTE_D7", "NOTE_DS7", "NOTE_E7", "NOTE_F7", "NOTE_FS7", "NOTE_G7", "NOTE_GS7", "NOTE_A7", "NOTE_AS7", "NOTE_B7"],
-          "8": ["NOTE_C8", "NOTE_CS8", "NOTE_D8", "NOTE_DS8", "NOTE_E8", "NOTE_F8", "NOTE_FS8", "NOTE_G8", "NOTE_GS8", "NOTE_A8", "NOTE_AS8", "NOTE_B8"]
+          "0": [
+            "NOTE_C0",
+            "NOTE_CS0",
+            "NOTE_D0",
+            "NOTE_DS0",
+            "NOTE_E0",
+            "NOTE_F0",
+            "NOTE_FS0",
+            "NOTE_G0",
+            "NOTE_GS0",
+            "NOTE_A0",
+            "NOTE_AS0",
+            "NOTE_B0"
+          ],
+          "1": [
+            "NOTE_C1",
+            "NOTE_CS1",
+            "NOTE_D1",
+            "NOTE_DS1",
+            "NOTE_E1",
+            "NOTE_F1",
+            "NOTE_FS1",
+            "NOTE_G1",
+            "NOTE_GS1",
+            "NOTE_A1",
+            "NOTE_AS1",
+            "NOTE_B1"
+          ],
+          "2": [
+            "NOTE_C2",
+            "NOTE_CS2",
+            "NOTE_D2",
+            "NOTE_DS2",
+            "NOTE_E2",
+            "NOTE_F2",
+            "NOTE_FS2",
+            "NOTE_G2",
+            "NOTE_GS2",
+            "NOTE_A2",
+            "NOTE_AS2",
+            "NOTE_B2"
+          ],
+          "3": [
+            "NOTE_C3",
+            "NOTE_CS3",
+            "NOTE_D3",
+            "NOTE_DS3",
+            "NOTE_E3",
+            "NOTE_F3",
+            "NOTE_FS3",
+            "NOTE_G3",
+            "NOTE_GS3",
+            "NOTE_A3",
+            "NOTE_AS3",
+            "NOTE_B3"
+          ],
+          "4": [
+            "NOTE_C4",
+            "NOTE_CS4",
+            "NOTE_D4",
+            "NOTE_DS4",
+            "NOTE_E4",
+            "NOTE_F4",
+            "NOTE_FS4",
+            "NOTE_G4",
+            "NOTE_GS4",
+            "NOTE_A4",
+            "NOTE_AS4",
+            "NOTE_B4"
+          ],
+          "5": [
+            "NOTE_C5",
+            "NOTE_CS5",
+            "NOTE_D5",
+            "NOTE_DS5",
+            "NOTE_E5",
+            "NOTE_F5",
+            "NOTE_FS5",
+            "NOTE_G5",
+            "NOTE_GS5",
+            "NOTE_A5",
+            "NOTE_AS5",
+            "NOTE_B5"
+          ],
+          "6": [
+            "NOTE_C6",
+            "NOTE_CS6",
+            "NOTE_D6",
+            "NOTE_DS6",
+            "NOTE_E6",
+            "NOTE_F6",
+            "NOTE_FS6",
+            "NOTE_G6",
+            "NOTE_GS6",
+            "NOTE_A6",
+            "NOTE_AS6",
+            "NOTE_B6"
+          ],
+          "7": [
+            "NOTE_C7",
+            "NOTE_CS7",
+            "NOTE_D7",
+            "NOTE_DS7",
+            "NOTE_E7",
+            "NOTE_F7",
+            "NOTE_FS7",
+            "NOTE_G7",
+            "NOTE_GS7",
+            "NOTE_A7",
+            "NOTE_AS7",
+            "NOTE_B7"
+          ],
+          "8": [
+            "NOTE_C8",
+            "NOTE_CS8",
+            "NOTE_D8",
+            "NOTE_DS8",
+            "NOTE_E8",
+            "NOTE_F8",
+            "NOTE_FS8",
+            "NOTE_G8",
+            "NOTE_GS8",
+            "NOTE_A8",
+            "NOTE_AS8",
+            "NOTE_B8"
+          ]
         },
         "reference_frequencies_hz": {
           "NOTE_C0": 16,
@@ -478,7 +746,12 @@
       "examples": [
         "examples/Buzzer/ES_Buzzer_HappyBirthday/ES_Buzzer_HappyBirthday.ino",
         "examples/Buzzer/ES_Buzzer_controlVolumeSpeed/ES_Buzzer_controlVolumeSpeed.ino"
-      ]
+      ],
+      "public_reference_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_Buzzer/README.md",
+      "public_source_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_Buzzer/ES_Buzzer.h",
+      "public_reference_anchors": {
+        "constructor": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_Buzzer/README.md#construtor"
+      }
     },
     {
       "name": "ES_PCF8574",
@@ -487,6 +760,11 @@
       "role": "Expansor I2C PCF8574 para entradas, saidas, PWM simulado, botoes e motores.",
       "construction": "ES_PCF8574 expander(0x20);",
       "methods": [
+        {
+          "name": "ES_PCF8574",
+          "signature": "ES_PCF8574(uint8_t address = 0x20)",
+          "kind": "constructor"
+        },
         {
           "name": "scanI2C",
           "signature": "String scanI2C()",
@@ -583,6 +861,14 @@
         "examples/i2C_Expander/i2C_digitalWriteExpander/i2C_digitalWriteExpander.ino",
         "examples/i2C_Expander/i2C_digitalReadExpander/i2C_digitalReadExpander.ino",
         "examples/i2C_Expander/i2C_motorControlSimple/i2C_motorControlSimple.ino"
+      ],
+      "public_reference_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_PCF8574/README.md",
+      "public_source_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_PCF8574/ES_PCF8574.h",
+      "public_reference_anchors": {
+        "constructor": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_PCF8574/README.md#construtor"
+      },
+      "related_products": [
+        "shield-4in-4relay-opto"
       ]
     },
     {
@@ -591,8 +877,14 @@
       "header": "ES_CarControl/ES_CarControl.h",
       "role": "Controle de veiculos com ponte H, incluindo movimento, luzes, buzina e comandos seriais.",
       "construction": "ES_CarControl car(expander);",
-      "dependencies": ["ES_PCF8574", "ES_Buzzer optional"],
-      "constants": ["DIFFERENTIAL", "FRONTAL"],
+      "dependencies": [
+        "ES_PCF8574",
+        "ES_Buzzer optional"
+      ],
+      "constants": [
+        "DIFFERENTIAL",
+        "FRONTAL"
+      ],
       "motor_defaults": {
         "default_control_class": "ES_CarControl",
         "default_expander": "ES_PCF8574 expander(0x20)",
@@ -602,8 +894,14 @@
         "jumper_video": "https://www.youtube.com/watch?v=xpoNbSA8pPM&list=PLpVVewmHgD_LDEXAvsAxDWjS-3XCfZlZi&index=18&t=383s",
         "differential_default_begin": "car.begin(DIFFERENTIAL)",
         "differential_default_pins": {
-          "motor_index_0": ["EX4", "EX5"],
-          "motor_index_1": ["EX6", "EX7"]
+          "motor_index_0": [
+            "EX4",
+            "EX5"
+          ],
+          "motor_index_1": [
+            "EX6",
+            "EX7"
+          ]
         },
         "manual_pin_equivalent": "car.begin(DIFFERENTIAL, EX4, EX5, EX6, EX7, ...)",
         "generation_rule": "Quando o usuario pedir codigo com motores, carro, robo movel, ponte H ou veiculo, gerar por padrao com ES_CarControl em vez de controlar a ponte H manualmente.",
@@ -623,6 +921,30 @@
         }
       },
       "methods": [
+        {
+          "name": "ES_CarControl",
+          "signature": "ES_CarControl(ES_PCF8574* pcf8574)",
+          "kind": "constructor",
+          "status": "obsolete",
+          "prefer": "ES_CarControl(ES_PCF8574 &pcf8574)"
+        },
+        {
+          "name": "ES_CarControl",
+          "signature": "ES_CarControl(ES_PCF8574* pcf8574, ES_Buzzer* buzzer)",
+          "kind": "constructor",
+          "status": "obsolete",
+          "prefer": "ES_CarControl(ES_PCF8574 &pcf8574, ES_Buzzer &buzzer)"
+        },
+        {
+          "name": "ES_CarControl",
+          "signature": "ES_CarControl(ES_PCF8574 &pcf8574)",
+          "kind": "constructor"
+        },
+        {
+          "name": "ES_CarControl",
+          "signature": "ES_CarControl(ES_PCF8574 &pcf8574, ES_Buzzer &buzzer)",
+          "kind": "constructor"
+        },
         {
           "name": "begin",
           "signature": "boolean begin(uint8_t drivingMode = 0, ...)",
@@ -810,21 +1132,35 @@
         "examples/CarControl/frontalSteering_CommandTest/frontalSteering_CommandTest.ino",
         "examples/CarControl/differentialSteering_Bluetooth/differentialSteering_Bluetooth.ino",
         "examples/CarControl/frontalSteering_Bluetooth/frontalSteering_Bluetooth.ino"
-      ]
+      ],
+      "public_reference_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_CarControl/README.md",
+      "public_source_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_CarControl/ES_CarControl.h",
+      "public_reference_anchors": {
+        "constructor": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_CarControl/README.md#construtor"
+      }
     },
     {
       "name": "ES_CarLineFollower",
       "version_macro": "ES_CAR_LINE_FOLLOWER_VERSION",
       "header": "ES_CarLineFollower/ES_CarLineFollower.h",
-    "role": "Controle didatico para robo seguidor de linha usando ES_CarControl e ES_PCF8574.",
-    "construction": "ES_CarLineFollower lineFollower(car, expander);",
-    "dependencies": ["ES_CarControl", "ES_PCF8574", "ES_TimeInterval"],
-    "recommended_sensor_pins": {
-      "left": "EX2",
-      "right": "EX3",
-      "rule": "Usar EX2 e EX3 como sugestao padrao da ES Developer para sensores de linha no expansor I2C, salvo se o usuario informar outra ligacao fisica."
-    },
-    "methods": [
+      "role": "Controle didatico para robo seguidor de linha usando ES_CarControl e ES_PCF8574.",
+      "construction": "ES_CarLineFollower lineFollower(car, expander);",
+      "dependencies": [
+        "ES_CarControl",
+        "ES_PCF8574",
+        "ES_TimeInterval"
+      ],
+      "recommended_sensor_pins": {
+        "left": "EX2",
+        "right": "EX3",
+        "rule": "Usar EX2 e EX3 como sugestao padrao da ES Developer para sensores de linha no expansor I2C, salvo se o usuario informar outra ligacao fisica."
+      },
+      "methods": [
+        {
+          "name": "ES_CarLineFollower",
+          "signature": "ES_CarLineFollower(ES_CarControl &car, ES_PCF8574 &expander)",
+          "kind": "constructor"
+        },
         {
           "name": "begin",
           "signature": "boolean begin(uint8_t leftPin, uint8_t rightPin, uint8_t highSpeed = 20, uint8_t lowSpeed = 10, uint16_t lowSpeedDuration = 2500, uint16_t noLineDuration = 5000, uint8_t turnSpeed = 70)",
@@ -929,7 +1265,12 @@
       "examples": [
         "examples/CarLineFollower/CarLineFollower_Simple/CarLineFollower_Simple.ino",
         "examples/CarLineFollower/CarLineFollower_DisplayKeyboard/CarLineFollower_DisplayKeyboard.ino"
-      ]
+      ],
+      "public_reference_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_CarLineFollower/README.md",
+      "public_source_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_CarLineFollower/ES_CarLineFollower.h",
+      "public_reference_anchors": {
+        "constructor": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_CarLineFollower/README.md#construtor"
+      }
     },
     {
       "name": "ES_File",
@@ -937,41 +1278,298 @@
       "header": "ES_File/ES_File.h",
       "role": "Manipulacao de arquivos em SD, SPIFFS e LittleFS.",
       "construction": "ES_File file;",
-      "methods_summary": [
-        "begin",
-        "listAllFiles",
-        "exists",
-        "directoryExists",
-        "println",
-        "print",
-        "readFile",
-        "readLine",
-        "countLines",
-        "remove",
-        "createDirectory",
-        "move",
-        "getTotalSpace",
-        "getUsedSpace",
-        "getAvailableSpace",
-        "getFileSize",
-        "getFirstFileName",
-        "getLastFileName",
-        "getPreviousFileName",
-        "getNextFileName",
-        "getFile",
-        "getFirstFile",
-        "getLastFile",
-        "getNextFile",
-        "getPreviousFile",
-        "copy"
-      ],
       "examples": [
         "examples/File/ES_File-ListAllFiles/ES_File-ListAllFiles.ino",
         "examples/File/ES_File-Print/ES_File-Print.ino",
         "examples/File/ES_File-ReadFile/ES_File-ReadFile.ino",
         "examples/File/ES_File-ReadLine/ES_File-ReadLine.ino",
         "examples/File/ES_File-Navigation/ES_File-Navigation.ino"
-      ]
+      ],
+      "methods": [
+        {
+          "name": "ES_File",
+          "signature": "ES_File()",
+          "kind": "constructor"
+        },
+        {
+          "name": "begin",
+          "signature": "bool begin(fs::FS& fs)",
+          "returns": "bool"
+        },
+        {
+          "name": "listAllFiles",
+          "signature": "String listAllFiles(const String& directory, bool showFileSize = false, bool showSubDir = true, bool openSubDir = true, bool indentation = false)",
+          "returns": "String"
+        },
+        {
+          "name": "listAllFiles",
+          "signature": "String listAllFiles(fs::FS& fs, const String& directory, bool showFileSize = false, bool showSubDir = true, bool openSubDir = true, bool indentation = false)",
+          "returns": "String"
+        },
+        {
+          "name": "exists",
+          "signature": "bool exists(const String& fileName)",
+          "returns": "bool"
+        },
+        {
+          "name": "exists",
+          "signature": "bool exists(fs::FS& fs, const String& fileName)",
+          "returns": "bool"
+        },
+        {
+          "name": "directoryExists",
+          "signature": "bool directoryExists(const String& directory)",
+          "returns": "bool"
+        },
+        {
+          "name": "directoryExists",
+          "signature": "bool directoryExists(fs::FS& fs, const String& directory)",
+          "returns": "bool"
+        },
+        {
+          "name": "println",
+          "signature": "bool println(const String& fileName, const String& content, bool createNew = false)",
+          "returns": "bool"
+        },
+        {
+          "name": "println",
+          "signature": "bool println(const String& fileName, int content, bool createNew = false)",
+          "returns": "bool"
+        },
+        {
+          "name": "println",
+          "signature": "bool println(const String& fileName, double content, bool createNew = false, uint8_t decimalPlaces = 2)",
+          "returns": "bool"
+        },
+        {
+          "name": "println",
+          "signature": "bool println(fs::FS& fs, const String& fileName, const String& content, bool createNew = false)",
+          "returns": "bool"
+        },
+        {
+          "name": "print",
+          "signature": "bool print(const String& fileName, const String& content, bool createNew = false)",
+          "returns": "bool"
+        },
+        {
+          "name": "print",
+          "signature": "bool print(const String& fileName, int content, bool createNew = false)",
+          "returns": "bool"
+        },
+        {
+          "name": "print",
+          "signature": "bool print(const String& fileName, double content, bool createNew = false, uint8_t decimalPlaces = 2)",
+          "returns": "bool"
+        },
+        {
+          "name": "print",
+          "signature": "bool print(fs::FS& fs, const String& fileName, const String& content, bool createNew = false)",
+          "returns": "bool"
+        },
+        {
+          "name": "readFile",
+          "signature": "String readFile(const String& fileName)",
+          "returns": "String"
+        },
+        {
+          "name": "readFile",
+          "signature": "String readFile(fs::FS& fs, const String& fileName)",
+          "returns": "String"
+        },
+        {
+          "name": "readLine",
+          "signature": "String readLine(const String& fileName, size_t lineNumber)",
+          "returns": "String"
+        },
+        {
+          "name": "countLines",
+          "signature": "size_t countLines(const String& fileName)",
+          "returns": "size_t"
+        },
+        {
+          "name": "remove",
+          "signature": "bool remove(const String& path, bool recursive = false)",
+          "returns": "bool"
+        },
+        {
+          "name": "remove",
+          "signature": "bool remove(fs::FS& fs, const String& path, bool recursive = false)",
+          "returns": "bool"
+        },
+        {
+          "name": "createDirectory",
+          "signature": "bool createDirectory(const String& directory)",
+          "returns": "bool"
+        },
+        {
+          "name": "createDirectory",
+          "signature": "bool createDirectory(fs::FS& fs, const String& directory)",
+          "returns": "bool"
+        },
+        {
+          "name": "move",
+          "signature": "bool move(const String& sourcePath, const String& destinationPath)",
+          "returns": "bool"
+        },
+        {
+          "name": "move",
+          "signature": "bool move(fs::FS& fs, const String& sourcePath, const String& destinationPath)",
+          "returns": "bool"
+        },
+        {
+          "name": "getTotalSpace",
+          "signature": "size_t getTotalSpace()",
+          "returns": "size_t"
+        },
+        {
+          "name": "getTotalSpace",
+          "signature": "size_t getTotalSpace(fs::FS& fs)",
+          "returns": "size_t"
+        },
+        {
+          "name": "getUsedSpace",
+          "signature": "size_t getUsedSpace(const String& directory = \"/\", bool includeSubDirs = true)",
+          "returns": "size_t"
+        },
+        {
+          "name": "getUsedSpace",
+          "signature": "size_t getUsedSpace(fs::FS& fs, const String& directory = \"/\", bool includeSubDirs = true)",
+          "returns": "size_t"
+        },
+        {
+          "name": "getAvailableSpace",
+          "signature": "size_t getAvailableSpace()",
+          "returns": "size_t"
+        },
+        {
+          "name": "getAvailableSpace",
+          "signature": "size_t getAvailableSpace(fs::FS& fs)",
+          "returns": "size_t"
+        },
+        {
+          "name": "getFileSize",
+          "signature": "size_t getFileSize(const String& fileName)",
+          "returns": "size_t"
+        },
+        {
+          "name": "getFileSize",
+          "signature": "size_t getFileSize(fs::FS& fs, const String& fileName)",
+          "returns": "size_t"
+        },
+        {
+          "name": "getFirstFileName",
+          "signature": "String getFirstFileName(const String& directory = \"/\")",
+          "returns": "String"
+        },
+        {
+          "name": "getFirstFileName",
+          "signature": "String getFirstFileName(fs::FS& fs, const String& directory = \"/\")",
+          "returns": "String"
+        },
+        {
+          "name": "getLastFileName",
+          "signature": "String getLastFileName(const String& directory = \"/\")",
+          "returns": "String"
+        },
+        {
+          "name": "getLastFileName",
+          "signature": "String getLastFileName(fs::FS& fs, const String& directory = \"/\")",
+          "returns": "String"
+        },
+        {
+          "name": "getPreviousFileName",
+          "signature": "String getPreviousFileName(const String& directory = \"\")",
+          "returns": "String"
+        },
+        {
+          "name": "getPreviousFileName",
+          "signature": "String getPreviousFileName(fs::FS& fs, const String& directory = \"\")",
+          "returns": "String"
+        },
+        {
+          "name": "getNextFileName",
+          "signature": "String getNextFileName(const String& directory = \"\")",
+          "returns": "String"
+        },
+        {
+          "name": "getNextFileName",
+          "signature": "String getNextFileName(fs::FS& fs, const String& directory = \"\")",
+          "returns": "String"
+        },
+        {
+          "name": "getFile",
+          "signature": "File getFile(const String& fileName, bool edit = false)",
+          "returns": "File"
+        },
+        {
+          "name": "getFile",
+          "signature": "File getFile(fs::FS& fs, const String& fileName, bool edit = false)",
+          "returns": "File"
+        },
+        {
+          "name": "getFirstFile",
+          "signature": "File getFirstFile(const String& directory = \"/\", bool edit = false)",
+          "returns": "File"
+        },
+        {
+          "name": "getFirstFile",
+          "signature": "File getFirstFile(fs::FS& fs, const String& directory = \"/\", bool edit = false)",
+          "returns": "File"
+        },
+        {
+          "name": "getLastFile",
+          "signature": "File getLastFile(const String& directory = \"/\", bool edit = false)",
+          "returns": "File"
+        },
+        {
+          "name": "getLastFile",
+          "signature": "File getLastFile(fs::FS& fs, const String& directory = \"/\", bool edit = false)",
+          "returns": "File"
+        },
+        {
+          "name": "getNextFile",
+          "signature": "File getNextFile(bool edit = false)",
+          "returns": "File"
+        },
+        {
+          "name": "getNextFile",
+          "signature": "File getNextFile(fs::FS& fs, bool edit = false)",
+          "returns": "File"
+        },
+        {
+          "name": "getPreviousFile",
+          "signature": "File getPreviousFile(bool edit = false)",
+          "returns": "File"
+        },
+        {
+          "name": "getPreviousFile",
+          "signature": "File getPreviousFile(fs::FS& fs, bool edit = false)",
+          "returns": "File"
+        },
+        {
+          "name": "copy",
+          "signature": "bool copy(const String& sourceFileName, const String& destFileName)",
+          "returns": "bool"
+        },
+        {
+          "name": "copy",
+          "signature": "bool copy(const String& sourceFileName, fs::FS& destFS, const String& destFileName)",
+          "returns": "bool"
+        },
+        {
+          "name": "copy",
+          "signature": "bool copy(fs::FS& sourceFS, const String& sourceFileName, fs::FS& destFS, const String& destFileName)",
+          "returns": "bool"
+        }
+      ],
+      "notes": [
+        "Use begin(fs) para fixar o sistema de arquivos quando usar os overloads sem parametro fs."
+      ],
+      "public_reference_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_File/README.md",
+      "public_source_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_File/ES_File.h",
+      "public_reference_anchors": {
+        "constructor": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_File/README.md#construtor"
+      }
     },
     {
       "name": "ES_TFT",
@@ -998,6 +1596,11 @@
         }
       },
       "methods": [
+        {
+          "name": "ES_TFT",
+          "signature": "ES_TFT(void)",
+          "kind": "constructor"
+        },
         {
           "name": "drawCentreScreenString",
           "signature": "int16_t drawCentreScreenString(const char *string, int32_t y, uint8_t font = 1)"
@@ -1055,6 +1658,18 @@
         "examples/Display-TFT/BasicCommands/BasicCommands.ino",
         "examples/Display-TFT/Text-DrawString/Text-DrawString.ino",
         "examples/Display-TFT/PhotoViewerAnalogKeyboard/PhotoViewerAnalogKeyboard.ino"
+      ],
+      "public_reference_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_TFT/README.md",
+      "public_source_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_TFT/ES_TFT.h",
+      "public_reference_anchors": {
+        "constructor": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_TFT/README.md#construtor"
+      },
+      "related_products": [
+        "display-tft-18-128x160-spi-es32lab",
+        "kit-es32lab-cam"
+      ],
+      "related_video_intents": [
+        "display_connection"
       ]
     },
     {
@@ -1063,76 +1678,488 @@
       "header": "ES_Camera/ES_Camera.h",
       "role": "Controle da camera OV2640 na ES32Lab, incluindo captura, JPEG e stream HTTP.",
       "construction": "ES_Camera camera;",
-      "methods_summary": [
-        "begin",
-        "getSensorName",
-        "setBrightness",
-        "getBrightness",
-        "setContrast",
-        "getContrast",
-        "setSaturation",
-        "getSaturation",
-        "setWhiteBalance",
-        "getWhiteBalance",
-        "setWhiteBalanceGain",
-        "getWhiteBalanceGain",
-        "setExposure",
-        "getExposure",
-        "setExposureAdvanced",
-        "getExposureAdvanced",
-        "setExposureLevel",
-        "getExposureLevel",
-        "setExposureValue",
-        "getExposureValue",
-        "setExposureGain",
-        "getExposureGain",
-        "setSpecialEffect",
-        "getSpecialEffect",
-        "setAutoGainCeiling",
-        "getAutoGainCeiling",
-        "setNoiseReduction",
-        "getNoiseReduction",
-        "setPixelCorrection",
-        "getPixelCorrection",
-        "setColorCorrection",
-        "getColorCorrection",
-        "setRawColorCorrection",
-        "getRawColorCorrection",
-        "setLensCorrection",
-        "getLensCorrection",
-        "setSharpness",
-        "getSharpness",
-        "setFrameSize",
-        "getFrameSize",
-        "getFrameWidth",
-        "getFrameHeight",
-        "setJpegCompression",
-        "getJpegCompression",
-        "setHorizontalMirror",
-        "getHorizontalMirror",
-        "setVerticalMirror",
-        "getVerticalMirror",
-        "setColorBar",
-        "getColorBar",
-        "getFrameBuffer",
-        "getFrameJpegBuffer",
-        "saveFrameToJpegFile",
-        "handleStreamRequest",
-        "createStreamEndpoint",
-        "getStreamUri"
-      ],
       "examples": [
         "examples/Camera/Camera-DisplayTFT/Camera-DisplayTFT.ino",
         "examples/Camera/Camera-SaveFrameToSD/Camera-SaveFrameToSD.ino",
         "examples/Camera/Camera-StreamHTTP/Camera-StreamHTTP.ino"
+      ],
+      "methods": [
+        {
+          "name": "ES_Camera",
+          "signature": "ES_Camera()",
+          "kind": "constructor"
+        },
+        {
+          "name": "begin",
+          "signature": "bool begin(framesize_t frameSize = FRAMESIZE_QQVGA, uint8_t jpegQuality = 12, framesize_t maxFrameSize = FRAMESIZE_VGA, pixformat_t pixelFormat = PIXFORMAT_JPEG, camera_grab_mode_t grabMode = CAMERA_GRAB_WHEN_EMPTY, camera_fb_location_t fbLocation = CAMERA_FB_IN_DRAM, int fbCount = 1, int xclkFreqHz = 20000000)",
+          "returns": "bool"
+        },
+        {
+          "name": "getSensorName",
+          "signature": "String getSensorName()",
+          "returns": "String"
+        },
+        {
+          "name": "setBrightness",
+          "signature": "bool setBrightness(int8_t level)",
+          "returns": "bool"
+        },
+        {
+          "name": "getBrightness",
+          "signature": "int8_t getBrightness()",
+          "returns": "int8_t"
+        },
+        {
+          "name": "setContrast",
+          "signature": "bool setContrast(int8_t level)",
+          "returns": "bool"
+        },
+        {
+          "name": "getContrast",
+          "signature": "int8_t getContrast()",
+          "returns": "int8_t"
+        },
+        {
+          "name": "setSaturation",
+          "signature": "bool setSaturation(int8_t level)",
+          "returns": "bool"
+        },
+        {
+          "name": "getSaturation",
+          "signature": "int8_t getSaturation()",
+          "returns": "int8_t"
+        },
+        {
+          "name": "setWhiteBalance",
+          "signature": "bool setWhiteBalance(bool enable)",
+          "returns": "bool"
+        },
+        {
+          "name": "getWhiteBalance",
+          "signature": "bool getWhiteBalance()",
+          "returns": "bool"
+        },
+        {
+          "name": "setWhiteBalanceGain",
+          "signature": "bool setWhiteBalanceGain(bool enable)",
+          "returns": "bool"
+        },
+        {
+          "name": "getWhiteBalanceGain",
+          "signature": "bool getWhiteBalanceGain()",
+          "returns": "bool"
+        },
+        {
+          "name": "setExposure",
+          "signature": "bool setExposure(bool enable)",
+          "returns": "bool"
+        },
+        {
+          "name": "getExposure",
+          "signature": "bool getExposure()",
+          "returns": "bool"
+        },
+        {
+          "name": "setExposureAdvanced",
+          "signature": "bool setExposureAdvanced(bool enable)",
+          "returns": "bool"
+        },
+        {
+          "name": "getExposureAdvanced",
+          "signature": "bool getExposureAdvanced()",
+          "returns": "bool"
+        },
+        {
+          "name": "setExposureLevel",
+          "signature": "bool setExposureLevel(int8_t level)",
+          "returns": "bool"
+        },
+        {
+          "name": "getExposureLevel",
+          "signature": "int8_t getExposureLevel()",
+          "returns": "int8_t"
+        },
+        {
+          "name": "setExposureValue",
+          "signature": "bool setExposureValue(uint16_t value = 300)",
+          "returns": "bool"
+        },
+        {
+          "name": "getExposureValue",
+          "signature": "uint16_t getExposureValue()",
+          "returns": "uint16_t"
+        },
+        {
+          "name": "setExposureGain",
+          "signature": "bool setExposureGain(uint8_t gain = 0)",
+          "returns": "bool"
+        },
+        {
+          "name": "getExposureGain",
+          "signature": "uint8_t getExposureGain()",
+          "returns": "uint8_t"
+        },
+        {
+          "name": "setSpecialEffect",
+          "signature": "bool setSpecialEffect(uint8_t effect)",
+          "returns": "bool"
+        },
+        {
+          "name": "getSpecialEffect",
+          "signature": "uint8_t getSpecialEffect()",
+          "returns": "uint8_t"
+        },
+        {
+          "name": "setAutoGainCeiling",
+          "signature": "bool setAutoGainCeiling(gainceiling_t gainCeiling)",
+          "returns": "bool"
+        },
+        {
+          "name": "setAutoGainCeiling",
+          "signature": "bool setAutoGainCeiling(uint8_t gainCeiling)",
+          "returns": "bool"
+        },
+        {
+          "name": "getAutoGainCeiling",
+          "signature": "uint8_t getAutoGainCeiling()",
+          "returns": "uint8_t"
+        },
+        {
+          "name": "setNoiseReduction",
+          "signature": "bool setNoiseReduction(bool enabled = true)",
+          "returns": "bool"
+        },
+        {
+          "name": "getNoiseReduction",
+          "signature": "bool getNoiseReduction()",
+          "returns": "bool"
+        },
+        {
+          "name": "setPixelCorrection",
+          "signature": "bool setPixelCorrection(bool enabled = true)",
+          "returns": "bool"
+        },
+        {
+          "name": "getPixelCorrection",
+          "signature": "bool getPixelCorrection()",
+          "returns": "bool"
+        },
+        {
+          "name": "setColorCorrection",
+          "signature": "bool setColorCorrection(bool enabled = true)",
+          "returns": "bool"
+        },
+        {
+          "name": "getColorCorrection",
+          "signature": "bool getColorCorrection()",
+          "returns": "bool"
+        },
+        {
+          "name": "setRawColorCorrection",
+          "signature": "bool setRawColorCorrection(bool enabled = true)",
+          "returns": "bool"
+        },
+        {
+          "name": "getRawColorCorrection",
+          "signature": "bool getRawColorCorrection()",
+          "returns": "bool"
+        },
+        {
+          "name": "setLensCorrection",
+          "signature": "bool setLensCorrection(bool enabled = true)",
+          "returns": "bool"
+        },
+        {
+          "name": "getLensCorrection",
+          "signature": "bool getLensCorrection()",
+          "returns": "bool"
+        },
+        {
+          "name": "setSharpness",
+          "signature": "bool setSharpness(int8_t level)",
+          "returns": "bool"
+        },
+        {
+          "name": "getSharpness",
+          "signature": "int8_t getSharpness()",
+          "returns": "int8_t"
+        },
+        {
+          "name": "setFrameSize",
+          "signature": "bool setFrameSize(framesize_t frameSize)",
+          "returns": "bool"
+        },
+        {
+          "name": "setFrameSize",
+          "signature": "bool setFrameSize(int8_t frameSize)",
+          "returns": "bool"
+        },
+        {
+          "name": "getFrameSize",
+          "signature": "framesize_t getFrameSize()",
+          "returns": "framesize_t"
+        },
+        {
+          "name": "getFrameWidth",
+          "signature": "int getFrameWidth()",
+          "returns": "int"
+        },
+        {
+          "name": "getFrameHeight",
+          "signature": "int getFrameHeight()",
+          "returns": "int"
+        },
+        {
+          "name": "setJpegCompression",
+          "signature": "bool setJpegCompression(int8_t jpegQuality)",
+          "returns": "bool"
+        },
+        {
+          "name": "getJpegCompression",
+          "signature": "int8_t getJpegCompression()",
+          "returns": "int8_t"
+        },
+        {
+          "name": "setHorizontalMirror",
+          "signature": "bool setHorizontalMirror(bool enabled = true)",
+          "returns": "bool"
+        },
+        {
+          "name": "getHorizontalMirror",
+          "signature": "bool getHorizontalMirror()",
+          "returns": "bool"
+        },
+        {
+          "name": "setVerticalMirror",
+          "signature": "bool setVerticalMirror(bool enabled = true)",
+          "returns": "bool"
+        },
+        {
+          "name": "getVerticalMirror",
+          "signature": "bool getVerticalMirror()",
+          "returns": "bool"
+        },
+        {
+          "name": "setColorBar",
+          "signature": "bool setColorBar(bool enabled = true)",
+          "returns": "bool"
+        },
+        {
+          "name": "getColorBar",
+          "signature": "bool getColorBar()",
+          "returns": "bool"
+        },
+        {
+          "name": "getFrameBuffer",
+          "signature": "bool getFrameBuffer(uint8_t** buf, size_t* bufLen)",
+          "returns": "bool"
+        },
+        {
+          "name": "getFrameJpegBuffer",
+          "signature": "bool getFrameJpegBuffer(uint8_t** jpegBuf, size_t* jpegBufLen)",
+          "returns": "bool"
+        },
+        {
+          "name": "getFrameJpegBuffer",
+          "signature": "bool getFrameJpegBuffer(uint8_t** jpegBuf, size_t* jpegBufLen, framesize_t frameSize, int8_t jpegQuality = 12)",
+          "returns": "bool"
+        },
+        {
+          "name": "saveFrameToJpegFile",
+          "signature": "bool saveFrameToJpegFile(fs::FS& fs, const String& fileName)",
+          "returns": "bool"
+        },
+        {
+          "name": "saveFrameToJpegFile",
+          "signature": "bool saveFrameToJpegFile(fs::FS& fs, const String& fileName, framesize_t frameSize, int8_t jpegQuality = 12)",
+          "returns": "bool"
+        },
+        {
+          "name": "handleStreamRequest",
+          "signature": "esp_err_t handleStreamRequest(httpd_req_t* req)",
+          "returns": "esp_err_t"
+        },
+        {
+          "name": "createStreamEndpoint",
+          "signature": "httpd_uri_t createStreamEndpoint(const char* streamUri)",
+          "returns": "httpd_uri_t"
+        },
+        {
+          "name": "getStreamUri",
+          "signature": "const char* getStreamUri()",
+          "returns": "const char*"
+        }
+      ],
+      "notes": [
+        "Resolucao maior consome mais memoria; preferir resolucoes menores em exemplos iniciais."
+      ],
+      "public_reference_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_Camera/README.md",
+      "public_source_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_Camera/ES_Camera.h",
+      "public_reference_anchors": {
+        "constructor": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_Camera/README.md#construtor"
+      },
+      "related_products": [
+        "camera-ov2640-es32lab",
+        "kit-es32lab-cam"
+      ],
+      "related_video_intents": [
+        "camera_connection"
+      ]
+    },
+    {
+      "name": "ES_VL53L0X",
+      "version_macro": "ES_VL53L0X_VERSION",
+      "version": "0.2.0 update 06/22/2026",
+      "header": "ES_VL53L0X/ES_VL53L0X.h",
+      "role": "Controle oficial ES32Lab para o sensor de distancia time-of-flight VL53L0X, com leitura em milimetros, timeout, offset e timing budget.",
+      "construction": "ES_VL53L0X distance;",
+      "defaults": {
+        "i2c_default_address": "0x29",
+        "invalid_distance": 65535,
+        "default_bus": "Wire",
+        "default_io_mode": "2.8 V I/O quando io2v8 = true",
+        "recommended_distance_offset_mm": 50,
+        "recommended_distance_offset_usage": "Chamar distance.setDistanceOffset(50) antes de begin() em exemplos gerados para usuarios, salvo pedido contrario ou calibracao especifica."
+      },
+      "constants": [
+        "ES_VL53L0X_DEFAULT_ADDRESS",
+        "ES_VL53L0X_INVALID_DISTANCE"
+      ],
+      "methods": [
+        {
+          "name": "ES_VL53L0X",
+          "signature": "ES_VL53L0X(uint8_t address = ES_VL53L0X_DEFAULT_ADDRESS, TwoWire &bus = Wire)",
+          "kind": "constructor"
+        },
+        {
+          "name": "begin",
+          "signature": "boolean begin(boolean io2v8 = true)",
+          "returns": "boolean",
+          "description": "Inicializa o sensor no barramento configurado usando o endereco armazenado; por padrao usa 0x29."
+        },
+        {
+          "name": "begin",
+          "signature": "boolean begin(uint8_t address, boolean io2v8 = true)",
+          "returns": "boolean",
+          "description": "Inicializa o sensor e define o endereco I2C final informado."
+        },
+        {
+          "name": "begin",
+          "signature": "boolean begin(TwoWire &bus, uint8_t address = ES_VL53L0X_DEFAULT_ADDRESS, boolean io2v8 = true)",
+          "returns": "boolean",
+          "description": "Seleciona o barramento I2C, inicializa o sensor e armazena o endereco final."
+        },
+        {
+          "name": "isInitialized",
+          "signature": "boolean isInitialized()",
+          "returns": "boolean"
+        },
+        {
+          "name": "isConnected",
+          "signature": "boolean isConnected()",
+          "returns": "boolean"
+        },
+        {
+          "name": "setBus",
+          "signature": "void setBus(TwoWire &bus)",
+          "returns": "void"
+        },
+        {
+          "name": "getBus",
+          "signature": "TwoWire *getBus()",
+          "returns": "TwoWire *"
+        },
+        {
+          "name": "setAddress",
+          "signature": "boolean setAddress(uint8_t address)",
+          "returns": "boolean"
+        },
+        {
+          "name": "getAddress",
+          "signature": "uint8_t getAddress()",
+          "returns": "uint8_t"
+        },
+        {
+          "name": "setTimeout",
+          "signature": "void setTimeout(uint16_t timeoutMs)",
+          "returns": "void"
+        },
+        {
+          "name": "getTimeout",
+          "signature": "uint16_t getTimeout()",
+          "returns": "uint16_t"
+        },
+        {
+          "name": "timeoutOccurred",
+          "signature": "boolean timeoutOccurred()",
+          "returns": "boolean",
+          "description": "Retorna se ocorreu timeout desde a chamada anterior e limpa a flag."
+        },
+        {
+          "name": "lastStatus",
+          "signature": "uint8_t lastStatus()",
+          "returns": "uint8_t"
+        },
+        {
+          "name": "read",
+          "signature": "uint16_t read()",
+          "returns": "uint16_t",
+          "description": "Le uma distancia corrigida em milimetros; retorna 65535 se a leitura for invalida ou ocorrer timeout."
+        },
+        {
+          "name": "lastDistance",
+          "signature": "uint16_t lastDistance()",
+          "returns": "uint16_t"
+        },
+        {
+          "name": "setDistanceOffset",
+          "signature": "void setDistanceOffset(uint16_t offsetMm)",
+          "returns": "void",
+          "description": "Define um offset em milimetros subtraido de cada leitura. Para exemplos gerados, usar 50 mm como ponto de partida calibravel."
+        },
+        {
+          "name": "getDistanceOffset",
+          "signature": "uint16_t getDistanceOffset()",
+          "returns": "uint16_t"
+        },
+        {
+          "name": "setMeasurementTimingBudget",
+          "signature": "boolean setMeasurementTimingBudget(uint32_t budgetUs)",
+          "returns": "boolean",
+          "description": "Ajusta o tempo reservado para cada medicao; valores maiores podem melhorar estabilidade e deixam a leitura mais lenta."
+        },
+        {
+          "name": "getMeasurementTimingBudget",
+          "signature": "uint32_t getMeasurementTimingBudget()",
+          "returns": "uint32_t"
+        }
+      ],
+      "notes": [
+        "A classe ES_VL53L0X substitui o uso de biblioteca externa anterior nos codigos gerados para ES32Lab.",
+        "O endereco I2C padrao do VL53L0X apos energizar e 0x29.",
+        "Use scanI2C() da classe ES_PCF8574 quando o sensor nao for detectado.",
+        "Para codigos gerados ao usuario, preferir ES_TimeInterval para leituras periodicas sem delay().",
+        "Para exemplos gerados pelo GPT, usar distance.setDistanceOffset(50) como calibracao inicial recomendada; orientar ajuste conforme sensor, case, lente ou necessidade de precisao.",
+        "Se a distancia medida for menor ou igual ao offset configurado, a leitura corrigida retorna 0."
+      ],
+      "examples": [
+        "examples/SensorDistance/SensorDistanceSimple/SensorDistanceSimple.ino",
+        "examples/SensorDistance/SensorDistanceTimingBudget/SensorDistanceTimingBudget.ino"
+      ],
+      "public_reference_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_VL53L0X/README.md",
+      "public_source_url": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_VL53L0X/ES_VL53L0X.h",
+      "public_reference_anchors": {
+        "constructor": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_VL53L0X/README.md#construtor",
+        "distanceOffset": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_VL53L0X/README.md#setdistanceoffsetuint16_t-offsetmm",
+        "defaultAddress": "https://github.com/ESDeveloperBR/ES32Lab/blob/main/src/ES_VL53L0X/README.md"
+      },
+      "commercial_fallback_item_description": "Sensor de distancia VL53L0X I2C compativel com ES32Lab",
+      "related_video_intents": [
+        "i2c_connector"
       ]
     }
   ],
   "future_modules": {
-    "video_catalog": {
-      "file": "Video_Catalog.json",
-      "purpose": "Relacionar temas, exemplos e metodos da ES32Lab com videos oficiais e legendas."
-    },
     "course_catalog": {
       "file": "Course_Modules.md",
       "purpose": "Organizar trilhas de estudo para alunos usando IA e placa ES32Lab."
@@ -1141,5 +2168,47 @@
       "file": "Commercial_Context.md",
       "purpose": "Cadastrar site oficial, chamadas comerciais discretas, promocoes e informacoes institucionais."
     }
+  },
+  "public_reference_policy": {
+    "do_not_expose_internal_training_files": true,
+    "user_facing_sources_must_be_public": true,
+    "preferred_sources_order": [
+      "Class README in the public ES32Lab GitHub repository",
+      "Official example in the public ES32Lab GitHub repository",
+      "Official ES Developer website or video catalog when relevant"
+    ],
+    "class_level_answer": "Use public_reference_url for the class and format the class name as a Markdown hyperlink.",
+    "specific_answer": "For methods, cite the method in code and use the class public_reference_url by default; use public_reference_anchors only when the anchor is already registered and clearly reliable.",
+    "fallback": "If there is no reliable anchor, cite the class public_reference_url instead of an internal training file.",
+    "never_cite_internal_file_names_to_user": [
+      "API_Catalog.json",
+      "GPT_Instructions.md",
+      "Code_Generation_Rules.md",
+      "ES32Lab_Defaults_And_Best_Practices.md",
+      "Examples_Index.json",
+      "Validated_Hardware_Catalog.md"
+    ]
+  },
+  "version_diagnostics": {
+    "current_library_version": "0.15.2",
+    "current_version_macro": "ES32LAB_VERSION",
+    "current_version_macro_value": "0.15.2 update 24/06/2026",
+    "serial_print_after_serial_begin": [
+      "Serial.print(\"ES32Lab LIB: \");",
+      "Serial.println(ES32LAB_VERSION);"
+    ],
+    "when_to_check": [
+      "Compilation errors mentioning missing methods, missing members, constructor mismatch, no matching function, or API signature mismatch.",
+      "Runtime behavior inconsistent with a generated example that was written for the current training version.",
+      "User reports that an example from the GPT does not match the installed ES32Lab library."
+    ],
+    "default_guidance": "Ask the user to report the version printed in Serial Monitor and compare it with the current version before changing code behavior."
+  },
+  "project_response_policy": {
+    "required_items_section_title": "Itens necessarios para o projeto",
+    "official_items_section_title": "Itens oficiais relacionados",
+    "prefer_kit_when_it_covers_multiple_items": true,
+    "do_not_recommend_uncurated_marketplaces": true,
+    "contact_url_for_uncataloged_items": "https://www.esdeveloper.com.br/contato"
   }
 }

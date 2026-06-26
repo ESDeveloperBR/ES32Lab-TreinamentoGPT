@@ -1,8 +1,8 @@
 # ES32Lab GPT - Shield 4IN-4Relay Optoacoplada
 
-Versao do conhecimento: `0.10.0`
-Atualizado em: `2026-06-20`
-Resumo da versao: vincula a shield ao catalogo comercial oficial `ESDeveloper_Product_Catalog.json`.
+Versao do conhecimento: `0.12.4`
+Atualizado em: `2026-06-25`
+Resumo da versao: alinha indicacao comercial com a politica de links oficiais e curadoria de marketplaces.
 
 Este arquivo orienta a IA da ES32Lab quando o usuario pedir projetos com reles, entradas optoacopladas, atuadores externos, automacao, irrigacao, piscina de ondas, cargas AC, cargas DC ou alimentacao DC acima do limite direto da ES32Lab.
 
@@ -38,7 +38,7 @@ A IA deve priorizar esta shield quando o usuario pedir:
 
 Quando pertinente, informar que a shield pode ser adquirida pelo site oficial da ES Developer. Para compra, consultar `ESDeveloper_Product_Catalog.json`, produto `shield-4in-4relay-opto`, e usar o link oficial cadastrado.
 
-Nao transformar a resposta em propaganda. A indicacao deve ser natural, principalmente quando o usuario demonstrar interesse em compra, montagem fisica, projeto real ou automacao. Nao recomendar marketplaces para esta shield, salvo se o usuario pedir explicitamente alternativas fora da loja oficial.
+Nao transformar a resposta em propaganda. A indicacao deve ser natural, principalmente quando o usuario demonstrar interesse em compra, montagem fisica, projeto real ou automacao. Nao recomendar marketplaces ou links externos sem curadoria cadastrada no catalogo comercial.
 
 ## Aplicacoes Recomendadas
 
