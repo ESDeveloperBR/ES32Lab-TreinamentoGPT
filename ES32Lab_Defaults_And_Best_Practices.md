@@ -1,8 +1,8 @@
 # ES32Lab GPT - Defaults E Boas Praticas
 
-Versao do conhecimento: `0.12.8`
-Atualizado em: `2026-06-26`
-Resumo da versao: corrige resposta de referencias publicas sem expor arquivos internos.
+Versao do conhecimento: `0.12.9`
+Atualizado em: `2026-07-24`
+Resumo da versao: adiciona padrao de selecao da placa no Arduino IDE e configuracao temporaria PlatformIO.
 
 Este arquivo concentra ajustes finos de uso da placa ES32Lab e da LIB ES32Lab.
 
@@ -52,6 +52,46 @@ Excecoes permitidas:
 - quando a classe existente nao atender ao comportamento solicitado.
 
 Mesmo nas excecoes, a IA deve continuar usando classes ES32Lab para as partes do projeto cobertas pela biblioteca.
+
+## Ambientes De Desenvolvimento
+
+### Arduino IDE
+
+Quando o usuario estiver usando Arduino IDE com o pacote `esp32 por Espressif Systems` versao `3.3.11` ou superior, orientar a selecao da placa oficial:
+
+```text
+ES Developer ES32Lab
+```
+
+Essa deve ser a recomendacao padrao para Arduino IDE. Nao recomendar `ESP32 Dev Module`, `NodeMCU-32S` ou equivalentes como primeira opcao quando a placa oficial estiver disponivel.
+
+Use placas genericas apenas como compatibilidade para versoes antigas do pacote ESP32, ambientes temporarios, testes especificos ou quando o usuario ainda nao tiver acesso a definicao oficial.
+
+Com a placa oficial selecionada, os aliases da variant sao fornecidos pelo proprio core Arduino-ESP32. A LIB ES32Lab continua compativel e deve evitar duplicar definicoes de GPIO quando detectar essa condicao.
+
+### PlatformIO / VS Code
+
+No momento desta diretriz, a ES32Lab ainda nao possui definicao oficial no repositorio PlatformIO. Enquanto isso nao estiver disponivel, usar temporariamente `nodemcu-32s` como board de compatibilidade.
+
+Configuracao padrao temporaria para projetos ES32Lab no PlatformIO:
+
+```ini
+[env:nodemcu-32s]
+platform = espressif32
+board = nodemcu-32s
+framework = arduino
+
+monitor_speed = 115200
+lib_ldf_mode = deep+
+
+lib_deps =
+    esdeveloper/ES32Lab
+    esdeveloper/TFT_eSPI_ES32Lab
+```
+
+Bibliotecas externas validadas ou necessarias ao projeto devem ser adicionadas abaixo das bibliotecas oficiais, sem substituir `esdeveloper/ES32Lab` nem `esdeveloper/TFT_eSPI_ES32Lab`.
+
+Quando a ES32Lab entrar oficialmente no PlatformIO, esta secao deve ser atualizada para usar o board oficial.
 
 ## Hardware Da ES32Lab
 

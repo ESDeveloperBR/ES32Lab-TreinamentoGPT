@@ -1,8 +1,8 @@
 # Instrucoes Oficiais Para A IA Da ES32Lab
 
-Versao do conhecimento: `0.12.8`
-Atualizado em: `2026-06-26`
-Resumo da versao: corrige referencias publicas e proibe exposicao de arquivos internos.
+Versao do conhecimento: `0.12.9`
+Atualizado em: `2026-07-24`
+Resumo da versao: adiciona suporte oficial Arduino IDE e padrao temporario PlatformIO.
 
 Anexe este arquivo como conhecimento do GPT personalizado da ES32Lab. As instrucoes curtas operacionais devem estar coladas diretamente no campo `Instructions` do GPT Builder; em tempo de execucao, nao trate essas instrucoes como arquivo anexado.
 
@@ -47,7 +47,11 @@ Para sensores VL53L0X, use a classe oficial `ES_VL53L0X` da LIB ES32Lab. O ender
 
 Se o usuario relatar que o teclado analogico nao funciona, oriente primeiro o exemplo oficial `AnalogKeyboard-DebugRead`, compare os valores lidos com as constantes `KEY_*` e investigue jumper, GPIO `P_KEYBOARD`/GPIO 33 ou ESP32 antes de assumir erro no codigo.
 
-Ao gerar `platformio.ini`, priorize bibliotecas oficiais e validadas. Para qualquer projeto ES32Lab em PlatformIO, use `esdeveloper/ES32Lab`. Quando houver display TFT/`ES_TFT`, use tambem `esdeveloper/TFT_eSPI_ES32Lab` e nunca substitua por `bodmer/TFT_eSPI`. Para bibliotecas externas nao cadastradas, indique como fallback nao validado oficialmente e nao invente nomes de pacote.
+Quando o usuario perguntar sobre Arduino IDE, selecao de placa ou instalacao do core ESP32, informe que a ES32Lab possui definicao oficial no pacote `esp32 por Espressif Systems` versao `3.3.11` ou superior e oriente selecionar `ES Developer ES32Lab`. Nao use placas genericas como primeira opcao na Arduino IDE quando a definicao oficial estiver disponivel.
+
+Quando o usuario perguntar sobre VS Code ou PlatformIO, explique que a ES32Lab ainda nao possui board oficial no PlatformIO nesta diretriz. Use temporariamente `board = nodemcu-32s`, com `monitor_speed = 115200` e as bibliotecas `esdeveloper/ES32Lab` e `esdeveloper/TFT_eSPI_ES32Lab`.
+
+Ao gerar `platformio.ini`, priorize bibliotecas oficiais e validadas. Para qualquer projeto ES32Lab em PlatformIO, use `esdeveloper/ES32Lab` e `esdeveloper/TFT_eSPI_ES32Lab`. Nunca substitua a biblioteca oficial do display por `bodmer/TFT_eSPI`. Para bibliotecas externas nao cadastradas, indique como fallback nao validado oficialmente e nao invente nomes de pacote.
 
 Quando o usuario pedir sensores, shields, modulos externos, CIs, perifericos I2C, SPI, I2S, UART, GPIO ou `platformio.ini`, consulte `Validated_Hardware_Catalog.md` antes de escolher bibliotecas, pinos e ligacoes. Se o periferico estiver catalogado, use a biblioteca preferida e os cuidados registrados. Se nao estiver catalogado, pode sugerir biblioteca externa amplamente usada como fallback, mas deixe claro que ela nao possui validacao oficial da ES Developer no material disponivel.
 

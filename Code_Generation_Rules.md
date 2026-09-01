@@ -1,8 +1,8 @@
 # ES32Lab GPT - Regras de Geracao de Codigo
 
-Versao do conhecimento: `0.12.8`
-Atualizado em: `2026-06-26`
-Resumo da versao: corrige referencias publicas e evita expor arquivos internos ao usuario.
+Versao do conhecimento: `0.12.9`
+Atualizado em: `2026-07-24`
+Resumo da versao: adiciona suporte oficial Arduino IDE e padrao temporario PlatformIO com libs ES32Lab.
 
 Este arquivo define as regras que a IA da ES32Lab deve seguir ao gerar programas para usuarios da placa ES32Lab.
 
@@ -25,6 +25,16 @@ Todo exemplo principal deve iniciar com:
 
 Quando uma dependencia externa for obrigatoria para o exemplo, ela deve ser mencionada antes do codigo e no `platformio.ini` quando o usuario estiver usando PlatformIO. Exemplo: a classe `ES_TFT` depende da biblioteca `esdeveloper/TFT_eSPI_ES32Lab`.
 
+## Arduino IDE E PlatformIO
+
+Quando orientar ambiente de desenvolvimento, instalacao ou selecao de placa:
+
+- Arduino IDE: se o usuario estiver usando `esp32 por Espressif Systems` versao `3.3.11` ou superior, orientar selecionar `ES Developer ES32Lab`.
+- Arduino IDE: nao recomendar `ESP32 Dev Module`, `NodeMCU-32S` ou equivalentes como primeira opcao quando a placa oficial estiver disponivel.
+- Arduino IDE: usar placas genericas apenas para compatibilidade com versoes antigas ou casos especificos informados pelo usuario.
+- PlatformIO/VS Code: enquanto a ES32Lab ainda nao possuir board oficial no PlatformIO, usar `board = nodemcu-32s` como configuracao temporaria.
+- PlatformIO/VS Code: nao afirmar que ja existe board oficial da ES32Lab no PlatformIO ate que essa diretriz seja atualizada.
+
 ## Dependencias E PlatformIO
 
 Ao gerar `platformio.ini` ou orientar instalacao de bibliotecas, a IA deve usar esta ordem:
@@ -36,13 +46,14 @@ Ao gerar `platformio.ini` ou orientar instalacao de bibliotecas, a IA deve usar 
 Regras para `lib_deps`:
 
 - Todo projeto ES32Lab em PlatformIO deve incluir `esdeveloper/ES32Lab`.
-- Todo projeto com display TFT da ES32Lab, `ES_TFT` ou recursos graficos do display deve incluir `esdeveloper/TFT_eSPI_ES32Lab`.
+- Todo projeto ES32Lab em PlatformIO deve incluir `esdeveloper/TFT_eSPI_ES32Lab`, pois essa e a biblioteca de display ajustada para a placa e usada pela ES32Lab.
+- Bibliotecas externas do projeto devem ser adicionadas depois das bibliotecas oficiais.
 - Nao recomendar `bodmer/TFT_eSPI` em projetos ES32Lab; ela nao substitui a versao ajustada para a placa.
 - Para periferico catalogado, usar exatamente a biblioteca preferida registrada no catalogo validado.
 - Para periferico nao catalogado, pode sugerir biblioteca externa amplamente usada, mas declarar que ela nao foi validada oficialmente pela ES Developer no material disponivel.
 - Nao inventar identificador de pacote. Se o nome exato de `lib_deps` nao estiver claro, pedir confirmacao ou indicar que precisa ser conferido.
 
-Modelo minimo com display:
+Modelo temporario padrao para PlatformIO/VS Code:
 
 ```ini
 [env:nodemcu-32s]
@@ -50,6 +61,7 @@ platform = espressif32
 board = nodemcu-32s
 framework = arduino
 
+monitor_speed = 115200
 lib_ldf_mode = deep+
 
 lib_deps =

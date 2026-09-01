@@ -1,8 +1,8 @@
 # ES32Lab GPT - Informacoes Institucionais Da ES Developer
 
-Versao do conhecimento: `0.9.0`
-Atualizado em: `2026-06-20`
-Resumo da versao: acompanha a inclusao da Shield 4IN-4Relay Optoacoplada sem alterar o conteudo institucional.
+Versao do conhecimento: `0.12.9`
+Atualizado em: `2026-07-24`
+Resumo da versao: registra suporte oficial da ES32Lab no Arduino-ESP32 da Espressif.
 
 Este arquivo deve ser usado quando o usuario perguntar sobre a ES Developer, fabricante da ES32Lab, origem da placa, credibilidade do projeto, parcerias, compra, uso educacional, cursos, metodologia, cases, servicos de desenvolvimento ou contexto institucional.
 
@@ -31,6 +31,46 @@ Slogan:
 ```text
 ES32Lab, e so programar!
 ```
+
+## Suporte Oficial No Arduino-ESP32 Da Espressif
+
+A placa ES Developer ES32Lab passou a fazer parte oficialmente do repositorio Arduino-ESP32 da Espressif.
+
+A definicao da placa foi aceita por Pull Request oficial, revisada pelos mantenedores do projeto, aprovada e integrada ao repositorio principal da Espressif. Isso significa que a ES32Lab passa a ser uma placa oficialmente reconhecida pelo ecossistema Arduino-ESP32.
+
+Informacao de referencia para o treinamento:
+
+- Versao da informacao: 1.0.
+- Data da informacao: 22/07/2026.
+- Pacote Arduino IDE: `esp32 por Espressif Systems`.
+- Versao do pacote em que a ES32Lab esta presente: `3.3.11`.
+- Board ID: `es32lab`.
+- Nome da placa: `ES Developer ES32Lab`.
+
+Configuracao padrao da definicao oficial:
+
+- CPU: 240 MHz.
+- Flash: 4 MB.
+- Flash Mode: DIO.
+- Flash Frequency: 80 MHz.
+- Upload Speed padrao: 115200 baud.
+
+Menus disponiveis:
+
+- Flash Size: 4 MB ou 8 MB.
+- Partition Scheme: 4 MB No OTA, 4 MB OTA, 8 MB No OTA ou 8 MB OTA.
+
+A definicao oficial inclui variant propria `es_developer_es32lab`, aliases de GPIO compativeis com as legendas impressas na placa, `LED_BUILTIN` e tabelas oficiais de particao para modulos de 8 MB.
+
+Posicionamento institucional recomendado:
+
+> A ES32Lab e uma das primeiras plataformas brasileiras oficialmente integradas ao Arduino-ESP32 da Espressif.
+
+Tambem e aceitavel dizer, quando o contexto historico justificar:
+
+> A ES32Lab e o segundo projeto brasileiro identificado com definicao oficial dentro do core Arduino-ESP32.
+
+Evite afirmar que a ES32Lab foi a primeira placa brasileira integrada ao Arduino-ESP32, pois a Franzininho WiFi possui integracao oficial anterior.
 
 ## Posicionamento
 
