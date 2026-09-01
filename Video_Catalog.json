@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "knowledge_version": "0.12.4",
-  "updated_at": "2026-06-25",
+  "knowledge_version": "0.13.2",
+  "updated_at": "2026-09-01",
   "source_file": "YouTube_ESDeveloperBR.md",
   "title": "ES32Lab GPT - Video Catalog",
   "previous_metadata": {
@@ -25,7 +25,11 @@
     "recommendation_style": "curta, natural e complementar",
     "physical_connection_questions_priority": "high",
     "recommend_video_for_physical_connection_when_available": true,
-    "prefer_exact_chapter_for_display_camera_connectors": true
+    "prefer_exact_chapter_for_display_camera_connectors": true,
+    "institutional_support_questions_priority": "high",
+    "recommend_video_for_official_arduino_esp32_support_when_available": true,
+    "recommend_video_for_buzzer_examples_when_available": true,
+    "recommend_video_for_arduino_ide_setup_when_available": true
   },
   "sections_markdown": {
     "Funcao Deste Modulo": "Este modulo deve ser usado para:\n- recomendar videos oficiais do canal ES Developer BR;\n- apontar o usuario para trechos especificos dos videos quando houver tempo conhecido;\n- complementar respostas tecnicas com apoio visual;\n- ajudar iniciantes a conhecerem a ES32Lab;\n- divulgar o canal de forma natural, sem transformar respostas tecnicas em propaganda;\n- manter um catalogo expansivel para novos videos, shorts, playlists e aulas futuras.",
@@ -267,6 +271,197 @@
       ]
     },
     {
+      "title": "ES32Lab agora esta no pacote oficial ESP32 da Espressif!",
+      "id": "Hmef1ZIjxbs",
+      "url": "https://youtu.be/Hmef1ZIjxbs",
+      "thumbnail": "https://img.youtube.com/vi/Hmef1ZIjxbs/maxresdefault.jpg",
+      "type": "video completo",
+      "presenter": "Eder Santini",
+      "main_topic": "integracao oficial da ES Developer ES32Lab ao Arduino-ESP32 mantido pela Espressif Systems",
+      "recommended_for": [
+        "suporte oficial da ES32Lab no Arduino-ESP32",
+        "ES32Lab no pacote esp32 por Espressif Systems",
+        "credibilidade da ES32Lab",
+        "contexto institucional da ES Developer",
+        "Espressif Systems",
+        "Arduino IDE",
+        "versao 3.3.11",
+        "ES Developer ES32Lab",
+        "board ID es32lab",
+        "historia da ES32Lab",
+        "marcos da ES32Lab",
+        "tecnologia brasileira",
+        "projeto brasileiro no ecossistema ESP32",
+        "por que escolher a ES32Lab"
+      ],
+      "related_classes": [],
+      "physical_resources": [],
+      "keywords": [
+        "Espressif",
+        "Espressif Systems",
+        "ESP32",
+        "Arduino-ESP32",
+        "Arduino IDE",
+        "ES32Lab",
+        "ES Developer ES32Lab",
+        "esp32 por Espressif Systems",
+        "3.3.11",
+        "es32lab",
+        "suporte oficial",
+        "repositorio oficial",
+        "Pull Request",
+        "definicao de placa",
+        "placa brasileira",
+        "tecnologia brasileira"
+      ],
+      "information": "Video institucional que apresenta a integracao oficial da definicao da ES Developer ES32Lab ao Arduino-ESP32 mantido pela Espressif Systems. A placa aparece na Arduino IDE como ES Developer ES32Lab a partir do pacote esp32 por Espressif Systems versao 3.3.11. Artigo oficial complementar: https://www.esdeveloper.com.br/es32lab-pacote-oficial-esp32-espressif",
+      "observation": "Recomendar quando o usuario perguntar sobre suporte oficial da ES32Lab no Arduino-ESP32, versao do pacote ESP32, Arduino IDE, quem e a Espressif, credibilidade da ES32Lab ou esse marco institucional. Nao tratar como certificacao comercial, homologacao integral do hardware, parceria comercial ou validacao de todos os produtos e bibliotecas da ES Developer. Nao afirmar que a ES32Lab foi a primeira placa brasileira integrada ao Arduino-ESP32.",
+      "chapters": []
+    },
+    {
+      "title": "Como Instalar e Configurar Arduino IDE do Zero: ESP32, ES32Lab e Bibliotecas",
+      "id": "RfHCgr7BZb4",
+      "url": "https://youtu.be/RfHCgr7BZb4",
+      "thumbnail": "https://img.youtube.com/vi/RfHCgr7BZb4/maxresdefault.jpg",
+      "type": "video completo",
+      "presenter": "Eder Santini",
+      "main_topic": "instalacao e configuracao da Arduino IDE 2.x para ESP32, ES32Lab, bibliotecas, exemplos, upload e Monitor Serial",
+      "recommended_for": [
+        "primeiros passos",
+        "iniciantes",
+        "instalar Arduino IDE",
+        "Arduino IDE no Windows",
+        "mudar idioma da Arduino IDE",
+        "instalar ESP32 by Espressif Systems",
+        "selecionar ES Developer ES32Lab",
+        "selecionar porta COM",
+        "instalar biblioteca ES32Lab",
+        "instalar bibliotecas na Arduino IDE",
+        "abrir exemplos da ES32Lab",
+        "compilar primeiro programa",
+        "Space Invader como exemplo de compilacao",
+        "erro de upload ESP32",
+        "BOOT e EN",
+        "modo de gravacao",
+        "Monitor Serial",
+        "baud rate"
+      ],
+      "related_classes": [],
+      "physical_resources": [
+        "botao BOOT",
+        "botao EN",
+        "porta USB",
+        "porta COM",
+        "Monitor Serial"
+      ],
+      "keywords": [
+        "Arduino IDE",
+        "Arduino IDE 2.x",
+        "Windows",
+        "Microsoft Store",
+        "ESP32 by Espressif Systems",
+        "Gerenciador de Placas",
+        "Gerenciador de Bibliotecas",
+        "ES32Lab",
+        "ES Developer ES32Lab",
+        "NodeMCU-32S",
+        "porta COM",
+        "compilar",
+        "enviar",
+        "upload",
+        "download mode",
+        "modo de gravacao",
+        "BOOT",
+        "EN",
+        "IO0",
+        "RESET",
+        "RST",
+        "ENABLE",
+        "Monitor Serial",
+        "baud rate",
+        "115200",
+        "9600",
+        "caracteres ilegiveis",
+        "Space Invader"
+      ],
+      "information": "Tutorial oficial para iniciantes que mostra como instalar a Arduino IDE 2.x no Windows, configurar idioma, instalar o pacote ESP32 by Espressif Systems, selecionar a placa ES Developer ES32Lab e a porta COM, instalar a biblioteca ES32Lab, abrir um exemplo oficial, compilar/enviar, resolver um erro comum de gravacao usando BOOT + EN e corrigir caracteres ilegiveis no Monitor Serial ajustando o baud rate.",
+      "observation": "Usar como referencia principal para primeiros passos, instalacao, Arduino IDE, pacote ESP32, biblioteca ES32Lab, porta COM, exemplos, erro de upload, BOOT/EN e Monitor Serial. Nao afirmar que todo erro de upload e resolvido por BOOT + EN; este e um procedimento para o caso comum em que o ESP32 nao entra automaticamente em modo de download. Nao usar o artigo da ES Developer sobre este tema sem verificar antes a URL canonica ativa.",
+      "chapters": [
+        {
+          "time": "00:00",
+          "topic": "Comece aqui",
+          "url": "https://youtu.be/RfHCgr7BZb4?t=0",
+          "seconds": 0
+        },
+        {
+          "time": "00:21",
+          "topic": "ES32Lab AI como apoio para duvidas e diagnostico",
+          "url": "https://youtu.be/RfHCgr7BZb4?t=21",
+          "seconds": 21
+        },
+        {
+          "time": "00:59",
+          "topic": "Instalacao da Arduino IDE no Windows",
+          "url": "https://youtu.be/RfHCgr7BZb4?t=59",
+          "seconds": 59
+        },
+        {
+          "time": "01:39",
+          "topic": "Mudar idioma da Arduino IDE para portugues",
+          "url": "https://youtu.be/RfHCgr7BZb4?t=99",
+          "seconds": 99
+        },
+        {
+          "time": "02:17",
+          "topic": "Instalar ESP32 by Espressif Systems",
+          "url": "https://youtu.be/RfHCgr7BZb4?t=137",
+          "seconds": 137
+        },
+        {
+          "time": "03:02",
+          "topic": "Selecionar placa ESP32 e porta COM",
+          "url": "https://youtu.be/RfHCgr7BZb4?t=182",
+          "seconds": 182
+        },
+        {
+          "time": "03:28",
+          "topic": "Selecionar ES Developer ES32Lab",
+          "url": "https://youtu.be/RfHCgr7BZb4?t=208",
+          "seconds": 208
+        },
+        {
+          "time": "04:00",
+          "topic": "Instalar bibliotecas na Arduino IDE",
+          "url": "https://youtu.be/RfHCgr7BZb4?t=240",
+          "seconds": 240
+        },
+        {
+          "time": "04:35",
+          "topic": "Abrir exemplo oficial Space Invader",
+          "url": "https://youtu.be/RfHCgr7BZb4?t=275",
+          "seconds": 275
+        },
+        {
+          "time": "05:32",
+          "topic": "Erro de gravacao e procedimento BOOT + EN",
+          "url": "https://youtu.be/RfHCgr7BZb4?t=332",
+          "seconds": 332
+        },
+        {
+          "time": "07:49",
+          "topic": "Monitor Serial e correcao de baud rate",
+          "url": "https://youtu.be/RfHCgr7BZb4?t=469",
+          "seconds": 469
+        },
+        {
+          "time": "08:33",
+          "topic": "Recapitulacao",
+          "url": "https://youtu.be/RfHCgr7BZb4?t=513",
+          "seconds": 513
+        }
+      ]
+    },
+    {
       "title": "ES32Lab - Ganhe tempo de desenvolvimento e prototipagem em seus projetos com ESP32",
       "id": "F3Kxc9TrW4A",
       "url": "https://youtu.be/F3Kxc9TrW4A",
@@ -384,6 +579,52 @@
           "seconds": 137
         }
       ]
+    },
+    {
+      "title": "Super Mario tocando em uma placa ESP32? Conheca a ES32Lab",
+      "id": "wMmFRAjCwe4",
+      "url": "https://youtube.com/shorts/wMmFRAjCwe4",
+      "thumbnail": "https://img.youtube.com/vi/wMmFRAjCwe4/maxresdefault.jpg",
+      "type": "short",
+      "presenter": "Eder Santini",
+      "main_topic": "demonstracao pratica da classe ES_Buzzer e do exemplo Super Mario no buzzer onboard da ES32Lab",
+      "recommended_for": [
+        "iniciantes",
+        "primeiro contato com a ES32Lab",
+        "buzzer",
+        "buzzer onboard",
+        "ES_Buzzer",
+        "P_BUZZER",
+        "exemplos da biblioteca",
+        "exemplo Super Mario",
+        "Arduino IDE",
+        "melodias simples",
+        "notas musicais",
+        "feedback sonoro",
+        "videogames retro"
+      ],
+      "related_classes": [
+        "ES_Buzzer"
+      ],
+      "physical_resources": [
+        "buzzer onboard"
+      ],
+      "keywords": [
+        "Buzzer",
+        "buzzer onboard",
+        "P_BUZZER",
+        "ES_Buzzer",
+        "ES_Buzzer_superMario",
+        "Super Mario",
+        "melodia",
+        "notas musicais",
+        "Arduino IDE",
+        "exemplos da biblioteca",
+        "ES Developer ES32Lab"
+      ],
+      "information": "Short oficial que mostra a ES32Lab tocando a melodia de Super Mario no buzzer onboard usando a classe ES_Buzzer. O video demonstra o fluxo didatico na Arduino IDE: abrir os exemplos da biblioteca, acessar Buzzer, abrir o exemplo Super Mario, selecionar a placa ES Developer ES32Lab, escolher a porta COM, compilar e executar na placa. Exemplo oficial relacionado: https://github.com/ESDeveloperBR/ES32Lab/blob/main/examples/Buzzer/ES_Buzzer_superMario/ES_Buzzer_superMario.ino",
+      "observation": "Usar como demonstracao rapida de buzzer, ES_Buzzer, pequenas melodias, notas musicais e facilidade da LIB ES32Lab. Nao posicionar o buzzer como solucao principal de audio de alta fidelidade; para localizacao fisica do buzzer, jumpers, DAC ou I2S, priorizar o video completo de hardware quando ele for mais adequado.",
+      "chapters": []
     },
     {
       "title": "Biblioteca da ES32Lab gerando sinal PWM pelo expansor de GPIO I2C",
@@ -933,6 +1174,201 @@
       "chapter_topic": "Conector I2C",
       "url": "https://youtu.be/xpoNbSA8pPM?t=223",
       "seconds": 223,
+      "priority": "high"
+    },
+    {
+      "intent": "arduino_ide_setup",
+      "triggers": [
+        "instalar Arduino IDE",
+        "baixar Arduino IDE",
+        "Arduino IDE no Windows",
+        "Arduino IDE do zero",
+        "primeira instalacao Arduino IDE",
+        "Microsoft Store Arduino IDE",
+        "mudar idioma Arduino IDE",
+        "Arduino IDE em portugues",
+        "configurar Arduino IDE"
+      ],
+      "video_id": "RfHCgr7BZb4",
+      "title": "Como Instalar e Configurar Arduino IDE do Zero: ESP32, ES32Lab e Bibliotecas",
+      "chapter_topic": "Instalacao da Arduino IDE no Windows",
+      "url": "https://youtu.be/RfHCgr7BZb4?t=59",
+      "seconds": 59,
+      "priority": "high"
+    },
+    {
+      "intent": "esp32_package_and_es32lab_setup",
+      "triggers": [
+        "instalar ESP32 na Arduino IDE",
+        "ESP32 by Espressif Systems",
+        "pacote ESP32 Arduino IDE",
+        "Gerenciador de Placas",
+        "ES32Lab nao aparece na Arduino IDE",
+        "instalar ES32Lab na Arduino IDE",
+        "selecionar ES32Lab na Arduino IDE",
+        "selecionar ES Developer ES32Lab",
+        "selecionar porta COM",
+        "porta COM ESP32",
+        "porta COM ES32Lab"
+      ],
+      "video_id": "RfHCgr7BZb4",
+      "title": "Como Instalar e Configurar Arduino IDE do Zero: ESP32, ES32Lab e Bibliotecas",
+      "chapter_topic": "Instalar ESP32 by Espressif Systems e selecionar ES Developer ES32Lab",
+      "url": "https://youtu.be/RfHCgr7BZb4?t=137",
+      "seconds": 137,
+      "priority": "high"
+    },
+    {
+      "intent": "arduino_ide_library_installation",
+      "triggers": [
+        "instalar biblioteca Arduino IDE",
+        "instalar biblioteca ES32Lab",
+        "Gerenciador de Bibliotecas",
+        "biblioteca ES32Lab",
+        "dependencias Arduino IDE",
+        "instalar dependencias",
+        "biblioteca faltando",
+        "como instalar biblioteca"
+      ],
+      "video_id": "RfHCgr7BZb4",
+      "title": "Como Instalar e Configurar Arduino IDE do Zero: ESP32, ES32Lab e Bibliotecas",
+      "chapter_topic": "Instalar bibliotecas na Arduino IDE",
+      "url": "https://youtu.be/RfHCgr7BZb4?t=240",
+      "seconds": 240,
+      "priority": "high"
+    },
+    {
+      "intent": "first_example_compile",
+      "triggers": [
+        "primeiro programa Arduino IDE",
+        "compilar primeiro programa",
+        "abrir exemplos da ES32Lab",
+        "onde ficam os exemplos da ES32Lab",
+        "Arquivo Exemplos ES32Lab",
+        "exemplo Space Invader",
+        "compilar exemplo ES32Lab",
+        "compilar e enviar",
+        "botao verificar Arduino IDE",
+        "botao enviar Arduino IDE"
+      ],
+      "video_id": "RfHCgr7BZb4",
+      "title": "Como Instalar e Configurar Arduino IDE do Zero: ESP32, ES32Lab e Bibliotecas",
+      "chapter_topic": "Abrir exemplo oficial e compilar o primeiro programa",
+      "url": "https://youtu.be/RfHCgr7BZb4?t=275",
+      "seconds": 275,
+      "priority": "high"
+    },
+    {
+      "intent": "esp32_upload_boot_en",
+      "triggers": [
+        "ESP32 nao grava",
+        "ESP32 nao faz upload",
+        "erro de upload ESP32",
+        "erro de gravacao ESP32",
+        "ESP32 download mode",
+        "modo de gravacao ESP32",
+        "BOOT EN",
+        "BOOT e EN",
+        "IO0",
+        "RESET",
+        "RST",
+        "ENABLE",
+        "Failed to connect to ESP32",
+        "Timed out waiting for packet header"
+      ],
+      "video_id": "RfHCgr7BZb4",
+      "title": "Como Instalar e Configurar Arduino IDE do Zero: ESP32, ES32Lab e Bibliotecas",
+      "chapter_topic": "Erro de gravacao e procedimento BOOT + EN",
+      "url": "https://youtu.be/RfHCgr7BZb4?t=332",
+      "seconds": 332,
+      "priority": "high"
+    },
+    {
+      "intent": "serial_monitor_baud_rate",
+      "triggers": [
+        "Monitor Serial",
+        "Monitor Serial ilegiveis",
+        "Monitor Serial caracteres estranhos",
+        "caracteres estranhos",
+        "caracteres ilegiveis",
+        "baud rate",
+        "velocidade serial",
+        "115200",
+        "9600",
+        "Serial.begin",
+        "monitor serial em branco",
+        "dados baguncados no serial"
+      ],
+      "video_id": "RfHCgr7BZb4",
+      "title": "Como Instalar e Configurar Arduino IDE do Zero: ESP32, ES32Lab e Bibliotecas",
+      "chapter_topic": "Monitor Serial e correcao de baud rate",
+      "url": "https://youtu.be/RfHCgr7BZb4?t=469",
+      "seconds": 469,
+      "priority": "high"
+    },
+    {
+      "intent": "buzzer_example",
+      "triggers": [
+        "buzzer",
+        "buzzer onboard",
+        "ES_Buzzer",
+        "P_BUZZER",
+        "exemplo de buzzer",
+        "Super Mario",
+        "melodia Super Mario",
+        "melodia no buzzer",
+        "tocar musica no buzzer",
+        "notas musicais",
+        "como usar o buzzer",
+        "exemplos da biblioteca",
+        "abrir exemplo de buzzer",
+        "feedback sonoro"
+      ],
+      "video_id": "wMmFRAjCwe4",
+      "title": "Super Mario tocando em uma placa ESP32? Conheca a ES32Lab",
+      "chapter_topic": "Demonstracao do exemplo Super Mario com ES_Buzzer",
+      "url": "https://youtube.com/shorts/wMmFRAjCwe4",
+      "seconds": 0,
+      "priority": "high"
+    },
+    {
+      "intent": "official_arduino_esp32_support",
+      "triggers": [
+        "ES32Lab e oficial",
+        "ES32Lab esta na Espressif",
+        "ES32Lab no pacote da Espressif",
+        "ES32Lab no Arduino-ESP32",
+        "Espressif reconhece a ES32Lab",
+        "suporte oficial da ES32Lab",
+        "versao do pacote ESP32",
+        "esp32 por Espressif Systems 3.3.11",
+        "projeto brasileiro no Arduino-ESP32",
+        "credibilidade da ES32Lab"
+      ],
+      "video_id": "Hmef1ZIjxbs",
+      "title": "ES32Lab agora esta no pacote oficial ESP32 da Espressif!",
+      "chapter_topic": "Integracao oficial da ES32Lab ao Arduino-ESP32",
+      "url": "https://youtu.be/Hmef1ZIjxbs",
+      "seconds": 0,
+      "priority": "high"
+    },
+    {
+      "intent": "arduino_ide_board_selection",
+      "triggers": [
+        "qual placa selecionar na Arduino IDE",
+        "placa ES Developer ES32Lab",
+        "board ID es32lab",
+        "ES32Lab aparece na Arduino IDE",
+        "selecionar ES32Lab na Arduino IDE",
+        "NodeMCU-32S ou ES32Lab",
+        "ESP32 Dev Module ou ES32Lab",
+        "a partir de qual versao aparece a ES32Lab"
+      ],
+      "video_id": "RfHCgr7BZb4",
+      "title": "Como Instalar e Configurar Arduino IDE do Zero: ESP32, ES32Lab e Bibliotecas",
+      "chapter_topic": "Selecionar ES Developer ES32Lab",
+      "url": "https://youtu.be/RfHCgr7BZb4?t=208",
+      "seconds": 208,
       "priority": "high"
     }
   ]

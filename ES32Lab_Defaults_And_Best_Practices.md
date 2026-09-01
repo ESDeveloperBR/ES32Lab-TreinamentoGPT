@@ -1,8 +1,8 @@
 # ES32Lab GPT - Defaults E Boas Praticas
 
-Versao do conhecimento: `0.12.9`
-Atualizado em: `2026-07-24`
-Resumo da versao: adiciona padrao de selecao da placa no Arduino IDE e configuracao temporaria PlatformIO.
+Versao do conhecimento: `0.13.2`
+Atualizado em: `2026-09-01`
+Resumo da versao: adiciona orientacoes praticas de Arduino IDE, instalacao, upload BOOT/EN e Monitor Serial.
 
 Este arquivo concentra ajustes finos de uso da placa ES32Lab e da LIB ES32Lab.
 
@@ -68,6 +68,82 @@ Essa deve ser a recomendacao padrao para Arduino IDE. Nao recomendar `ESP32 Dev 
 Use placas genericas apenas como compatibilidade para versoes antigas do pacote ESP32, ambientes temporarios, testes especificos ou quando o usuario ainda nao tiver acesso a definicao oficial.
 
 Com a placa oficial selecionada, os aliases da variant sao fornecidos pelo proprio core Arduino-ESP32. A LIB ES32Lab continua compativel e deve evitar duplicar definicoes de GPIO quando detectar essa condicao.
+
+Video tutorial oficial recomendado para iniciantes:
+
+https://youtu.be/RfHCgr7BZb4
+
+Ao orientar instalacao da Arduino IDE, usar como referencia publica principal a pagina oficial:
+
+https://www.arduino.cc/en/software
+
+O video demonstra a instalacao no Windows pela Microsoft Store, mas a pagina oficial da Arduino IDE tambem pode ser indicada como caminho geral de download.
+
+Quando a resposta tratar da ferramenta de compilacao, configuracao e gravacao, usar a expressao `Arduino IDE`. Evitar dizer apenas `Arduino` quando o contexto for o software, pois isso pode confundir o usuario iniciante com uma placa Arduino.
+
+Para instalar o suporte ao ESP32 na Arduino IDE 2.x:
+
+1. Abrir o Gerenciador de Placas.
+2. Pesquisar por `ESP32`.
+3. Instalar `ESP32 by Espressif Systems`.
+4. Usar a versao atual compativel sempre que possivel.
+
+No fluxo basico atual da Arduino IDE 2.x, nao orientar a inclusao manual de URL JSON adicional apenas para instalar o pacote ESP32, salvo se o usuario estiver em um ambiente antigo ou pedir esse procedimento explicitamente.
+
+Se a ES32Lab nao aparecer no seletor de placas:
+
+1. Conferir se `ESP32 by Espressif Systems` esta instalado.
+2. Conferir se o pacote esta atualizado.
+3. Atualizar o pacote, se necessario.
+4. Lembrar que a definicao oficial `ES Developer ES32Lab` esta disponivel a partir da versao `3.3.11`.
+
+Depois de selecionar a placa correta, orientar tambem a selecao da porta COM correspondente a conexao USB usada pelo ESP32/ES32Lab. Nao inventar uma porta COM especifica, pois ela depende do computador do usuario.
+
+Para instalar a biblioteca ES32Lab pela Arduino IDE:
+
+1. Abrir o Gerenciador de Bibliotecas.
+2. Pesquisar por `ES32Lab`.
+3. Clicar em Instalar.
+4. Quando a Arduino IDE solicitar dependencias necessarias, confirmar a instalacao.
+
+Com a biblioteca instalada, os exemplos oficiais ficam em:
+
+```text
+Arquivo -> Exemplos -> ES32Lab
+```
+
+Para validar uma instalacao inicial, a IA pode sugerir abrir e compilar um exemplo oficial simples ou demonstrativo. O video usa `Games -> Space Invader` como exemplo de compilacao, mas isso nao deve transformar Space Invader no tema principal do tutorial.
+
+Explique para iniciantes a diferenca entre os botoes principais:
+
+- Verificar/compilar: compila o codigo sem gravar na placa.
+- Enviar: compila e grava o programa na placa selecionada.
+
+### Erro De Gravacao Com BOOT E EN
+
+Quando o codigo compila, mas o ESP32 nao entra automaticamente em modo de gravacao/download, orientar o procedimento manual:
+
+1. Manter `BOOT` pressionado.
+2. Pressionar e soltar `EN`.
+3. Aguardar aproximadamente 1 segundo.
+4. Soltar `BOOT`.
+5. Tentar enviar o programa novamente.
+6. Depois da gravacao, pressionar `EN` para reiniciar a placa e executar o programa.
+
+Dependendo da placa ESP32, `BOOT` pode aparecer como `IO0`, e `EN` pode aparecer como `RESET`, `RST` ou `ENABLE`. A posicao fisica dos botoes pode variar conforme fabricante e modelo.
+
+Nao afirmar que todo erro de upload e resolvido com `BOOT + EN`. Esse procedimento e adequado para o caso comum em que o ESP32 nao entrou corretamente em modo de download. Para outros erros, pedir a mensagem completa da Arduino IDE e seguir o diagnostico.
+
+### Monitor Serial E Baud Rate
+
+Quando o Monitor Serial mostrar caracteres estranhos, ilegiveis ou dados baguncados, conferir primeiro se a velocidade do Monitor Serial e a mesma configurada no programa.
+
+Exemplo comum:
+
+- Programa com `Serial.begin(115200)`.
+- Monitor Serial configurado em `9600`.
+
+Nesse caso, ajustar o Monitor Serial para `115200` costuma corrigir a exibicao. Nao afirmar que todo problema de Monitor Serial e baud rate; se persistir, pedir o codigo, a configuracao usada e a saida exibida.
 
 ### PlatformIO / VS Code
 

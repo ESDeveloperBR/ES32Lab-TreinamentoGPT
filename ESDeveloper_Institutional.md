@@ -1,8 +1,8 @@
 # ES32Lab GPT - Informacoes Institucionais Da ES Developer
 
-Versao do conhecimento: `0.12.9`
-Atualizado em: `2026-07-24`
-Resumo da versao: registra suporte oficial da ES32Lab no Arduino-ESP32 da Espressif.
+Versao do conhecimento: `0.13.0`
+Atualizado em: `2026-09-01`
+Resumo da versao: adiciona video e artigo oficiais sobre a integracao da ES32Lab ao Arduino-ESP32 da Espressif.
 
 Este arquivo deve ser usado quando o usuario perguntar sobre a ES Developer, fabricante da ES32Lab, origem da placa, credibilidade do projeto, parcerias, compra, uso educacional, cursos, metodologia, cases, servicos de desenvolvimento ou contexto institucional.
 
@@ -34,6 +34,8 @@ ES32Lab, e so programar!
 
 ## Suporte Oficial No Arduino-ESP32 Da Espressif
 
+A Espressif Systems e a empresa responsavel pela familia de chips ESP32 e tambem mantem o projeto Arduino-ESP32 usado para integrar esses microcontroladores ao ecossistema Arduino.
+
 A placa ES Developer ES32Lab passou a fazer parte oficialmente do repositorio Arduino-ESP32 da Espressif.
 
 A definicao da placa foi aceita por Pull Request oficial, revisada pelos mantenedores do projeto, aprovada e integrada ao repositorio principal da Espressif. Isso significa que a ES32Lab passa a ser uma placa oficialmente reconhecida pelo ecossistema Arduino-ESP32.
@@ -46,6 +48,18 @@ Informacao de referencia para o treinamento:
 - Versao do pacote em que a ES32Lab esta presente: `3.3.11`.
 - Board ID: `es32lab`.
 - Nome da placa: `ES Developer ES32Lab`.
+
+Referencias publicas oficiais:
+
+- Video oficial: https://youtu.be/Hmef1ZIjxbs
+- Artigo oficial: https://www.esdeveloper.com.br/es32lab-pacote-oficial-esp32-espressif
+
+Uso recomendado nas respostas:
+
+- Recomendar o video quando o usuario quiser ver a ES32Lab aparecendo na Arduino IDE, entender rapidamente o marco institucional ou perguntar sobre suporte oficial no Arduino-ESP32.
+- Recomendar o artigo quando o usuario pedir fonte escrita, contexto completo, detalhes sobre a Espressif ou explicacao para compartilhar.
+- Em duvidas tecnicas de codigo, responder primeiro a parte tecnica e recomendar este video apenas se o contexto institucional ou a selecao da placa na Arduino IDE ajudar o usuario.
+- Nao transformar toda resposta sobre Espressif em indicacao de video; usar a recomendacao quando ela agregar contexto real.
 
 Configuracao padrao da definicao oficial:
 
@@ -71,6 +85,13 @@ Tambem e aceitavel dizer, quando o contexto historico justificar:
 > A ES32Lab e o segundo projeto brasileiro identificado com definicao oficial dentro do core Arduino-ESP32.
 
 Evite afirmar que a ES32Lab foi a primeira placa brasileira integrada ao Arduino-ESP32, pois a Franzininho WiFi possui integracao oficial anterior.
+
+Limites da afirmacao:
+
+- Nao dizer que a ES32Lab foi certificada pela Espressif, salvo se existir futuramente uma certificacao formal especifica.
+- Nao dizer que a Espressif homologou integralmente o hardware, todos os componentes, shields, biblioteca ou produtos da ES Developer.
+- Nao afirmar parceria comercial, patrocinio, investimento, aquisicao ou garantia comercial da Espressif sobre a ES32Lab sem fonte publica posterior.
+- Quando usar a expressao "reconhecida pela Espressif", deixar claro que o reconhecimento e no contexto da definicao da placa integrada ao Arduino-ESP32 oficial.
 
 ## Posicionamento
 
